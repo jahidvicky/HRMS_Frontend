@@ -177,9 +177,9 @@ const AttendanceModal = ({ data, onClose, holidays = [] }) => {
         present: { solid: "#22C55E", bg: "#DCFCE7", border: "#86EFAC", text: "#14532D" },
         late: { solid: "#F97316", bg: "#FFEDD5", border: "#FDBA74", text: "#7C2D12" },
         halfday: { solid: "#EAB308", bg: "#FEF9C3", border: "#FDE047", text: "#713F12" },
-        absent: { solid: "#3B82F6", bg: "#DBEAFE", border: "#93C5FD", text: "#1E3A8A" },
+        absent: { solid: "#3B82F6", bg: "rgba(59,130,246,.18)", border: "#93C5FD", text: "#1E3A8A" },
         holiday: { solid: "#A855F7", bg: "#F3E8FF", border: "#D8B4FE", text: "#581C87" },
-        weekend: { solid: "#818CF8", bg: "#EEF2FF", border: "#C7D2FE", text: "#3730A3" },
+        weekend: { solid: "#818CF8", bg: "rgba(99,102,241,.15)", border: "#C7D2FE", text: "#3730A3" },
         leave: { solid: "#EC4899", bg: "#FCE7F3", border: "#F9A8D4", text: "#831843" }
     };
 

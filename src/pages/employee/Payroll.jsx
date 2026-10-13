@@ -82,7 +82,7 @@ const TaxProjectionCard = ({ tds }) => {
                 </div>
             </div>
 
-            <div style={{ marginTop: "1.25rem", padding: "10px", background: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+            <div style={{ marginTop: "1.25rem", padding: "10px", background: "var(--surface-2)", borderRadius: "8px", border: "1px solid var(--border)" }}>
                 <p style={{ fontSize: ".75rem", color: "#475569", lineHeight: "1.4" }}>
                     <strong>Why is tax deducted?</strong> Your projected annual taxable income exceeds the Section 87A rebate threshold under the FY 2025-26 New Tax Regime. Income tax is therefore deducted monthly as TDS. Your effective tax rate is <strong>{tds.effectiveRate || 0}%</strong>.
                 </p>

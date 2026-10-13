@@ -101,7 +101,7 @@ const StopwatchLoader = () => {
                     width: 14px;
                     height: 10px;
                     border-radius: 3px;
-                    background: #f1f5f9;
+                    background: var(--surface-3);
                     border: 1.5px solid #cbd5e1;
                 }
  
@@ -164,7 +164,7 @@ const StopwatchLoader = () => {
                     width: 36px;
                     height: 20px;
                     border-radius: 10px;
-                    background: #f1f5f9;
+                    background: var(--surface-3);
                     border: 1.5px solid #cbd5e1;
                 }
                 .sw-btn-start {

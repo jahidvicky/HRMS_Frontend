@@ -7,7 +7,7 @@ const StatCard = ({ title, value, accent, action, actionLabel }) => {
     const nav = useNavigate();
 
     const accentMap = {
-        brand: { bg: "#eef2ff", border: "#c7d2fe", num: "#3b5bdb", dot: "#3b5bdb" },
+        brand: { bg: "rgba(99,102,241,.15)", border: "#c7d2fe", num: "#3b5bdb", dot: "#3b5bdb" },
         success: { bg: "#f0fdf4", border: "#bbf7d0", num: "#15803d", dot: "#16a34a" },
         warn: { bg: "#fffbeb", border: "#fde68a", num: "#b45309", dot: "#d97706" },
         danger: { bg: "#fef2f2", border: "#fecaca", num: "#b91c1c", dot: "#dc2626" },

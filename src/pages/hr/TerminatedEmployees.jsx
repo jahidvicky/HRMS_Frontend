@@ -99,7 +99,7 @@ const TerminatedEmployees = () => {
                                         </td>
                                         <td style={{ padding: "12px 16px" }}>
                                             <span style={{
-                                                background: emp.isDeleted ? "#fee2e2" : "#fef3c7",
+                                                background: emp.isDeleted ? "rgba(239,68,68,.15)" : "rgba(245,158,11,.18)",
                                                 color: emp.isDeleted ? "#991b1b" : "#92400e",
                                                 padding: "2px 8px", borderRadius: 4, fontSize: ".72rem", fontWeight: 700
                                             }}>
@@ -118,7 +118,7 @@ const TerminatedEmployees = () => {
                                                 onClick={() => navigate(`/hr/employee-history/${emp._id}`)}
                                                 style={{
                                                     padding: "5px 12px", borderRadius: 7, border: "1.5px solid #fecaca",
-                                                    background: "#fee2e2", color: "#dc2626", fontWeight: 700,
+                                                    background: "rgba(239,68,68,.15)", color: "#dc2626", fontWeight: 700,
                                                     fontSize: ".75rem", cursor: "pointer"
                                                 }}
                                             >

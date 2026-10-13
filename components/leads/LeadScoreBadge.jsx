@@ -7,7 +7,7 @@ const getScoreConfig = (score, tag) => {
         case 'hot': return { bg: '#fef2f2', color: '#b91c1c', border: '#fca5a5', label: '🔥 Hot', dot: '#ef4444' }
         case 'warm': return { bg: '#fffbeb', color: '#b45309', border: '#fcd34d', label: '🌤 Warm', dot: '#f59e0b' }
         case 'cold': return { bg: '#eff6ff', color: '#1d4ed8', border: '#93c5fd', label: '❄️ Cold', dot: '#3b82f6' }
-        default: return { bg: '#f8fafc', color: '#64748b', border: '#e2e8f0', label: '— —', dot: '#94a3b8' }
+        default: return { bg: 'var(--surface-2)', color: '#64748b', border: 'var(--border)', label: '— —', dot: '#94a3b8' }
     }
 }
 

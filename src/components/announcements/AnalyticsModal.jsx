@@ -28,15 +28,15 @@ const styles = `
     box-shadow: 0 32px 80px rgba(30,30,46,0.18), 0 4px 12px rgba(30,30,46,0.06);
   }
   .ann-modal-box::-webkit-scrollbar { width: 4px; }
-  .ann-modal-box::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+  .ann-modal-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
   .ann-modal-close {
     position: absolute;
     top: 18px; right: 18px;
     width: 32px; height: 32px;
     border-radius: 50%;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
     color: #252627;
     display: flex;
     align-items: center;
@@ -46,7 +46,7 @@ const styles = `
     transition: all 0.2s;
   }
   .ann-modal-close:hover {
-    background: #fee2e2;
+    background: rgba(239,68,68,.15);
     border-color: #fca5a5;
     color: #dc2626;
     transform: rotate(90deg);
@@ -76,7 +76,7 @@ const styles = `
   }
 
   .ann-stat-card {
-    background: #f8fafc;
+    background: var(--surface-2);
     border: 1.5px solid #e8eaf2;
     border-radius: 14px;
     padding: 16px 12px;
@@ -107,7 +107,7 @@ const styles = `
   }
 
   .ann-prog-wrap {
-    background: #f1f5f9;
+    background: var(--surface-3);
     border-radius: 100px;
     height: 7px;
     overflow: hidden;
@@ -145,12 +145,12 @@ const styles = `
     gap: 10px;
     padding: 9px 13px;
     border-radius: 11px;
-    background: #f8fafc;
+    background: var(--surface-2);
     border: 1.5px solid #f1f5f9;
     animation: rowIn 0.28s cubic-bezier(0.22,1,0.36,1) both;
     transition: background 0.18s;
   }
-  .ann-user-row:hover { background: #f1f5f9; }
+  .ann-user-row:hover { background: var(--surface-3); }
 
   .ann-user-av {
     width: 30px; height: 30px;
@@ -163,15 +163,15 @@ const styles = `
     font-family: 'Syne', sans-serif;
     flex-shrink: 0;
   }
-  .ann-user-av.seen   { background: #d1fae5; color: #059669; border: 1.5px solid #a7f3d0; }
-  .ann-user-av.unseen { background: #fee2e2; color: #dc2626; border: 1.5px solid #fecaca; }
+  .ann-user-av.seen   { background: rgba(34,197,94,.18); color: #059669; border: 1.5px solid #a7f3d0; }
+  .ann-user-av.unseen { background: rgba(239,68,68,.15); color: #dc2626; border: 1.5px solid #fecaca; }
 
   .ann-user-name { font-size: 0.87rem; color: #0c0c0c; font-family: 'Nunito', sans-serif; font-weight: 600; flex: 1; }
   .ann-user-icon { font-size: 0.88rem; }
 
   .ann-close-btn {
     width: 100%;
-    background: #f8fafc;
+    background: var(--surface-2);
     border: 1.5px solid #555d6d;
     border-radius: 12px;
     padding: 12px;

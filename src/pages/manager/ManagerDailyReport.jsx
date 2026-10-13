@@ -16,8 +16,8 @@ const C = {
 }
 
 const STATUS = {
-    pending: { label: 'Pending', color: '#92400e', bg: '#fef3c7', dot: '#d97706' },
-    completed: { label: 'Completed', color: '#065f46', bg: '#d1fae5', dot: '#059669' },
+    pending: { label: 'Pending', color: '#92400e', bg: 'rgba(245,158,11,.18)', dot: '#d97706' },
+    completed: { label: 'Completed', color: '#4ade80', bg: 'rgba(34,197,94,.18)', dot: '#059669' },
 }
 
 const AVATAR_COLORS = ['#7c3aed', '#4f46e5', '#2563eb', '#db2777', '#d97706', '#0d9488', '#e11d48', '#0891b2', '#65a30d']

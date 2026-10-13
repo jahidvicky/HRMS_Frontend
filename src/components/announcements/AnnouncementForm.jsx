@@ -22,7 +22,11 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
       setForm({
         title: editTarget.title ?? "",
         body: editTarget.body ?? "",
-        targetRoles: editTarget.targetRoles ?? [],
+        targetRoles: editTarget.targetRoles?.length
+          ? editTarget.targetRoles
+          : editTarget.targetRole
+            ? [editTarget.targetRole]
+            : [],
         targetUsers: (editTarget.targetUsers ?? []).map((u) =>
           typeof u === "object" ? u._id : u
         ),
@@ -59,12 +63,12 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
   return (
     <>
       <style>{`
-        .af-card {
-          background: white;
+                .af-card {
+          background: var(--surface);
           border-radius: 20px;
           padding: 24px;
           box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-          border: 1px solid #f1f5f9;
+          border: 1px solid var(--border);
           font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
           margin-bottom: 24px;
         }
@@ -88,13 +92,13 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
           margin: 0;
           font-size: 17px;
           font-weight: 700;
-          color: #0a0f1e;
+          color: var(--text-1);
         }
 
         .af-edit-badge {
-          background: #fffbeb;
-          border: 1px solid #fde68a;
-          color: #b45309;
+        background: rgba(245,158,11,.15);
+          border: 1px solid rgba(245,158,11,.4);
+          color: #d97706;
           font-size: 11px;
           font-weight: 700;
           padding: 3px 10px;
@@ -105,8 +109,8 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
 
         .af-cancel-btn {
           padding: 7px 14px;
-          background: #f1f5f9;
-          color: #0a0f1e;
+                   background: var(--surface-3);
+          color: var(--text-1);
           border: none;
           border-radius: 10px;
           font-size: 13px;
@@ -115,7 +119,7 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
           font-family: 'Plus Jakarta Sans', sans-serif;
           transition: background 0.12s;
         }
-        .af-cancel-btn:hover { background: #e2e8f0; }
+              .af-cancel-btn:hover { background: var(--border); }
 
         .af-form { display: flex; flex-direction: column; gap: 14px; }
 
@@ -123,7 +127,8 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
           display: block;
           font-size: 12px;
           font-weight: 700;
-          color: #0a0f1e;
+          color: var(--text-1);                                              
+           background: "rgba(34,197,94,.12)", border: "1px solid rgba(34,197,94,.35)",
           margin-bottom: 6px;
           text-transform: uppercase;
           letter-spacing: 0.06em;
@@ -135,12 +140,12 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
           width: 100%;
           padding: 11px 14px;
           border-radius: 10px;
-          border: 1.5px solid #e2e8f0;
+                    border: 1.5px solid var(--border);
           font-size: 14px;
           font-family: 'Plus Jakarta Sans', sans-serif;
-          color: #0a0f1e;
+          color: var(--text-1);
           outline: none;
-          background: #f8fafc;
+          background: var(--surface-2);
           box-sizing: border-box;
           transition: border-color 0.15s, box-shadow 0.15s;
           font-weight: 500;
@@ -149,8 +154,8 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
         .af-textarea:focus,
         .af-select:focus {
           border-color: #3b5bdb;
-          box-shadow: 0 0 0 3px rgba(59,91,219,0.12);
-          background: white;
+                   box-shadow: 0 0 0 3px rgba(59,91,219,0.12);
+          background: var(--surface);
         }
           .af-role-select {
   display: flex;
@@ -163,36 +168,36 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
   gap: 6px;
   padding: 8px 14px;
   border-radius: 10px;
-  border: 1.5px solid #e2e8f0;
-  background: #f8fafc;
+  border: 1.5px solid var(--border);
+  background: var(--surface-2);
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #475569;
+  color: var(--text-2);
   cursor: pointer;
   transition: all 0.15s;
   user-select: none;
 }
 .af-role-pill:hover {
-  border-color: #93c5fd;
-  color: #1d4ed8;
-  background: #eff6ff;
+  border-color: #60a5fa;
+  color: #60a5fa;
+  background: rgba(59,130,246,.15);
 }
 .af-role-pill.active {
-  background: #eff6ff;
+  background: rgba(59,130,246,.18);
   border-color: #3b5bdb;
-  color: #1d4ed8;
+  color: #60a5fa;
 }
 .af-role-pill-check {
   width: 16px;
   height: 16px;
   border-radius: 5px;
-  border: 2px solid #cbd5e1;
+  border: 2px solid var(--text-3);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  background: white;
+  background: var(--surface);
   flex-shrink: 0;
   transition: all 0.15s;
 }
@@ -202,7 +207,7 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
   color: white;
 }
         .af-input::placeholder,
-        .af-textarea::placeholder { color: #94a3b8; }
+                .af-textarea::placeholder { color: var(--text-3); }
 
         .af-textarea {
           resize: vertical;
@@ -237,40 +242,40 @@ const AnnouncementForm = ({ onSuccess, employees = [], editTarget = null, onCanc
           display: flex;
           align-items: center;
           gap: 7px;
-          background: #f8fafc;
-          border: 1.5px solid #e2e8f0;
+                   background: var(--surface-2);
+          border: 1.5px solid var(--border);
           border-radius: 10px;
           padding: 10px 14px;
           cursor: pointer;
           font-size: 13px;
           font-weight: 600;
-          color: #475569;
+          color: var(--text-2);
           font-family: 'Plus Jakarta Sans', sans-serif;
           transition: all 0.15s;
           user-select: none;
           white-space: nowrap;
         }
-        .af-toggle:hover {
-          border-color: #93c5fd;
-          color: #1d4ed8;
-          background: #eff6ff;
+               .af-toggle:hover {
+          border-color: #60a5fa;
+          color: #60a5fa;
+          background: rgba(59,130,246,.15);
         }
         .af-toggle.active {
-          background: #eff6ff;
-          border-color: #93c5fd;
-          color: #1d4ed8;
+          background: rgba(59,130,246,.18);
+          border-color: #60a5fa;
+          color: #60a5fa;
         }
 
         .af-toggle-box {
           width: 16px;
           height: 16px;
           border-radius: 5px;
-          border: 2px solid #cbd5e1;
+                    border: 2px solid var(--text-3);
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 10px;
-          background: white;
+          background: var(--surface);
           transition: all 0.15s;
           flex-shrink: 0;
         }

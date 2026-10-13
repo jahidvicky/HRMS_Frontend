@@ -392,10 +392,10 @@ const DeviceApprovals = () => {
                 .btn-action { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 8px; font-size: .74rem; font-weight: 700; cursor: pointer; border: 1.5px solid transparent; font-family: inherit; transition: all .15s; }
                 .btn-approve { background: #DCFCE7; color: #166534; border-color: #BBF7D0; }
                 .btn-approve:hover { background: #BBF7D0; }
-                .btn-reject { background: #FEE2E2; color: #991B1B; border-color: #FECACA; }
+                .btn-reject { background: rgba(239,68,68,.15); color: #991B1B; border-color: rgba(239,68,68,.5); }
                 .btn-reject:hover { background: #FECACA; }
                 .btn-revoke { background: var(--surface-3); color: var(--text-2); border-color: var(--border); }
-                .btn-revoke:hover { background: #FEE2E2; color: #991B1B; border-color: #FECACA; }
+                .btn-revoke:hover { background: rgba(239,68,68,.15); color: #991B1B; border-color: rgba(239,68,68,.5); }
 
                 /* Modal */
                 .dm-overlay { position: fixed; inset: 0; background: rgba(15,15,20,.45); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
@@ -423,7 +423,7 @@ const DeviceApprovals = () => {
                 /* Toast */
                 .da-toast { position: fixed; bottom: 24px; right: 24px; z-index: 1100; padding: 12px 18px; border-radius: 10px; font-size: .82rem; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.15); display: flex; align-items: center; gap: 8px; }
                 .da-toast.success { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
-                .da-toast.error { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+                .da-toast.error { background: rgba(239,68,68,.15); color: #991B1B; border: 1px solid #FECACA; }
             `}</style>
 
             <div className="da-root">

@@ -14,10 +14,10 @@ import Swal from 'sweetalert2'
 
 const C = {
     indigo: '#4f46e5', indigoDark: '#3730a3', indigoLight: 'var(--surface-3)', indigoBorder: '#a5b4fc',
-    red: '#dc2626', redDark: '#b91c1c', redLight: '#fef2f2', redBorder: '#fca5a5',
-    emerald: '#047857', emeraldLight: '#ecfdf5', emeraldBorder: '#6ee7b7',
-    blue: '#1d4ed8', blueLight: '#eff6ff', blueBorder: '#93c5fd', amber: '#b45309',
-    amberLight: '#fffbeb', amberBorder: '#fcd34d',
+    red: '#dc2626', redDark: '#ef4444', redLight: 'rgba(239,68,68,.14)', redBorder: 'rgba(239,68,68,.45)',
+    emerald: '#059669', emeraldLight: 'rgba(16,185,129,.14)', emeraldBorder: 'rgba(16,185,129,.45)',
+    blue: '#3b82f6', blueLight: 'rgba(59,130,246,.14)', blueBorder: 'rgba(59,130,246,.45)', amber: '#d97706',
+    amberLight: 'rgba(245,158,11,.14)', amberBorder: 'rgba(245,158,11,.45)',
     slate50: 'var(--surface-2)', slate100: 'var(--surface-3)', slate200: 'var(--border)', slate300: 'var(--border-strong)',
     slate400: 'var(--text-3)', slate500: 'var(--text-2)', slate600: 'var(--text-2)', slate700: 'var(--text-1)',
     slate800: 'var(--text-1)', slate900: 'var(--text-1)', white: 'var(--surface)', pageBg: 'var(--surface-2)',
@@ -27,23 +27,23 @@ const C = {
 }
 
 const STATUS = {
-    draft: { label: 'Draft', color: '#475569', bg: '#f1f5f9' },
-    pending_review: { label: 'Pending Review', color: '#1d4ed8', bg: '#eff6ff' },
-    approved: { label: 'Approved', color: '#047857', bg: '#ecfdf5' },
-    rejected: { label: 'Rejected', color: '#b91c1c', bg: '#fef2f2' },
-    deleted: { label: 'Deleted', color: '#7f1d1d', bg: '#fef2f2' },
+    draft: { label: 'Draft', color: '#94a3b8', bg: 'rgba(148,163,184,.16)' },
+    pending_review: { label: 'Pending Review', color: '#60a5fa', bg: 'rgba(59,130,246,.16)' },
+    approved: { label: 'Approved', color: '#10b981', bg: 'rgba(16,185,129,.16)' },
+    rejected: { label: 'Rejected', color: '#f87171', bg: 'rgba(239,68,68,.16)' },
+    deleted: { label: 'Deleted', color: '#f87171', bg: 'rgba(239,68,68,.16)' },
 }
 
 const STAGES = {
-    new: { label: 'New', color: '#334155', bg: '#f1f5f9' },
-    assigned: { label: 'Assigned', color: '#4f46e5', bg: '#eef2ff' },
-    contacted: { label: 'Contacted', color: '#0d9488', bg: '#f0fdfa' },
-    meeting_scheduled: { label: 'Meeting Scheduled', color: '#7c3aed', bg: '#f5f3ff' },
-    proposal_sent: { label: 'Proposal Sent', color: '#b45309', bg: '#fffbeb' },
-    negotiation: { label: 'Negotiation', color: '#ea580c', bg: '#fff7ed' },
-    won: { label: 'Won', color: '#047857', bg: '#ecfdf5' },
-    lost: { label: 'Lost', color: '#b91c1c', bg: '#fef2f2' },
-    on_hold: { label: 'On Hold', color: '#64748b', bg: '#f1f5f9' },
+    new: { label: 'New', color: '#94a3b8', bg: 'rgba(148,163,184,.16)' },
+    assigned: { label: 'Assigned', color: '#818cf8', bg: 'rgba(99,102,241,.16)' },
+    contacted: { label: 'Contacted', color: '#2dd4bf', bg: 'rgba(20,184,166,.16)' },
+    meeting_scheduled: { label: 'Meeting Scheduled', color: '#a78bfa', bg: 'rgba(139,92,246,.16)' },
+    proposal_sent: { label: 'Proposal Sent', color: '#fbbf24', bg: 'rgba(245,158,11,.16)' },
+    negotiation: { label: 'Negotiation', color: '#fb923c', bg: 'rgba(249,115,22,.16)' },
+    won: { label: 'Won', color: '#10b981', bg: 'rgba(16,185,129,.16)' },
+    lost: { label: 'Lost', color: '#f87171', bg: 'rgba(239,68,68,.16)' },
+    on_hold: { label: 'On Hold', color: '#94a3b8', bg: 'rgba(148,163,184,.16)' },
 }
 
 const LEAD_STAGE_OPTIONS = [
@@ -84,12 +84,12 @@ const globalStyles = `
     @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
     * { box-sizing: border-box; }
     .report-row { cursor: pointer; transition: background 0.15s; }
-    .report-row:hover td { background: #f0f4ff !important; }
+    .report-row:hover td { background: var(--surface-2) !important; }
     .action-btn { transition: all 0.18s ease !important; }
     .action-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important; }
     .stat-card { transition: all 0.2s ease; }
     .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important; }
-    .refresh-btn:hover { background: #f1f5f9 !important; }
+    .refresh-btn:hover { background: var(--surface-3) !important; }
     input:focus, select:focus, textarea:focus { outline: none; }
     @media (max-width: 768px) {
         .stats-grid { grid-template-columns: repeat(3,1fr) !important; }
@@ -213,7 +213,7 @@ const useInputFocus = () => {
 const inputStyle = (focused, error) => ({
     width: '100%', padding: '10px 13px', borderRadius: 9, resize: 'none',
     border: `1.5px solid ${error ? C.redBorder : focused ? C.indigo : C.slate300}`,
-    boxShadow: focused ? `0 0 0 3px ${error ? '#fee2e2' : C.indigoLight}` : 'none',
+    boxShadow: focused ? `0 0 0 3px ${error ? 'rgba(239,68,68,.15)' : C.indigoLight}` : 'none',
     fontSize: 14, color: C.text, fontFamily: 'inherit',
     outline: 'none', transition: 'border-color 0.2s, box-shadow 0.25s',
     background: C.white,
@@ -1380,8 +1380,8 @@ const ManagerSalesReports = () => {
                                                 <td style={{ padding: '14px 20px' }}>
                                                     <span style={{
                                                         padding: '5px 10px', borderRadius: 6,
-                                                        background: report.priority === 'urgent' ? '#fef2f2' : report.priority === 'high' ? '#fff7ed' : '#f8fafc',
-                                                        color: report.priority === 'urgent' ? '#dc2626' : report.priority === 'high' ? '#ea580c' : '#475569',
+                                                        background: report.priority === 'urgent' ? 'rgba(239,68,68,.16)' : report.priority === 'high' ? 'rgba(249,115,22,.16)' : 'rgba(148,163,184,.16)',
+                                                        color: report.priority === 'urgent' ? '#f87171' : report.priority === 'high' ? '#fb923c' : '#94a3b8',
                                                         fontSize: 11, fontWeight: 800, textTransform: 'uppercase',
                                                     }}>
                                                         {report.priority || 'medium'}
@@ -1403,7 +1403,7 @@ const ManagerSalesReports = () => {
                                                         {activeView === 'deleted' ? (
                                                             <span style={{
                                                                 padding: '5px 12px', borderRadius: 7,
-                                                                background: '#fef2f2', color: '#7f1d1d',
+                                                                background: 'rgba(239,68,68,.16)', color: '#f87171',
                                                                 fontSize: 12, fontWeight: 800,
                                                                 display: 'flex', alignItems: 'center', gap: 5,
                                                             }}>
@@ -1455,8 +1455,8 @@ const ManagerSalesReports = () => {
                                                                 )}
 
                                                                 {report.assigned_to && (
-                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, padding: '4px 8px', borderRadius: 6, background: '#ecfdf5' }}>
-                                                                        <span style={{ fontSize: 10, fontWeight: 800, color: '#047857', textTransform: 'uppercase' }}>Assigned To</span>
+                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, padding: '4px 8px', borderRadius: 6, background: 'rgba(16,185,129,.16)' }}>
+                                                                        <span style={{ fontSize: 10, fontWeight: 800, color: '#10b981', textTransform: 'uppercase' }}>Assigned To</span>
                                                                         <span style={{ fontSize: 12, fontWeight: 700, color: C.text }}>{report.assigned_to?.name}</span>
                                                                     </div>
                                                                 )}

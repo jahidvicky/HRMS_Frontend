@@ -8,7 +8,7 @@ const C = {
     indigo: '#4f46e5', indigoLight: '#eef2ff', indigoBorder: '#a5b4fc',
     red: '#dc2626', redLight: '#fef2f2', redBorder: '#fca5a5',
     emerald: '#047857', emeraldLight: '#ecfdf5', emeraldBorder: '#6ee7b7',
-    slate100: '#f1f5f9', slate200: '#e2e8f0', slate300: '#cbd5e1',
+    slate100: '#f1f5f9', slate200: 'var(--border)', slate300: '#cbd5e1',
     slate400: '#64748b', slate600: '#334155', slate800: '#0f172a',
     white: '#ffffff',
 }
@@ -158,7 +158,7 @@ const GenerateLeadsModal = ({ open, onClose, onSuccess }) => {
             value: c.name,
             isoCode: c.isoCode
         }))
-    , [])
+        , [])
 
     const stateOptions = useMemo(() => {
         if (!selectedCountry) return []
@@ -180,7 +180,7 @@ const GenerateLeadsModal = ({ open, onClose, onSuccess }) => {
         const filtered = allCitiesInState
             .filter(c => c.name.toLowerCase().includes(searchLower))
             .slice(0, 100)
-            
+
         return filtered.map(c => ({
             label: c.name,
             value: c.name
@@ -352,10 +352,10 @@ const GenerateLeadsModal = ({ open, onClose, onSuccess }) => {
                                 <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: C.emerald }}>
                                     {result.inserted} new lead{result.inserted !== 1 ? 's' : ''} added!
                                 </p>
-                                <p style={{ margin: '4px 0 0', fontSize: 12, color: '#065f46' }}>
+                                <p style={{ margin: '4px 0 0', fontSize: 12, color: '#4ade80' }}>
                                     {result.total_from_python} found by AI · {result.inserted} saved · {result.skipped} skipped
                                 </p>
-                                <p style={{ margin: '4px 0 0', fontSize: 11, color: '#065f46', opacity: 0.8 }}>
+                                <p style={{ margin: '4px 0 0', fontSize: 11, color: '#4ade80', opacity: 0.8 }}>
                                     Check the AI Leads table below to see them.
                                 </p>
                             </div>

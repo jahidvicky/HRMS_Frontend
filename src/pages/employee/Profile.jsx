@@ -258,7 +258,7 @@ const Alert = ({ type, text }) => (
     <div style={{
         padding: "10px 14px", borderRadius: T.radiusSm, fontSize: 13, fontWeight: 500,
         background: type === "success" ? T.successLight : T.errorLight,
-        color: type === "success" ? "#065f46" : "#991b1b",
+        color: type === "success" ? "#4ade80" : "#991b1b",
         border: `1.5px solid ${type === "success" ? "#a7f3d0" : "#fecaca"}`,
         display: "flex", alignItems: "center", gap: 8,
         animation: "fadeUp .2s ease", fontFamily: ff,
@@ -613,10 +613,12 @@ export default function Profile() {
             return setPwMsg({ type: "error", text: "Passwords don't match." });
         if (pwForm.newPassword.length < 6)
             return setPwMsg({ type: "error", text: "Min 6 characters." });
+        if (pwForm.newPassword === pwForm.currentPassword)
+            return setPwMsg({ type: "error", text: "New password cannot be the same as current password." });
         setPwLoading(true); setPwMsg(null);
         try {
             await API.put("/users/me/password", { currentPassword: pwForm.currentPassword, newPassword: pwForm.newPassword });
-            setPwMsg({ type: "success", text: "Password changed!" });
+            setPwMsg({ type: "success", text: "Password changed! Details sent to your email." });
             setPwForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
         } catch (err) {
             setPwMsg({ type: "error", text: err?.response?.data?.message || "Password change failed." });
@@ -830,7 +832,7 @@ export default function Profile() {
                         Account Information
                     </p>
                     <div className="pf-info-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10 }}>
-                        <InfoRow label="Full Name" value={user?.name} Icon={LuUser} />
+                        <InfoRow label="Full Name" value={(user?.name).toUpperCase()} Icon={LuUser} />
                         <InfoRow label="Employee ID" value={user?.employeeId} Icon={LuBadge} />
                         <InfoRow label="Email" value={user?.email} Icon={LuMail} />
                         <InfoRow label="Role" value={formatRole(user?.role)} Icon={LuShield} />
@@ -987,7 +989,7 @@ export default function Profile() {
                                 <Label>Full Name</Label>
                                 <Input
                                     placeholder="Your full name"
-                                    value={selfForm.name}
+                                    value={(selfForm.name).toUpperCase()}
                                     onChange={e => setSelfForm(p => ({ ...p, name: e.target.value }))}
                                 />
                             </div>
@@ -1040,7 +1042,7 @@ export default function Profile() {
                                     <Label>Contact Name</Label>
                                     <Input
                                         placeholder="Full name"
-                                        value={selfForm.emergencyContactName}
+                                        value={(selfForm.emergencyContactName).toUpperCase()}
                                         onChange={e => setSelfForm(p => ({ ...p, emergencyContactName: e.target.value }))}
                                     />
                                 </div>
@@ -1518,6 +1520,12 @@ export default function Profile() {
                         </span>
                     )}
 
+                    {pwForm.newPassword && pwForm.currentPassword && pwForm.newPassword === pwForm.currentPassword && (
+                        <span style={{ fontSize: 11.5, fontWeight: 600, fontFamily: ff, color: T.error, display: "flex", alignItems: "center", gap: 5 }}>
+                            <LuX size={13} /> New password must be different from current password
+                        </span>
+                    )}
+
                     <label style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, color: T.textSub, cursor: "pointer", userSelect: "none", fontFamily: ff }}>
                         <input type="checkbox" checked={showPw} onChange={() => setShowPw(p => !p)} style={{ width: 14, height: 14, accentColor: T.accent }} />
                         {showPw ? <LuEyeOff size={14} /> : <LuEye size={14} />}
@@ -1595,12 +1603,12 @@ export default function Profile() {
 
                             <div style={{ position: "relative", flexShrink: 0 }}>
                                 {avatarPreview
-                                    ? <img 
-                                        src={avatarPreview} 
-                                        alt="avatar" 
+                                    ? <img
+                                        src={avatarPreview}
+                                        alt="avatar"
                                         onError={() => setAvatarPreview(null)}
-                                        style={{ width: 78, height: 78, borderRadius: "50%", objectFit: "cover", border: "3px solid var(--surface)", boxShadow: "0 4px 14px rgba(0,0,0,.14)", display: "block" }} 
-                                      />
+                                        style={{ width: 78, height: 78, borderRadius: "50%", objectFit: "cover", border: "3px solid var(--surface)", boxShadow: "0 4px 14px rgba(0,0,0,.14)", display: "block" }}
+                                    />
                                     : <div style={{ width: 78, height: 78, borderRadius: "50%", background: `linear-gradient(135deg,${T.accent},#9b89ff)`, border: "3px solid var(--surface)", boxShadow: "0 4px 14px rgba(0,0,0,.14)", display: "grid", placeItems: "center", color: "var(--surface)", fontSize: 24, fontWeight: 800, fontFamily: ff }}>{initials}</div>}
                                 <div style={{ position: "absolute", bottom: 4, right: 4, width: 13, height: 13, borderRadius: "50%", background: "#22c55e", border: "2px solid var(--surface)" }} />
                             </div>

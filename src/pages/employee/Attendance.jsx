@@ -50,11 +50,11 @@ const STATUS_COLORS = {
     present: { solid: "#22C55E", bg: "#DCFCE7", border: "#86EFAC", text: "#14532D" },
     late: { solid: "#22C55E", bg: "#DCFCE7", border: "#86EFAC", text: "#14532D" }, // late is treated as full day
     halfday: { solid: "#F97316", bg: "#FFEDD5", border: "#FDBA74", text: "#7C2D12" }, // Orange
-    absent: { solid: "#EF4444", bg: "#FEE2E2", border: "#FCA5A5", text: "#7F1D1D" }, // Red
+    absent: { solid: "#EF4444", bg: "rgba(239,68,68,.15)", border: "#FCA5A5", text: "#7F1D1D" }, // Red
     holiday: { solid: "#EAB308", bg: "#FEF9C3", border: "#FDE047", text: "#713F12" }, // Yellow
-    weekend: { solid: "#9CA3AF", bg: "#F3F4F6", border: "#D1D5DB", text: "#374151" }, // Gray
+    weekend: { solid: "#9CA3AF", bg: "var(--border)", border: "var(--border)", text: "var(--text-2)" }, // Gray
     leave: { solid: "#A855F7", bg: "#F3E8FF", border: "#D8B4FE", text: "#581C87" }, // Purple
-    today: { solid: "#3B82F6", bg: "#DBEAFE", border: "#3B82F6", text: "#1E3A8A" } // Blue Border
+    today: { solid: "#3B82F6", bg: "rgba(59,130,246,.18)", border: "#3B82F6", text: "#1E3A8A" } // Blue Border
 };
 
 const css = `
@@ -274,7 +274,7 @@ const css = `
 .att-table tbody tr:hover { background:var(--surface-2); }
 .att-table tbody tr:last-child td { border-bottom:none; }
 .tbadge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:6px; font-size:.72rem; font-weight:700; }
-.tbadge.pass { background: #EDE9FE; color: #5B21B6; }
+.tbadge.pass { background: rgba(124,58,237,.18); color: #a78bfa; }
 .tbadge.present  { background:${STATUS_COLORS.present.bg}; color:${STATUS_COLORS.present.text}; }
 .tbadge.late     { background:${STATUS_COLORS.late.bg}; color:${STATUS_COLORS.late.text}; }
 .tbadge.half-day { background:${STATUS_COLORS.halfday.bg}; color:${STATUS_COLORS.halfday.text}; }
@@ -867,7 +867,7 @@ const Attendance = () => {
     const STATUS_MAP = ["present", "late", "half-day", "leave", "holiday", "weekend", "absent"];
 
     const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    const gridColor = isDark ? "#221b1b" : "#F3F4F6";
+    const gridColor = isDark ? "#221b1b" : "var(--border)";
     const tickColor = isDark ? "#6060a0" : "#9CA3AF";
     const xTickColor = isDark ? "#6060a0" : "#6B7280";
     const tooltipBg = isDark ? "#e8e8f5" : "#1A1D23";
@@ -1090,7 +1090,7 @@ const Attendance = () => {
                                         position: "absolute", top: 3,
                                         left: shiftReminderEmail ? 21 : 3,
                                         width: 18, height: 18, borderRadius: "50%",
-                                        background: "#fff",
+                                        background: "var(--surface)",
                                         transition: "left 0.25s ease",
                                         boxShadow: "0 1px 4px rgba(0,0,0,0.25)",
                                     }} />

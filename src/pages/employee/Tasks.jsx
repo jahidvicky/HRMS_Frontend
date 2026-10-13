@@ -282,7 +282,7 @@ const css = `
 .chip-blue   { background: var(--brand-light); color: #1E3A8A; border-color: #BFDBFE; }
 .chip-amber  { background: var(--warn-bg); color: #78350F; border-color: #FDE68A; }
 .chip-green  { background: var(--success-bg); color: #14532D; border-color: #BBF7D0; }
-.chip-red    { background: var(--danger-bg); color: #7F1D1D; border-color: #FECACA; }
+.chip-red    { background: var(--danger-bg); color: #7F1D1D; border-color: rgba(239,68,68,.5); }
 .chip-gray   { background: var(--surface-3); color: var(--text-1); border-color: var(--border); }
 .chip-purple { background: var(--brand-light); color: #312E81; border-color: #C7D2FE; }
 .chip-teal   { background: #CCFBF1; color: #134E4A; border-color: #99F6E4; }
@@ -301,7 +301,7 @@ const css = `
 .badge-pending    { background: var(--warn-bg); color: #78350F; border-color: #FDE68A; }
 .badge-inprogress { background: var(--brand-light); color: #1E3A8A; border-color: #BFDBFE; }
 .badge-done       { background: var(--success-bg); color: #14532D; border-color: #BBF7D0; }
-.badge-overdue    { background: var(--danger-bg); color: #7F1D1D; border-color: #FECACA; }
+.badge-overdue    { background: var(--danger-bg); color: #7F1D1D; border-color: rgba(239,68,68,.5); }
 
 .tk-card.overdue { border-color: #FCA5A5; }
 
@@ -368,7 +368,7 @@ const css = `
     color: var(--text-1);
 }
 .tk-action-btn:hover { background: var(--surface-3); border-color: var(--text-3); }
-.tk-action-btn.danger { color: #991B1B; border-color: #FECACA; }
+.tk-action-btn.danger { color: #991B1B; border-color: rgba(239,68,68,.5); }
 .tk-action-btn.danger:hover { background: var(--danger-bg); border-color: #FCA5A5; }
 .tk-action-btn.primary { color: #3730A3; border-color: #C7D2FE; }
 .tk-action-btn.primary:hover { background: var(--brand-light); border-color: #A5B4FC; }

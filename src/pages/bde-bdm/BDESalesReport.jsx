@@ -15,7 +15,7 @@ const C = {
     emerald: '#047857', emeraldLight: '#ecfdf5', emeraldBorder: '#6ee7b7',
     blue: '#1d4ed8', blueLight: '#eff6ff', blueBorder: '#93c5fd',
     amber: '#b45309', amberLight: '#fffbeb', amberBorder: '#fcd34d',
-    slate50: '#f8fafc', slate100: '#f1f5f9', slate200: '#e2e8f0', slate300: '#cbd5e1',
+    slate50: 'var(--surface-2)', slate100: '#f1f5f9', slate200: 'var(--border)', slate300: '#cbd5e1',
     slate400: '#64748b', slate500: '#475569', slate600: '#334155', slate700: '#1e293b',
     slate800: '#0f172a', white: '#ffffff', pageBg: '#f1f3f9',
     text: '#0f172a', textSub: '#334155', textMuted: '#64748b',
@@ -151,7 +151,7 @@ const useInputFocus = () => {
 const inputStyle = (focused, error) => ({
     width: '100%', padding: '10px 13px', borderRadius: 9, resize: 'none',
     border: `1.5px solid ${error ? C.redBorder : focused ? C.indigo : C.slate300}`,
-    boxShadow: focused ? `0 0 0 3px ${error ? '#fee2e2' : C.indigoLight}` : 'none',
+    boxShadow: focused ? `0 0 0 3px ${error ? 'rgba(239,68,68,.15)' : C.indigoLight}` : 'none',
     fontSize: 14, color: C.text, fontFamily: 'inherit',
     outline: 'none', transition: 'border-color 0.2s, box-shadow 0.25s',
     background: C.white,
@@ -927,7 +927,7 @@ const BDESalesReport = () => {
                                                 <td style={{ padding: '14px 20px', textAlign: 'center' }}>
                                                     <span style={{
                                                         padding: '5px 10px', borderRadius: 6,
-                                                        background: lead.priority === 'urgent' ? '#fef2f2' : lead.priority === 'high' ? '#fff7ed' : '#f8fafc',
+                                                        background: lead.priority === 'urgent' ? '#fef2f2' : lead.priority === 'high' ? '#fff7ed' : 'var(--surface-2)',
                                                         color: lead.priority === 'urgent' ? '#dc2626' : lead.priority === 'high' ? '#ea580c' : '#475569',
                                                         fontSize: 11, fontWeight: 800, textTransform: 'uppercase',
                                                     }}>

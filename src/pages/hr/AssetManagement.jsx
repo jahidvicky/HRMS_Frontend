@@ -209,14 +209,14 @@ const Icon = {
 // ─── Condition badge ──────────────────────────────────────────────────────────
 
 const condColors = {
-    Good: { bg: "#EAF3DE", color: "#3B6D11" },
-    Damaged: { bg: "#FAEEDA", color: "#854F0B" },
-    Replaced: { bg: "#E6F1FB", color: "#185FA5" },
-    Retired: { bg: "#FAECE7", color: "#993C1D" },
+    Good: { bg: "rgba(34,197,94,.16)", color: "#3B6D11" },
+    Damaged: { bg: "rgba(245,158,11,.16)", color: "#854F0B" },
+    Replaced: { bg: "rgba(59,130,246,.16)", color: "#185FA5" },
+    Retired: { bg: "rgba(239,68,68,.14)", color: "#993C1D" },
 };
 
 function CondBadge({ value }) {
-    const c = condColors[value] || { bg: "#f0f4f8", color: "#4a5568" };
+    const c = condColors[value] || { bg: "rgba(148,163,184,.16)", color: "var(--text-2)" };
     return (
         <span style={{
             display: "inline-flex", alignItems: "center", gap: 5,
@@ -241,7 +241,7 @@ function AssetTypeIcon({ type }) {
         <span style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             width: 32, height: 32, borderRadius: 8,
-            background: "#E1F5EE", fontSize: 16,
+            background: "rgba(29,158,117,.16)", fontSize: 16,
         }}>
             <Icon.Laptop />
         </span>
@@ -267,11 +267,11 @@ function Modal({ onClose, children }) {
 function ModalHeader({ title, onClose }) {
     return (
         <div style={{
-            padding: "18px 20px", borderBottom: "1px solid #edf2f7",
+            padding: "18px 20px", borderBottom: "1px solid var(--border)",
             display: "flex", justifyContent: "space-between", alignItems: "center",
-            position: "sticky", top: 0, background: "#fff", zIndex: 1,
+            position: "sticky", top: 0, background: "var(--surface)", zIndex: 1,
         }}>
-            <strong style={{ fontSize: 15, color: "#1a202c" }}>{title}</strong>
+            <strong style={{ fontSize: 15, color: "var(--text-1)" }}>{title}</strong>
             <button className="am-icon-btn" onClick={onClose} aria-label="Close">
                 <Icon.X />
             </button>
@@ -544,7 +544,7 @@ export default function AssetManagement() {
                     <h1 style={{ fontSize: 22, fontWeight: 700, color: "#1a202c", margin: 0 }}>
                         Asset Management
                     </h1>
-                    <p style={{ fontSize: 13, color: "#718096", margin: "4px 0 0" }}>
+                    <p style={{ fontSize: 13, color: "var(--text-2)", margin: "4px 0 0" }}>
                         Search by Employee ID to view and manage assigned assets
                     </p>
                 </div>
@@ -595,7 +595,7 @@ export default function AssetManagement() {
                         </div>
 
                         {loading && (
-                            <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#718096", fontSize: 13, paddingTop: 20 }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--text-2)", fontSize: 13, paddingTop: 20 }}>
                                 <Icon.Spinner /> Loading…
                             </div>
                         )}
@@ -607,8 +607,8 @@ export default function AssetManagement() {
                     <div style={{
                         position: "fixed", top: 20, right: 20, zIndex: 9999,
                         display: "flex", alignItems: "center", gap: 10,
-                        padding: "12px 18px", background: "#fff",
-                        border: "1px solid #c6e6da", borderRadius: 10,
+                        padding: "12px 18px", background: "var(--surface)",
+                        border: "1px solid rgba(29,158,117,.45)", borderRadius: 10,
                         boxShadow: "0 8px 24px rgba(0,0,0,.1)",
                         animation: "am-toastIn .3s cubic-bezier(.22,1,.36,1) both",
                         fontSize: 13.5, color: "#1a202c",
@@ -628,10 +628,10 @@ export default function AssetManagement() {
                 {/* ── Error ──────────────────────────────────────────────── */}
                 {error && (
                     <div className="am-fadeIn" style={{
-                        padding: "13px 18px", background: "#FAECE7",
+                        padding: "13px 18px", background: "rgba(239,68,68,.14)",
                         borderRadius: 10, color: "#993C1D",
                         fontSize: 13.5, marginBottom: 20,
-                        border: "1px solid #f5c4b3",
+                        border: "1px solid rgba(239,68,68,.4)",
                         display: "flex", alignItems: "center", gap: 10,
                     }}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" /></svg>
@@ -650,7 +650,7 @@ export default function AssetManagement() {
                                 {/* Avatar */}
                                 <div style={{
                                     width: 54, height: 54, borderRadius: "50%",
-                                    background: "#E1F5EE", display: "flex",
+                                    background: "rgba(29,158,117,.16)", display: "flex",
                                     alignItems: "center", justifyContent: "center",
                                     fontWeight: 700, fontSize: 18, color: "#0F6E56",
                                     flexShrink: 0, animation: "am-pulse 2s ease infinite",
@@ -661,12 +661,12 @@ export default function AssetManagement() {
                                 {/* Info */}
                                 <div style={{ flex: 1, minWidth: 0 }}>
                                     <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-                                        <span style={{ fontSize: 17, fontWeight: 700, color: "#1a202c" }}>
+                                        <span style={{ fontSize: 17, fontWeight: 700, color: "var(--text-1)" }}>
                                             {empData.employee?.name}
                                         </span>
                                         <span style={{
                                             fontSize: 11, padding: "2px 10px", borderRadius: 20,
-                                            background: "#E1F5EE", color: "#0F6E56", fontWeight: 600,
+                                            background: "rgba(29,158,117,.16)", color: "#0F6E56", fontWeight: 600,
                                         }}>
                                             {empData.employee?.employeeId}
                                         </span>
@@ -692,7 +692,7 @@ export default function AssetManagement() {
                             {/* Desk & password row */}
                             <div style={{
                                 marginTop: 16, paddingTop: 16,
-                                borderTop: "1px solid #aecff0",
+                                borderTop: "1px solid var(--border)",
                                 display: "flex", gap: 14, flexWrap: "wrap",
                             }}>
                                 <InfoPill
@@ -725,7 +725,7 @@ export default function AssetManagement() {
                             <span style={{
                                 fontSize: 11.5, fontWeight: 700,
                                 textTransform: "uppercase", letterSpacing: ".04em",
-                                color: "#53575e",
+                                color: "var(--text-2)",
                             }}>
                                 Assigned Assets ({empData.assets?.length})
                             </span>
@@ -737,7 +737,7 @@ export default function AssetManagement() {
                         {/* ── Add asset form ──────────────────────────────── */}
                         {showAddForm && (
                             <div className="am-card am-fadeIn" style={{ padding: 22, marginBottom: 16 }}>
-                                <p style={{ fontWeight: 600, fontSize: 14, margin: "0 0 18px", color: "#1a202c" }}>
+                                <p style={{ fontWeight: 600, fontSize: 14, margin: "0 0 18px", color: "var(--text-1)" }}>
                                     New Asset
                                 </p>
                                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))", gap: "14px 16px" }}>
@@ -774,8 +774,8 @@ export default function AssetManagement() {
                                                         {scannable && (
                                                             <label style={{
                                                                 display: "inline-flex", alignItems: "center", gap: 5,
-                                                                padding: "9px 12px", background: "#E1F5EE",
-                                                                border: "1.5px solid #9FE1CB", borderRadius: 8,
+                                                                padding: "9px 12px", background: "rgba(29,158,117,.16)",
+                                                                border: "1.5px solid rgba(29,158,117,.45)", borderRadius: 8,
                                                                 cursor: "pointer", fontSize: 12, fontWeight: 600,
                                                                 color: "#0F6E56", whiteSpace: "nowrap",
                                                                 opacity: scanLoading ? 0.6 : 1,
@@ -792,10 +792,10 @@ export default function AssetManagement() {
                                                     </div>
                                                     {scannable && scanPreview && (
                                                         <img src={scanPreview} alt="scan preview"
-                                                            style={{ marginTop: 6, height: 48, borderRadius: 6, objectFit: "cover", border: "1px solid #e2e8f0" }} />
+                                                            style={{ marginTop: 6, height: 48, borderRadius: 6, objectFit: "cover", border: "1px solid var(--border)" }} />
                                                     )}
                                                     {scannable && (
-                                                        <p style={{ fontSize: 11, color: "#718096", margin: "5px 0 0" }}>
+                                                        <p style={{ fontSize: 11, color: "var(--text-2)", margin: "5px 0 0" }}>
                                                             📸 Tip: Take a close-up photo with the label fully visible and right-side up for best results
                                                         </p>
                                                     )}
@@ -821,7 +821,7 @@ export default function AssetManagement() {
                         {/* ── Assets table ────────────────────────────────── */}
                         <div className="am-card" style={{ overflow: "hidden" }}>
                             {empData.assets?.length === 0 ? (
-                                <div style={{ textAlign: "center", padding: "52px 0", color: "#a0aec0" }}>
+                                <div style={{ textAlign: "center", padding: "52px 0", color: "var(--text-3)" }}>
                                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" style={{ marginBottom: 12 }}>
                                         <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-4 0v2M12 12v4M10 14h4" />
                                     </svg>
@@ -911,16 +911,16 @@ export default function AssetManagement() {
                         <div style={{ padding: 22 }}>
                             <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 16 }}>
                                 <CondBadge value={historyModal.asset.condition} />
-                                <span style={{ fontSize: 12, color: "#718096" }}>
+                                <span style={{ fontSize: 12, color: "var(--text-2)" }}>
                                     Barcode: <code style={{ fontSize: 11.5 }}>{historyModal.asset.barcode}</code>
                                 </span>
                             </div>
                             {historyLoading ? (
-                                <div style={{ display: "flex", gap: 10, alignItems: "center", color: "#718096", fontSize: 13.5 }}>
+                                <div style={{ display: "flex", gap: 10, alignItems: "center", color: "var(--text-2)", fontSize: 13.5 }}>
                                     <Icon.Spinner /> Loading history…
                                 </div>
                             ) : historyModal.history?.length === 0 ? (
-                                <p style={{ color: "#a0aec0", fontSize: 13.5 }}>No history found.</p>
+                                <p style={{ color: "var(--text-3)", fontSize: 13.5 }}>No history found.</p>
                             ) : (
                                 <HistoryTimeline items={historyModal.history} showChangedBy />
                             )}
@@ -976,7 +976,7 @@ export default function AssetManagement() {
                                     style={{
                                         maxWidth: "100%", maxHeight: 180,
                                         borderRadius: 10, objectFit: "cover",
-                                        border: "1px solid #edf2f7",
+                                        border: "1px solid var(--border)",
                                     }}
                                 />
                             </div>
@@ -987,7 +987,7 @@ export default function AssetManagement() {
                             <CondBadge value={detailAsset.condition} />
                             <span style={{
                                 fontSize: 11.5, padding: "3px 10px", borderRadius: 20,
-                                background: "#E1F5EE", color: "#0F6E56", fontWeight: 600,
+                                background: "rgba(29,158,117,.16)", color: "#0F6E56", fontWeight: 600,
                             }}>
                                 {detailAsset.assetType}
                             </span>
@@ -1008,16 +1008,16 @@ export default function AssetManagement() {
                                 { label: "Return Date", value: detailAsset.returnDate ? new Date(detailAsset.returnDate).toISOString().slice(0, 10) : "—" },
                             ].map(({ label, value }) => (
                                 <div key={label} style={{
-                                    background: "#f8fafc", borderRadius: 9,
-                                    border: "1px solid #edf2f7", padding: "10px 14px",
+                                    background: "var(--surface-2)", borderRadius: 9,
+                                    border: "1px solid var(--border)", padding: "10px 14px",
                                 }}>
                                     <div style={{
                                         fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-                                        letterSpacing: ".05em", color: "#a0aec0", marginBottom: 3,
+                                        letterSpacing: ".05em", color: "var(--text-3)", marginBottom: 3,
                                     }}>
                                         {label}
                                     </div>
-                                    <div style={{ fontSize: 13.5, fontWeight: 600, color: "#1a202c" }}>
+                                    <div style={{ fontSize: 13.5, fontWeight: 600, color: "var(--text-1)" }}>
                                         {value}
                                     </div>
                                 </div>
@@ -1027,7 +1027,7 @@ export default function AssetManagement() {
                         {/* Quick actions */}
                         <div style={{
                             display: "flex", gap: 8, marginTop: 20,
-                            paddingTop: 18, borderTop: "1px solid #edf2f7", flexWrap: "wrap",
+                            paddingTop: 18, borderTop: "1px solid var(--border)", flexWrap: "wrap",
                         }}>
                             <button className="am-btn-ghost" style={{ display: "flex", alignItems: "center", gap: 6 }}
                                 onClick={() => { setDetailAsset(null); openHistory(detailAsset); }}>
@@ -1064,25 +1064,25 @@ function AssetRow({ asset, delay, onRowClick, onHistory, onCondChange, onPhotoUp
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <div style={{
                         width: 34, height: 34, borderRadius: 8,
-                        background: "#E1F5EE", display: "flex",
+                        background: "rgba(29,158,117,.16)", display: "flex",
                         alignItems: "center", justifyContent: "center",
                         color: "#0F6E56", flexShrink: 0,
                     }}>
                         <Icon.Laptop />
                     </div>
                     <div>
-                        <div style={{ fontWeight: 600, fontSize: 13.5, color: "#1a202c" }}>
+                        <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text-1)" }}>
                             {asset.name}
                         </div>
-                        <div style={{ fontSize: 11.5, color: "#718096" }}>{asset.assetType}</div>
+                        <div style={{ fontSize: 11.5, color: "var(--text-2)" }}>{asset.assetType}</div>
                     </div>
                 </div>
             </td>
 
             <td>
                 <code style={{
-                    fontSize: 11.5, color: "#4a5568",
-                    background: "#f7fafc", padding: "2px 7px", borderRadius: 5,
+                    fontSize: 11.5, color: "var(--text-2)",
+                    background: "var(--surface-2)", padding: "2px 7px", borderRadius: 5,
                 }}>
                     {asset.barcode}
                 </code>
@@ -1095,7 +1095,7 @@ function AssetRow({ asset, delay, onRowClick, onHistory, onCondChange, onPhotoUp
                     <span style={{
                         display: "inline-flex", alignItems: "center", gap: 5,
                         padding: "3px 10px", borderRadius: 20, fontSize: 11.5,
-                        fontWeight: 600, background: "#FAECE7", color: "#993C1D",
+                        fontWeight: 600, background: "rgba(239,68,68,.14)", color: "#993C1D",
                     }}>
                         Returned {asset.returnDate ? new Date(asset.returnDate).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }) : ""}
                     </span>
@@ -1103,7 +1103,7 @@ function AssetRow({ asset, delay, onRowClick, onHistory, onCondChange, onPhotoUp
                     <span style={{
                         display: "inline-flex", alignItems: "center", gap: 5,
                         padding: "3px 10px", borderRadius: 20, fontSize: 11.5,
-                        fontWeight: 600, background: "#EAF3DE", color: "#3B6D11",
+                        fontWeight: 600, background: "rgba(34,197,94,.16)", color: "#3B6D11",
                     }}>
                         In Use
                     </span>
@@ -1135,8 +1135,8 @@ function AssetRow({ asset, delay, onRowClick, onHistory, onCondChange, onPhotoUp
 
 function MetaChip({ icon, label }) {
     return (
-        <span style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12.5, color: "#718096" }}>
-            <span style={{ color: "#a0aec0", display: "flex" }}>{icon}</span>
+        <span style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12.5, color: "var(--text-2)" }}>
+            <span style={{ color: "var(--text-3)", display: "flex" }}>{icon}</span>
             {label}
         </span>
     );
@@ -1147,14 +1147,14 @@ function StatPill({ label, value, accent }) {
         <div style={{
             textAlign: "center",
             padding: "10px 18px",
-            background: accent ? "#E1F5EE" : "#f7fafc",
+            background: accent ? "rgba(29,158,117,.16)" : "var(--surface-2)",
             borderRadius: 10,
-            border: `1px solid ${accent ? "#9FE1CB" : "#edf2f7"}`,
+            border: `1px solid ${accent ? "rgba(29,158,117,.45)" : "var(--border)"}`,
         }}>
-            <div style={{ fontSize: 10.5, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".06em", color: accent ? "#0F6E56" : "#718096", marginBottom: 2 }}>
+            <div style={{ fontSize: 10.5, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".06em", color: accent ? "#0F6E56" : "var(--text-2)", marginBottom: 2 }}>
                 {label}
             </div>
-            <div style={{ fontSize: 18, fontWeight: 700, color: accent ? "#085041" : "#1a202c" }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: accent ? "#085041" : "var(--text-1)" }}>
                 {value}
             </div>
         </div>
@@ -1165,13 +1165,13 @@ function InfoPill({ icon, label, value, mono, onToggle, showPwd, onEdit }) {
     return (
         <div style={{
             display: "flex", alignItems: "center", gap: 10,
-            padding: "9px 14px", background: "#f8fafc",
-            borderRadius: 9, border: "1px solid #edf2f7",
+            padding: "9px 14px", background: "var(--surface-2)",
+            borderRadius: 9, border: "1px solid var(--border)",
             flex: "1 1 200px",
         }}>
             <span style={{ color: "#1D9E75", display: "flex", flexShrink: 0 }}>{icon}</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em", color: "#a0aec0", marginBottom: 1 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em", color: "var(--text-3)", marginBottom: 1 }}>
                     {label}
                 </div>
                 <div style={{

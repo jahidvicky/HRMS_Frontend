@@ -14,7 +14,7 @@ const T = {
     warnLight: "#fffbeb",
     border: "#e4e1f0",
     bg: "#f5f4f7",
-    text: "#111827",
+    text: "var(--text-1)",
     muted: "#6b7280",
     surface: "#ffffff",
 };
@@ -140,7 +140,7 @@ const SessionDetail = ({ session, onLogout, actionLoading, onClose }) => {
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <div style={{
                         width: 36, height: 36, borderRadius: 8,
-                        background: session.isCurrent ? T.accentLight : "#f3f4f6",
+                        background: session.isCurrent ? T.accentLight : "var(--border)",
                         display: "flex", alignItems: "center", justifyContent: "center",
                         color: session.isCurrent ? T.accent : T.muted,
                     }}>

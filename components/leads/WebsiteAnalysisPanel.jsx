@@ -8,7 +8,7 @@ const C = {
     red: '#dc2626', redLight: '#fef2f2', redBorder: '#fca5a5',
     amber: '#d97706', amberLight: '#fffbeb', amberBorder: '#fcd34d',
     blue: '#2563eb', blueLight: '#eff6ff',
-    slate100: '#f1f5f9', slate200: '#e2e8f0', slate300: '#cbd5e1',
+    slate100: '#f1f5f9', slate200: 'var(--border)', slate300: '#cbd5e1',
     slate400: '#94a3b8', slate500: '#64748b', slate600: '#475569',
     slate800: '#1e293b', slate900: '#0f172a',
     white: '#ffffff',
@@ -29,7 +29,7 @@ const TechBadge = ({ name }) => {
     const colors = {
         'WordPress': { bg: '#f0f9ff', color: '#0369a1' },
         'React': { bg: '#f0fdf4', color: '#166534' },
-        'Next.js': { bg: '#fafafa', color: '#111' },
+        'Next.js': { bg: 'var(--surface-2)', color: '#111' },
         'Shopify': { bg: '#f0fdf4', color: '#166534' },
         'HubSpot': { bg: '#fff7ed', color: '#c2410c' },
         'Google Analytics': { bg: '#fef9c3', color: '#854d0e' },
@@ -37,7 +37,7 @@ const TechBadge = ({ name }) => {
         'Bootstrap': { bg: '#fdf4ff', color: '#7e22ce' },
         'Tailwind': { bg: '#ecfeff', color: '#0e7490' },
         'Wix': { bg: '#f0f9ff', color: '#0369a1' },
-        'Squarespace': { bg: '#fafafa', color: '#111' },
+        'Squarespace': { bg: 'var(--surface-2)', color: '#111' },
         'Cloudflare': { bg: '#fff7ed', color: '#c2410c' },
     }
     const style = colors[name] || { bg: C.slate100, color: C.slate600 }

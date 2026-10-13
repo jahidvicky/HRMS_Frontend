@@ -66,7 +66,7 @@ const CSS = `
 .mt-root *, .mt-root *::before, .mt-root *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .mt-root {
     font-family: 'DM Sans', sans-serif;
-    color: #111318;
+    color: var(--text-1);
     padding-bottom: 48px;
     background: transparent;
 }
@@ -103,12 +103,12 @@ const CSS = `
     font-size: 1.55rem;
     font-weight: 800;
     letter-spacing: -.5px;
-    color: #111318;
+    color: var(--text-1);
     margin-bottom: 4px;
 }
 .mt-header-left p {
     font-size: .83rem;
-    color: #374151;
+    color: var(--text-2);
     font-weight: 500;
 }
 .mt-back-btn {
@@ -117,17 +117,17 @@ const CSS = `
     gap: 7px;
     padding: 9px 18px;
     background: var(--surface);
-    border: 1.5px solid #E2E8F0;
+    border: 1.5px solid var(--border);
     border-radius: 10px;
     font-size: .82rem;
     font-weight: 700;
-    color: #374151;
+    color: var(--text-2);
     cursor: pointer;
     font-family: inherit;
     transition: all .18s;
 }
 .mt-back-btn:hover {
-    background: #F8FAFC;
+    background: var(--surface-2);
     border-color: #C7D2FE;
     color: #4F46E5;
     transform: translateX(-2px);
@@ -149,7 +149,7 @@ const CSS = `
 .mt-stat {
     background: var(--surface);
     border-radius: 14px;
-    border: 1px solid #E8EBF0;
+    border: 1px solid var(--border);
     padding: 16px 18px 14px;
     position: relative;
     overflow: hidden;
@@ -180,7 +180,7 @@ const CSS = `
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .7px;
-    color: #374151;
+    color: var(--text-2);
     margin-bottom: 10px;
 }
 .mt-stat-val {
@@ -188,12 +188,12 @@ const CSS = `
     font-weight: 800;
     letter-spacing: -1.5px;
     line-height: 1;
-    color: #111318;
+    color: var(--text-1);
     font-variant-numeric: tabular-nums;
 }
 .mt-stat-sub {
     font-size: .72rem;
-    color: #374151;
+    color: var(--text-2);
     margin-top: 5px;
     font-weight: 500;
 }
@@ -207,7 +207,7 @@ const CSS = `
 .mt-dept-card {
     background: var(--surface);
     border-radius: 16px;
-    border: 1px solid #E8EBF0;
+    border: 1px solid var(--border);
     margin-bottom: 22px;
     overflow: hidden;
     animation: mt-fadeUp .35s ease both;
@@ -218,12 +218,12 @@ const CSS = `
     align-items: center;
     justify-content: space-between;
     padding: 16px 22px;
-    border-bottom: 1px solid #F3F4F6;
+    border-bottom: 1px solid var(--border);
 }
 .mt-dept-card-header h3 {
     font-size: .9rem;
     font-weight: 700;
-    color: #111318;
+    color: var(--text-1);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -240,7 +240,7 @@ const CSS = `
     border-radius: 6px;
     transition: background .15s;
 }
-.mt-dept-toggle:hover { background: #EDE9FE; }
+.mt-dept-toggle:hover { background: rgba(124,58,237,.18); }
 
 .mt-dept-table { width: 100%; border-collapse: collapse; }
 .mt-dept-table th {
@@ -248,18 +248,18 @@ const CSS = `
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .65px;
-    color: #374151;
+    color: var(--text-2);
     padding: 10px 22px;
     text-align: left;
-    background: #F8FAFC;
-    border-bottom: 1px solid #E8EBF0;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
 }
 .mt-dept-table th:not(:first-child) { text-align: center; }
 .mt-dept-table td {
     padding: 11px 22px;
     font-size: .84rem;
-    color: #111318;
-    border-bottom: 1px solid #F3F4F6;
+    color: var(--text-1);
+    border-bottom: 1px solid var(--border);
     transition: background .12s;
 }
 .mt-dept-table tr:last-child td { border-bottom: none; }
@@ -267,14 +267,14 @@ const CSS = `
     cursor: pointer;
     transition: background .12s;
 }
-.mt-dept-table tbody tr:hover td { background: #F8FAFC; }
+.mt-dept-table tbody tr:hover td { background: var(--surface-2); }
 .mt-dept-table td:not(:first-child) { text-align: center; font-variant-numeric: tabular-nums; }
-.mt-dept-name-cell { font-weight: 600; color: #111318; display: flex; align-items: center; gap: 8px; }
+.mt-dept-name-cell { font-weight: 600; color: var(--text-1); display: flex; align-items: center; gap: 8px; }
 
 /* Mini progress bar inside dept table */
 .mt-dept-progress {
     height: 4px;
-    background: #F1F5F9;
+    background: var(--surface-3);
     border-radius: 2px;
     width: 80px;
     overflow: hidden;
@@ -303,11 +303,11 @@ const CSS = `
 .mt-search {
     padding: 9px 14px;
     border-radius: 9px;
-    border: 1.5px solid #E2E8F0;
+    border: 1.5px solid var(--border);
     background: var(--surface);
     font-size: .83rem;
     font-family: inherit;
-    color: #111318;
+    color: var(--text-1);
     outline: none;
     min-width: 220px;
     transition: border .15s, box-shadow .15s;
@@ -317,11 +317,11 @@ const CSS = `
 .mt-sel {
     padding: 9px 12px;
     border-radius: 9px;
-    border: 1.5px solid #E2E8F0;
+    border: 1.5px solid var(--border);
     background: var(--surface);
     font-size: .82rem;
     font-family: inherit;
-    color: #111318;
+    color: var(--text-1);
     cursor: pointer;
     outline: none;
     transition: border .15s;
@@ -331,11 +331,11 @@ const CSS = `
 .mt-date-input {
     padding: 8px 12px;
     border-radius: 9px;
-    border: 1.5px solid #E2E8F0;
+    border: 1.5px solid var(--border);
     background: var(--surface);
     font-size: .82rem;
     font-family: 'DM Mono', monospace;
-    color: #111318;
+    color: var(--text-1);
     outline: none;
     transition: border .15s;
 }
@@ -343,10 +343,10 @@ const CSS = `
 .mt-clear-btn {
     padding: 8px 13px;
     border-radius: 9px;
-    border: 1.5px solid #E2E8F0;
+    border: 1.5px solid var(--border);
     background: var(--surface);
     font-size: .78rem;
-    color: #374151;
+    color: var(--text-2);
     font-weight: 600;
     cursor: pointer;
     font-family: inherit;
@@ -355,13 +355,13 @@ const CSS = `
     gap: 5px;
     transition: all .15s;
 }
-.mt-clear-btn:hover { background: #FEF2F2; border-color: #FECACA; color: #DC2626; }
+.mt-clear-btn:hover { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.5); color: #DC2626; }
 
 /* ── Tabs ── */
 .mt-tabs {
     display: flex;
     gap: 4px;
-    background: #E8EBF0;
+    background: var(--surface-3);
     border-radius: 10px;
     padding: 4px;
     margin-bottom: 20px;
@@ -377,7 +377,7 @@ const CSS = `
     font-size: .81rem;
     font-weight: 600;
     font-family: inherit;
-    color: #374151;
+    color: var(--text-2);
     cursor: pointer;
     transition: all .15s;
     display: flex;
@@ -385,10 +385,10 @@ const CSS = `
     gap: 6px;
     white-space: nowrap;
 }
-.mt-tab:hover:not(.mt-tab-active) { background: rgba(255,255,255,.7); color: #111318; }
+.mt-tab:hover:not(.mt-tab-active) { background: var(--surface-2); color: var(--text-1); }
 .mt-tab.mt-tab-active {
     background: var(--surface);
-    color: #4F46E5;
+    color: #818cf8;
     box-shadow: 0 1px 4px rgba(0,0,0,.12);
     font-weight: 700;
 }
@@ -405,7 +405,7 @@ const CSS = `
 .mt-card {
     background: var(--surface);
     border-radius: 14px;
-    border: 1px solid #E8EBF0;
+    border: 1px solid var(--border);
     padding: 18px 20px;
     cursor: pointer;
     transition: all .18s cubic-bezier(.4,0,.2,1);
@@ -427,7 +427,7 @@ const CSS = `
 .mt-card.p-high::before   { background: #EF4444; }
 .mt-card.p-medium::before { background: #F59E0B; }
 .mt-card.p-low::before    { background: #22C55E; }
-.mt-card.overdue-card     { border-color: #FECACA; }
+.mt-card.overdue-card     { border-color: rgba(239,68,68,.5); }
 
 .mt-card-top {
     display: flex;
@@ -439,12 +439,12 @@ const CSS = `
 .mt-card-title {
     font-size: .9rem;
     font-weight: 700;
-    color: #111318;
+    color: var(--text-1);
     line-height: 1.35;
 }
 .mt-card-desc {
     font-size: .78rem;
-    color: #374151;
+    color: var(--text-2);
     line-height: 1.55;
     margin-bottom: 13px;
     display: -webkit-box;
@@ -464,14 +464,14 @@ const CSS = `
     font-weight: 700;
     white-space: nowrap;
 }
-.chip-ind    { background: #EEF2FF; color: #4338CA; }
-.chip-amber  { background: #FFFBEB; color: #92400E; }
-.chip-green  { background: #F0FDF4; color: #166534; }
-.chip-red    { background: #FFF1F2; color: #BE123C; }
-.chip-gray   { background: #F3F4F6; color: #4B5563; }
-.chip-purple { background: #FAF5FF; color: #6D28D9; }
-.chip-teal   { background: #F0FDFA; color: #0F766E; }
-.chip-sky    { background: #F0F9FF; color: #0369A1; }
+.chip-ind    { background: rgba(99,102,241,.16);  color: #818cf8; }
+.chip-amber  { background: rgba(245,158,11,.16);  color: #fbbf24; }
+.chip-green  { background: rgba(34,197,94,.16);   color: #4ade80; }
+.chip-red    { background: rgba(239,68,68,.16);   color: #f87171; }
+.chip-gray   { background: rgba(148,163,184,.16); color: var(--text-2); }
+.chip-purple { background: rgba(139,92,246,.16);  color: #a78bfa; }
+.chip-teal   { background: rgba(20,184,166,.16);  color: #2dd4bf; }
+.chip-sky    { background: rgba(14,165,233,.16);  color: #38bdf8; }
 
 /* status badge */
 .mt-badge {
@@ -484,10 +484,10 @@ const CSS = `
     font-weight: 700;
     white-space: nowrap;
 }
-.b-pending  { background: #FFF7ED; color: #C2410C; }
-.b-inprog   { background: #EFF6FF; color: #1D4ED8; }
-.b-done     { background: #F0FDF4; color: #15803D; }
-.b-overdue  { background: #FFF1F2; color: #BE123C; }
+.b-pending  { background: rgba(249,115,22,.16); color: #fb923c; }
+.b-inprog   { background: rgba(59,130,246,.16); color: #60a5fa; }
+.b-done     { background: rgba(34,197,94,.16);  color: #4ade80; }
+.b-overdue  { background: rgba(239,68,68,.16);  color: #f87171; }
 
 .mt-card-meta {
     display: flex;
@@ -500,14 +500,14 @@ const CSS = `
     justify-content: space-between;
     align-items: center;
     padding-top: 11px;
-    border-top: 1px solid #F3F4F6;
+    border-top: 1px solid var(--border);
 }
 .mt-assignee {
     display: flex;
     align-items: center;
     gap: 7px;
     font-size: .78rem;
-    color: #374151;
+    color: var(--text-2);
     font-weight: 500;
     min-width: 0;
 }
@@ -542,19 +542,19 @@ const CSS = `
 }
 .mt-empty-icon {
     width: 60px; height: 60px;
-    background: #F3F4F6;
+    background: var(--surface-3);
     border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 16px;
 }
-.mt-empty p:first-of-type { font-weight: 700; color: #374151; font-size: .92rem; margin-bottom: 5px; }
+.mt-empty p:first-of-type { font-weight: 700; color: var(--text-2); font-size: .92rem; margin-bottom: 5px; }
 .mt-empty p:last-of-type  { font-size: .8rem; }
 
 /* ── Skeleton ── */
 .mt-skel {
-    background: linear-gradient(90deg,#F3F4F6 25%,#E5E7EB 50%,#F3F4F6 75%);
+        background: linear-gradient(90deg,var(--surface-3) 25%,var(--border) 50%,var(--surface-3) 75%);
     background-size: 200% 100%;
     animation: mt-shimmer 1.4s infinite;
     border-radius: 7px;
@@ -595,7 +595,7 @@ const CSS = `
 .mt-modal-title {
     font-size: 1.1rem;
     font-weight: 800;
-    color: #111318;
+    color: var(--text-1);
     line-height: 1.3;
     letter-spacing: -.3px;
 }
@@ -603,7 +603,7 @@ const CSS = `
     width: 34px; height: 34px;
     border-radius: 9px;
     border: none;
-    background: #F3F4F6;
+    background: var(--surface-3);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -612,7 +612,7 @@ const CSS = `
     color: #6B7280;
     transition: background .15s;
 }
-.mt-close:hover { background: #E5E7EB; color: #111318; }
+.mt-close:hover { background: var(--border); color: var(--text-1); }
 .mt-modal-meta {
     display: flex;
     gap: 8px;
@@ -630,7 +630,7 @@ const CSS = `
 }
 .mt-modal-value {
     font-size: .88rem;
-    color: #374151;
+    color: var(--text-2);
     font-weight: 500;
     line-height: 1.6;
 }
@@ -640,14 +640,14 @@ const CSS = `
     gap: 16px 24px;
     margin-bottom: 20px;
 }
-.mt-divider { border: none; border-top: 1px solid #F3F4F6; margin: 18px 0; }
+.mt-divider { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
 .mt-work-report {
-    background: #F8FAFC;
-    border: 1px solid #E8EBF0;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 12px 14px;
     font-size: .84rem;
-    color: #374151;
+    color: var(--text-2);
     line-height: 1.65;
     white-space: pre-wrap;
     font-family: 'DM Sans', sans-serif;
@@ -656,7 +656,7 @@ const CSS = `
 /* ── Result count ── */
 .mt-result-info {
     font-size: .8rem;
-    color: #374151;
+    color: var(--text-2);
     font-weight: 600;
     margin-bottom: 14px;
     display: flex;
@@ -670,8 +670,8 @@ const CSS = `
     align-items: center;
     gap: 4px;
     padding: 2px 8px;
-    background: #F0FDFA;
-    color: #0F766E;
+       background: rgba(20,184,166,.16);
+    color: #2dd4bf;
     border-radius: 5px;
     font-size: .68rem;
     font-weight: 700;
@@ -809,7 +809,7 @@ const ViewModal = ({ task, onClose }) => {
                         <div className="mt-modal-label">Assigned To</div>
                         <div className="mt-assignee" style={{ marginTop: 5 }}>
                             <div className="mt-avatar av-sky">{initials(task.assignedTo?.name)}</div>
-                            <span style={{ color: "#374151", fontWeight: 600 }}>
+                            <span style={{ color: "var(--text-2)", fontWeight: 600 }}>
                                 {task.assignedTo?.name || "—"}
                             </span>
                         </div>
@@ -824,7 +824,7 @@ const ViewModal = ({ task, onClose }) => {
                         <div className="mt-modal-label">Assigned By</div>
                         <div className="mt-assignee" style={{ marginTop: 5 }}>
                             <div className="mt-avatar av-violet">{initials(task.assignedBy?.name)}</div>
-                            <span style={{ color: "#374151", fontWeight: 600 }}>
+                            <span style={{ color: "var(--text-2)", fontWeight: 600 }}>
                                 {task.assignedBy?.name || "—"}
                             </span>
                         </div>
@@ -837,7 +837,7 @@ const ViewModal = ({ task, onClose }) => {
 
                     <div>
                         <div className="mt-modal-label">Due Date</div>
-                        <div className={`mt-assignee ${overdue ? "" : ""}`} style={{ marginTop: 5, color: overdue ? "#EF4444" : "#374151" }}>
+                        <div className={`mt-assignee ${overdue ? "" : ""}`} style={{ marginTop: 5, color: overdue ? "#EF4444" : "var(--text-2)" }}>
                             <Ic d={IC.calendar} size={13} color={overdue ? "#EF4444" : "#9CA3AF"} />
                             <span style={{ fontWeight: 600 }}>
                                 {task.dueDate ? fmtDate(task.dueDate) : "No deadline"}
@@ -849,7 +849,7 @@ const ViewModal = ({ task, onClose }) => {
                         <div className="mt-modal-label">Created</div>
                         <div className="mt-assignee" style={{ marginTop: 5 }}>
                             <Ic d={IC.clock} size={13} color="#9CA3AF" />
-                            <span style={{ color: "#374151", fontWeight: 600 }}>{fmtDate(task.createdAt)}</span>
+                            <span style={{ color: "var(--text-2)", fontWeight: 600 }}>{fmtDate(task.createdAt)}</span>
                         </div>
                     </div>
 
@@ -858,7 +858,7 @@ const ViewModal = ({ task, onClose }) => {
                             <div className="mt-modal-label">Completed At</div>
                             <div className="mt-assignee" style={{ marginTop: 5 }}>
                                 <Ic d={IC.check} size={13} color="#22C55E" />
-                                <span style={{ color: "#374151", fontWeight: 600 }}>{fmtDate(task.completedAt)}</span>
+                                <span style={{ color: "var(--text-2)", fontWeight: 600 }}>{fmtDate(task.completedAt)}</span>
                             </div>
                         </div>
                     )}
@@ -917,7 +917,7 @@ const DeptTable = ({ breakdown, activeDept, onSelectDept }) => {
                                 <tr
                                     key={d._id}
                                     onClick={() => onSelectDept(isActive ? "all" : d._id)}
-                                    style={isActive ? { background: "#EEF2FF" } : {}}
+                                    style={isActive ? { background: "rgba(99,102,241,.15)" } : {}}
                                 >
                                     <td>
                                         <div className="mt-dept-name-cell">
@@ -932,10 +932,10 @@ const DeptTable = ({ breakdown, activeDept, onSelectDept }) => {
                                         </div>
                                     </td>
                                     <td style={{ fontWeight: 700 }}>{d.total}</td>
-                                    <td style={{ color: "#C2410C" }}>{d.pending}</td>
-                                    <td style={{ color: "#1D4ED8" }}>{d.inProgress}</td>
-                                    <td style={{ color: "#15803D" }}>{d.done}</td>
-                                    <td style={{ color: "#DC2626" }}>{d.overdue ?? 0}</td>
+                                    <td style={{ color: "#fb923c" }}>{d.pending}</td>
+                                    <td style={{ color: "#60a5fa" }}>{d.inProgress}</td>
+                                    <td style={{ color: "#4ade80" }}>{d.done}</td>
+                                    <td style={{ color: "#f87171" }}>{d.overdue ?? 0}</td>
                                     <td>
                                         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                                             <div className="mt-dept-progress">
@@ -1220,8 +1220,8 @@ const ManagerTasks = () => {
                     {!loading && (
                         <div className="mt-result-info">
                             <Ic d={IC.task} size={12} color="#9CA3AF" />
-                            Showing <strong style={{ color: "#374151" }}>{filtered.length}</strong> of{" "}
-                            <strong style={{ color: "#374151" }}>{tasks.length}</strong> tasks
+                            Showing <strong style={{ color: "var(--text-2)" }}>{filtered.length}</strong> of{" "}
+                            <strong style={{ color: "var(--text-2)" }}>{tasks.length}</strong> tasks
                             {deptF !== "all" && (
                                 <span className="mt-dept-chip" style={{ marginLeft: 4 }}>
                                     <Ic d={IC.building} size={9} />{deptF}

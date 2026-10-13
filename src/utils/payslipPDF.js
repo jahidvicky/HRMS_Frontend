@@ -64,19 +64,19 @@ export const generatePayslipPDF = async (p) => {
       .filter(([, c]) => c.amount > 0)
       .map(([key, c]) => `
           <tr>
-            <td style="padding:7px 10px;color:#374151;font-size:13px;">
+            <td style="padding:7px 10px;color:var(--text-2);font-size:13px;">
               ${c.label || STRUCTURE_LABELS[key] || key}
             </td>
-            <td style="padding:7px 10px;color:#374151;font-size:13px;text-align:right;">
+            <td style="padding:7px 10px;color:var(--text-2);font-size:13px;text-align:right;">
               ${c.percent ? c.percent + "%" : "—"}
             </td>
-            <td style="padding:7px 10px;font-weight:600;color:#111827;font-size:13px;text-align:right;">
+            <td style="padding:7px 10px;font-weight:600;color:var(--text-1);font-size:13px;text-align:right;">
               ${fmt(c.amount)}
             </td>
           </tr>`)
       .join("")
     : `<tr>
-        <td style="padding:7px 10px;color:#374151;font-size:13px;" colspan="2">Basic Salary</td>
+        <td style="padding:7px 10px;color:var(--text-2);font-size:13px;" colspan="2">Basic Salary</td>
         <td style="padding:7px 10px;font-weight:600;text-align:right;font-size:13px;">
           ${fmt(p.monthlySalary)}
         </td>
@@ -91,7 +91,7 @@ export const generatePayslipPDF = async (p) => {
         const label = c.label || labelMap[key] || key.toUpperCase();
         return `
             <tr>
-              <td style="padding:7px 10px;color:#374151;font-size:13px;">
+              <td style="padding:7px 10px;color:var(--text-2);font-size:13px;">
                 ${label}
               </td>
               <td style="padding:7px 10px;color:#dc2626;font-size:13px;text-align:right;">
@@ -117,7 +117,7 @@ export const generatePayslipPDF = async (p) => {
 <title>Payslip — ${monthLabel}</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Arial, sans-serif; background: #f3f4f6; padding: 24px; }
+  body { font-family: Arial, sans-serif; background: var(--surface-3); padding: 24px; }
 
   .wrap {
     max-width: 750px; margin: auto; background: #fff;
@@ -146,7 +146,7 @@ export const generatePayslipPDF = async (p) => {
 
   /* ── Employee Info ── */
   .emp-section {
-    background: #f8fafc; border-bottom: 1px solid #e5e7eb;
+    background: var(--surface-2); border-bottom: 1px solid var(--border);
     padding: 20px 32px;
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
   }
@@ -155,7 +155,7 @@ export const generatePayslipPDF = async (p) => {
     text-transform: uppercase; letter-spacing: .5px; font-weight: 700;
   }
   .emp-field .val {
-    font-size: 13.5px; color: #111827; font-weight: 600; margin-top: 2px;
+    font-size: 13.5px; color: var(--text-1); font-weight: 600; margin-top: 2px;
   }
 
   /* ── Sections ── */
@@ -164,12 +164,12 @@ export const generatePayslipPDF = async (p) => {
     font-size: 11px; font-weight: 800;
     text-transform: uppercase; letter-spacing: .7px;
     color: #6b7280; margin-bottom: 10px;
-    padding-bottom: 6px; border-bottom: 1.5px solid #e5e7eb;
+    padding-bottom: 6px; border-bottom: 1.5px solid var(--border);
   }
 
   /* ── Tables ── */
   table { width: 100%; border-collapse: collapse; }
-  tr:nth-child(even) td { background: #f9fafb; }
+  tr:nth-child(even) td { background: var(--surface-2); }
   th {
     padding: 8px 10px; text-align: left;
     font-size: 11px; color: #6b7280;
@@ -186,7 +186,7 @@ export const generatePayslipPDF = async (p) => {
 
   /* ── Deduction total ── */
   .deduct-total {
-    background: #fef2f2; border: 1px solid #fecaca;
+    background: rgba(239,68,68,.12); border: 1px solid #fecaca;
     border-radius: 8px; padding: 10px 14px;
     display: flex; justify-content: space-between;
     font-weight: 800; font-size: 14px; color: #991b1b; margin-top: 8px;
@@ -213,31 +213,31 @@ export const generatePayslipPDF = async (p) => {
   .words-box {
     margin: 0 32px 24px;
     padding: 10px 16px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 12px;
-    color: #374151;
+    color: var(--text-2);
     font-style: italic;
   }
-  .words-box strong { font-style: normal; color: #111827; }
+  .words-box strong { font-style: normal; color: var(--text-1); }
 
   /* ── Footer ── */
   .footer {
-    background: #f8fafc; border-top: 1px solid #e5e7eb;
+    background: var(--surface-2); border-top: 1px solid var(--border);
     padding: 14px 32px;
     display: flex; justify-content: space-between; align-items: center;
     font-size: 11px; color: #9ca3af;
   }
 
   /* ── Divider ── */
-  .divider { border: none; border-top: 1px solid #e5e7eb; margin: 0 32px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 32px; }
 
   /* ── Signature area ── */
   .signature-row {
     display: flex; justify-content: space-between;
     padding: 24px 32px 8px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--border);
   }
   .sig-box { text-align: center; }
   .sig-line {
@@ -349,14 +349,14 @@ export const generatePayslipPDF = async (p) => {
       <span class="att-chip" style="background:#fff7ed;color:#c2410c;border-color:#fdba74;">
         ◑ Half Day: ${p.halfDays || 0}d
       </span>
-      <span class="att-chip" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5;">
+      <span class="att-chip" style="background:rgba(239,68,68,.15);color:#991b1b;border-color:#fca5a5;">
         ✗ Absent: ${p.absentDays || 0}d
       </span>
-      <span class="att-chip" style="background:#dbeafe;color:#1d4ed8;border-color:#93c5fd;">
+      <span class="att-chip" style="background:rgba(59,130,246,.18);color:#1d4ed8;border-color:#93c5fd;">
         ✈ Paid Leave: ${p.paidLeave || 0}d
       </span>
       ${(p.unpaidLeave || 0) > 0
-      ? `<span class="att-chip" style="background:#fef3c7;color:#92400e;border-color:#fcd34d;">
+      ? `<span class="att-chip" style="background:rgba(245,158,11,.18);color:#92400e;border-color:#fcd34d;">
              ⚠ Unpaid Leave: ${p.unpaidLeave}d
            </span>`
       : ""}
@@ -380,8 +380,8 @@ export const generatePayslipPDF = async (p) => {
     <table>
       <tbody>
         <tr>
-          <td style="padding:7px 10px;color:#374151;font-size:13px;" colspan="2">Fixed Monthly CTC</td>
-          <td style="padding:7px 10px;font-weight:600;color:#111827;text-align:right;font-size:13px;">
+          <td style="padding:7px 10px;color:var(--text-2);font-size:13px;" colspan="2">Fixed Monthly CTC</td>
+          <td style="padding:7px 10px;font-weight:600;color:var(--text-1);text-align:right;font-size:13px;">
             ${fmt(p.monthlySalary)}
           </td>
         </tr>
@@ -415,7 +415,7 @@ export const generatePayslipPDF = async (p) => {
     <div class="section-title">Component Breakdown</div>
     <table>
       <thead>
-        <tr style="background:#f3f4f6;">
+        <tr style="background:var(--border);">
           <th style="text-align:left;">Component</th>
           <th style="text-align:right;">%</th>
           <th style="text-align:right;">Amount</th>
@@ -436,7 +436,7 @@ export const generatePayslipPDF = async (p) => {
     ${statutoryRows
       ? `<table>
            <thead>
-             <tr style="background:#f3f4f6;">
+             <tr style="background:var(--border);">
                <th style="text-align:left;">Description</th>
                <th style="text-align:right;">Amount</th>
              </tr>

@@ -10,22 +10,22 @@ const styles = `
     justify-content: space-between;
     gap: 8px;
     width: 100%;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
+      background: var(--surface-2);
+    border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 10px 14px;
     cursor: pointer;
     font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
-    color: #1e1e2e;
+    color: var(--text-1);
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     text-align: left;
     min-height: 46px;
   }
-  .emp-select-trigger:hover { border-color: #a78bfa; background: #fff; }
+    .emp-select-trigger:hover { border-color: #a78bfa; background: var(--surface); }
   .emp-select-trigger.open {
     border-color: #7c3aed;
-    background: #fff;
+    background: var(--surface);
     box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
   }
 
@@ -43,7 +43,7 @@ const styles = `
     gap: 4px;
     background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(219,39,119,0.07));
     border: 1px solid rgba(124,58,237,0.22);
-    color: #6d28d9;
+   color: #a78bfa;
     padding: 3px 9px 3px 8px;
     border-radius: 100px;
     font-size: 0.78rem;
@@ -65,7 +65,7 @@ const styles = `
 }
   .emp-chip-remove:hover { color: #db2777; transform: scale(1.2); }
 
-  .emp-trigger-placeholder { color: #94a3b8; font-size: 0.88rem; }
+  .emp-trigger-placeholder { color: var(--text-3); font-size: 0.88rem; }
 
   .emp-chevron {
     flex-shrink: 0;
@@ -79,39 +79,39 @@ const styles = `
     position: absolute;
     top: calc(100% + 6px);
     left: 0; right: 0;
-    background: #fff;
-    border: 1.5px solid #e2e8f0;
+       background: var(--surface);
+    border: 1.5px solid var(--border);
     border-radius: 14px;
-    box-shadow: 0 16px 48px rgba(30,30,46,0.13), 0 4px 12px rgba(30,30,46,0.06);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.2);
     z-index: 300;
     overflow: hidden;
     animation: dropdownIn 0.2s cubic-bezier(0.22,1,0.36,1) both;
   }
 
   .emp-search-wrap {
-    padding: 10px 12px 8px;
-    border-bottom: 1px solid #f1f5f9;
+       padding: 10px 12px 8px;
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    background: #fff;
+    background: var(--surface);
     z-index: 1;
   }
 
   .emp-search {
-    width: 100%;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
+       width: 100%;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     padding: 8px 12px 8px 34px;
     font-family: 'Nunito', sans-serif;
     font-size: 0.85rem;
-    color: #1e1e2e;
+    color: var(--text-1);
     outline: none;
     transition: border-color 0.2s;
     box-sizing: border-box;
   }
-  .emp-search:focus { border-color: #a78bfa; background: #fff; }
-  .emp-search::placeholder { color: #72787e; }
+  .emp-search:focus { border-color: #a78bfa; background: var(--surface); }
+  .emp-search::placeholder { color: var(--text-3); }
 
   .emp-search-icon {
     position: absolute;
@@ -125,7 +125,7 @@ const styles = `
 
   .emp-list { max-height: 230px; overflow-y: auto; }
   .emp-list::-webkit-scrollbar { width: 4px; }
-  .emp-list::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+  .emp-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
   /* Select All row */
   .emp-option-all {
@@ -134,15 +134,15 @@ const styles = `
     gap: 10px;
     padding: 11px 14px;
     cursor: pointer;
-    background: #faf5ff;
-    border-bottom: 1.5px solid #ede9fe;
+       background: rgba(124,58,237,.14);
+    border-bottom: 1.5px solid var(--border);
     transition: background 0.15s;
     font-size: 0.88rem;
     font-weight: 700;
-    color: #6d28d9;
+    color: #a78bfa;
     font-family: 'Nunito', sans-serif;
   }
-  .emp-option-all:hover { background: #ede9fe; }
+  .emp-option-all:hover { background: rgba(124,58,237,.24); }
 
   /* Regular rows */
   .emp-option {
@@ -154,24 +154,24 @@ const styles = `
     transition: background 0.15s;
     font-size: 0.875rem;
     font-family: 'Nunito', sans-serif;
-    color: #334155;
-    border-bottom: 1px solid #f8fafc;
+       color: var(--text-1);
+    border-bottom: 1px solid var(--border);
   }
   .emp-option:last-child { border-bottom: none; }
-  .emp-option:hover { background: #faf5ff; }
-  .emp-option.selected { background: #faf5ff; color: #6d28d9; }
+  .emp-option:hover { background: rgba(124,58,237,.14); }
+  .emp-option.selected { background: rgba(124,58,237,.18); color: #a78bfa; }
 
   /* Checkbox */
   .emp-checkbox {
     width: 17px; height: 17px;
-    border: 2px solid #cbd5e1;
+        border: 2px solid var(--text-3);
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     transition: all 0.15s;
-    background: #fff;
+    background: var(--surface);
     font-size: 10px;
     color: transparent;
   }
@@ -181,26 +181,26 @@ const styles = `
     border-color: transparent;
     color: #fff;
   }
-  .emp-option-all.partial .emp-checkbox {
-    background: #ede9fe;
+   .emp-option-all.partial .emp-checkbox {
+    background: rgba(124,58,237,.25);
     border-color: #a78bfa;
-    color: #7c3aed;
+    color: #a78bfa;
   }
 
   /* Avatar */
   .emp-avatar {
     width: 28px; height: 28px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ede9fe, #fce7f3);
+     background: rgba(124,58,237,.2);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.65rem;
     font-weight: 800;
-    color: #7c3aed;
+        color: #a78bfa;
     font-family: 'Syne', sans-serif;
     flex-shrink: 0;
-    border: 1.5px solid rgba(124,58,237,0.15);
+    border: 1.5px solid rgba(124,58,237,0.3);
   }
 
   .emp-option-meta { flex: 1; min-width: 0; }
@@ -212,8 +212,8 @@ const styles = `
     line-height: 1.2;
   }
   .emp-option-role {
-    font-size: 0.72rem;
-    color: #94a3b8;
+       font-size: 0.72rem;
+    color: var(--text-2);
     font-weight: 500;
     text-transform: capitalize;
     line-height: 1.2;
@@ -222,8 +222,8 @@ const styles = `
   .emp-count-right {
     font-size: 0.72rem;
     font-weight: 700;
-    color: #222124;
-    background: rgba(64, 11, 156, 0.24);
+       color: var(--text-1);
+    background: rgba(124, 58, 237, 0.24);
     border-radius: 100px;
     padding: 2px 8px;
     white-space: nowrap;
@@ -232,16 +232,16 @@ const styles = `
   .emp-empty-msg {
     padding: 20px;
     text-align: center;
-    color: #94a3b8;
+       color: var(--text-3);
     font-size: 0.85rem;
   }
 
   .emp-footer {
     padding: 8px 14px;
-    border-top: 1px solid #f1f5f9;
-    background: #fafafa;
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
     font-size: 0.75rem;
-    color: #94a3b8;
+    color: var(--text-2);
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -437,7 +437,7 @@ const UserMultiSelect = ({ value = [], onChange, employees = [] }) => {
                         {value.length > 0 && (
                             <div className="emp-footer">
                                 <span>{value.length} selected</span>
-                                <button className="emp-clear-btn" onClick={() => onChange([])}>
+                                <button type="button" className="emp-clear-btn" onClick={() => onChange([])}>
                                     Clear all
                                 </button>
                             </div>

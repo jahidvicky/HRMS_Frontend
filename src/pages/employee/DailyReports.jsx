@@ -454,7 +454,7 @@ function DaySelector({ value, onChange, presentDays, loadingAttendance }) {
 
                 let bg = "var(--brand-light)", border = "#c7d2fe", color = "#4f46e5";
                 if (state === "weekend") { bg = "var(--surface-2)"; border = "var(--surface-3)"; color = "var(--border)"; }
-                if (state === "absent") { bg = "#DBEAFE"; border = "#93C5FD"; color = "#1E3A8A"; }
+                if (state === "absent") { bg = "rgba(59,130,246,.18)"; border = "#93C5FD"; color = "#1E3A8A"; }
                 if (state === "loading") { bg = "var(--surface-2)"; border = "var(--surface-3)"; color = "var(--border)"; }
                 if (isSelected) { bg = "#4f46e5"; border = "#4f46e5"; color = "var(--surface)"; }
 

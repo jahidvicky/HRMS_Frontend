@@ -31,8 +31,8 @@ const DaysBadge = ({ days, date }) => {
         return (
             <span
                 style={{
-                    background: "#ede9fe",
-                    color: "#5b21b6",
+                    background: "rgba(124,58,237,.18)",
+                    color: "#a78bfa",
                     fontSize: "11px",
                     fontWeight: 700,
                     padding: "3px 10px",
@@ -48,7 +48,7 @@ const DaysBadge = ({ days, date }) => {
         return (
             <span
                 style={{
-                    background: "#fef3c7",
+                    background: "rgba(245,158,11,.18)",
                     color: "#92400e",
                     fontSize: "11px",
                     fontWeight: 700,
@@ -65,7 +65,7 @@ const DaysBadge = ({ days, date }) => {
         return (
             <span
                 style={{
-                    background: "#dbeafe",
+                    background: "rgba(59,130,246,.18)",
                     color: "#1e40af",
                     fontSize: "11px",
                     fontWeight: 700,
@@ -82,7 +82,7 @@ const DaysBadge = ({ days, date }) => {
         return (
             <span
                 style={{
-                    background: "#fee2e2",
+                    background: "rgba(239,68,68,.15)",
                     color: "#991b1b",
                     fontSize: "11px",
                     fontWeight: 700,
@@ -98,8 +98,8 @@ const DaysBadge = ({ days, date }) => {
     return (
         <span
             style={{
-                background: "#ede9fe",
-                color: "#5b21b6",
+                background: "rgba(124,58,237,.18)",
+                color: "#a78bfa",
                 fontSize: "11px",
                 fontWeight: 700,
                 padding: "3px 10px",
@@ -113,9 +113,9 @@ const DaysBadge = ({ days, date }) => {
 
 const StatusBadge = ({ status }) => {
     const map = {
-        pending: { bg: "#fef3c7", color: "#92400e" },
-        sent: { bg: "#d1fae5", color: "#065f46" },
-        failed: { bg: "#fee2e2", color: "#991b1b" },
+        pending: { bg: "rgba(245,158,11,.18)", color: "#92400e" },
+        sent: { bg: "rgba(34,197,94,.18)", color: "#4ade80" },
+        failed: { bg: "rgba(239,68,68,.15)", color: "#991b1b" },
     };
     const s = map[status] || map.pending;
     return (
@@ -126,8 +126,8 @@ const StatusBadge = ({ status }) => {
 const Avatar = ({ name, type }) => {
     const initials = name?.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase() || "?";
     const style = type === "birthday"
-        ? { background: "#ede9fe", color: "#5b21b6" }
-        : { background: "#d1fae5", color: "#065f46" };
+        ? { background: "rgba(124,58,237,.18)", color: "#a78bfa" }
+        : { background: "rgba(34,197,94,.18)", color: "#4ade80" };
     return (
         <div style={{ width: 40, height: 40, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 700, flexShrink: 0, ...style }}>
             {initials}
@@ -141,13 +141,13 @@ const Avatar = ({ name, type }) => {
 // ─────────────────────────────────────────────
 
 const UpcomingRow = ({ event, onEdit, onSchedule }) => (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 0", borderBottom: "1px solid #f3f4f6" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 0", borderBottom: "1px solid var(--border)" }}>
         <Avatar name={event.employeeName} type={event.eventType} />
         <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ fontSize: 14, fontWeight: 700, color: "#111827", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <p style={{ fontSize: 14, fontWeight: 700, color: "var(--text-1)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 {event.employeeName}
             </p>
-            <p style={{ fontSize: 12, color: "#374151", marginTop: 2 }}>
+            <p style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>
                 {event.eventType === "birthday"
                     ? "🎂 Birthday"
                     : `🏢 ${event.anniversaryYear ? `${event.anniversaryYear}-Year ` : ""}Work Anniversary`
@@ -165,7 +165,7 @@ const UpcomingRow = ({ event, onEdit, onSchedule }) => (
         <button
             onClick={() => onSchedule(event)}
             title="Schedule celebration"
-            style={{ width: 30, height: 30, borderRadius: 8, border: "none", cursor: "pointer", background: "#d1fae5", color: "#065f46", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}
+            style={{ width: 30, height: 30, borderRadius: 8, border: "none", cursor: "pointer", background: "rgba(34,197,94,.18)", color: "#4ade80", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}
         >
             <FaCalendarAlt />
         </button>
@@ -178,27 +178,27 @@ const UpcomingRow = ({ event, onEdit, onSchedule }) => (
 // ─────────────────────────────────────────────
 
 const ScheduledRow = ({ item, onDelete, onEdit }) => (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 0", borderBottom: "1px solid #f3f4f6" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 0", borderBottom: "1px solid var(--border)" }}>
         <Avatar name={item.employeeId?.name} type={item.eventType} />
         <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ fontSize: 14, fontWeight: 700, color: "#111827", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <p style={{ fontSize: 14, fontWeight: 700, color: "var(--text-1)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 {item.employeeId?.name || "—"}
             </p>
-            <p style={{ fontSize: 12, color: "#374151", marginTop: 2 }}>
+            <p style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>
                 {item.templateId?.templateName || "No template"}
             </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
             <StatusBadge status={item.status} />
-            <span style={{ fontSize: 11, color: "#374151" }}>
+            <span style={{ fontSize: 11, color: "var(--text-2)" }}>
                 {new Date(item.scheduledAt).toLocaleDateString("en-IN")}
             </span>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
-            <button onClick={() => onEdit(item)} style={{ width: 30, height: 30, borderRadius: 8, border: "none", cursor: "pointer", background: "#ede9fe", color: "#5b21b6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>
+            <button onClick={() => onEdit(item)} style={{ width: 30, height: 30, borderRadius: 8, border: "none", cursor: "pointer", background: "rgba(124,58,237,.18)", color: "#a78bfa", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>
                 <FaEdit />
             </button>
-            <button onClick={() => onDelete(item._id)} style={{ width: 30, height: 30, borderRadius: 8, border: "none", cursor: "pointer", background: "#fee2e2", color: "#dc2626", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>
+            <button onClick={() => onDelete(item._id)} style={{ width: 30, height: 30, borderRadius: 8, border: "none", cursor: "pointer", background: "rgba(239,68,68,.15)", color: "#dc2626", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>
                 <FaTrash />
             </button>
         </div>
@@ -208,7 +208,7 @@ const ScheduledRow = ({ item, onDelete, onEdit }) => (
 const EmptyState = ({ message }) => (
     <div style={{ textAlign: "center", padding: "40px 20px", color: "#6b7280" }}>
         <div style={{ fontSize: 32, marginBottom: 10, opacity: 0.4 }}>🎉</div>
-        <p style={{ fontSize: 14, color: "#374151" }}>{message}</p>
+        <p style={{ fontSize: 14, color: "var(--text-2)" }}>{message}</p>
     </div>
 );
 
@@ -244,14 +244,14 @@ const EMAIL_THEMES = {
         logoColor: "#fde68a",
         avatarBg: "rgba(255,255,255,0.2)",
         avatarColor: "#fff",
-        headingColor: "#fef3c7",
+        headingColor: "rgba(245,158,11,.18)",
         accentColor: "#fbbf24",
         bodyBg: "var(--surface)",
     },
     light_minimal: {
-        bannerBg: "linear-gradient(155deg,#f5f3ff 0%,#ede9fe 55%,#f5f3ff 100%)",
-        logoBg: "#ede9fe",
-        logoColor: "#5b21b6",
+        bannerBg: "linear-gradient(155deg,#f5f3ff 0%,rgba(124,58,237,.18) 55%,#f5f3ff 100%)",
+        logoBg: "rgba(124,58,237,.18)",
+        logoColor: "#a78bfa",
         avatarBg: "#ddd6fe",
         avatarColor: "#4c1d95",
         headingColor: "#3b0764",
@@ -297,7 +297,7 @@ const EmailPreview = ({
     const bodyMsg = customMessage || `On behalf of ${companyName || "our company"}, we wish you a day filled with happiness, laughter, and all the success you deserve. May this year bring you countless opportunities, new achievements, and endless moments of joy. ☀️`;
 
     return (
-        <div style={{ background: "#f3f4f6", padding: "14px", borderRadius: "0 0 12px 12px" }}>
+        <div style={{ background: "var(--border)", padding: "14px", borderRadius: "0 0 12px 12px" }}>
             {/* Email meta row */}
             <div
                 style={{
@@ -305,24 +305,24 @@ const EmailPreview = ({
                     borderRadius: 10,
                     padding: "8px 12px",
                     marginBottom: 10,
-                    border: "1px solid #e5e7eb"
+                    border: "1px solid var(--border)"
                 }}
             >
-                <p style={{ fontSize: 11, color: "#374151" }}>
-                    <span style={{ fontWeight: 700, color: "#111827" }}>
+                <p style={{ fontSize: 11, color: "var(--text-2)" }}>
+                    <span style={{ fontWeight: 700, color: "var(--text-1)" }}>
                         To:
                     </span>{" "}
 
-                    <span style={{ color: "#5b21b6" }}>
+                    <span style={{ color: "#a78bfa" }}>
                         info@worldweblogic.com,
                     </span>
                 </p>
-                <p style={{ fontSize: 11, color: "#374151" }}>
-                    <span style={{ fontWeight: 700, color: "#111827" }}>
+                <p style={{ fontSize: 11, color: "var(--text-2)" }}>
+                    <span style={{ fontWeight: 700, color: "var(--text-1)" }}>
                         From:
                     </span>{" "}
 
-                    <span style={{ color: "#5b21b6" }}>
+                    <span style={{ color: "#a78bfa" }}>
                         {employeeEmail || "employee@company.com"}
                     </span>
                 </p>
@@ -330,11 +330,11 @@ const EmailPreview = ({
                 <p
                     style={{
                         fontSize: 11,
-                        color: "#374151",
+                        color: "var(--text-2)",
                         marginTop: 2
                     }}
                 >
-                    <span style={{ fontWeight: 700, color: "#111827" }}>
+                    <span style={{ fontWeight: 700, color: "var(--text-1)" }}>
                         Subject:
                     </span>{" "}
 
@@ -422,20 +422,20 @@ const EmailPreview = ({
 
                 {/* Body */}
                 <div style={{ background: t.bodyBg, padding: "14px 16px", borderTop: `3px solid ${t.accentColor}` }}>
-                    <p style={{ fontSize: 11, color: "#374151", lineHeight: 1.65 }}>
+                    <p style={{ fontSize: 11, color: "var(--text-2)", lineHeight: 1.65 }}>
                         {bodyMsg}
                     </p>
-                    <p style={{ fontSize: 11, color: "#374151", marginTop: 8 }}>
+                    <p style={{ fontSize: 11, color: "var(--text-2)", marginTop: 8 }}>
                         Enjoy your special day to the fullest — you deserve nothing but the best! 🥳✨
                     </p>
                 </div>
 
                 {/* Signature */}
-                <div style={{ background: "#f9fafb", padding: "10px 16px", borderTop: "1px solid #f3f4f6" }}>
+                <div style={{ background: "var(--surface-2)", padding: "10px 16px", borderTop: "1px solid var(--border)" }}>
                     <p style={{ fontSize: 10, color: "#6b7280", fontStyle: "italic", marginBottom: 4 }}>Thanks & Regards</p>
-                    <p style={{ fontSize: 11, fontWeight: 700, color: "#111827" }}>HR Department</p>
-                    <p style={{ fontSize: 10, color: "#374151" }}>{companyName || "World WebLogic Pvt. Ltd."}</p>
-                    <p style={{ fontSize: 10, color: "#374151" }}>SOFTWARE | DESIGN | MARKETING</p>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: "var(--text-1)" }}>HR Department</p>
+                    <p style={{ fontSize: 10, color: "var(--text-2)" }}>{companyName || "World WebLogic Pvt. Ltd."}</p>
+                    <p style={{ fontSize: 10, color: "var(--text-2)" }}>SOFTWARE | DESIGN | MARKETING</p>
                 </div>
 
             </div>
@@ -452,7 +452,7 @@ const TemplateCard = ({ def, isSelected, onSelect, onPreview }) => (
     <div
         onClick={() => onSelect(def)}
         style={{
-            border: isSelected ? "2px solid #5b4cf5" : "1.5px solid #e5e7eb",
+            border: isSelected ? "2px solid #5b4cf5" : "1.5px solid var(--border)",
             borderRadius: 12,
             overflow: "hidden",
             cursor: "pointer",
@@ -480,9 +480,9 @@ const TemplateCard = ({ def, isSelected, onSelect, onPreview }) => (
         )}
 
         {/* Meta */}
-        <div style={{ padding: "8px 10px", background: "#fff", borderTop: "1px solid #f3f4f6", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ padding: "8px 10px", background: "var(--surface)", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
-                <p style={{ fontSize: 12, fontWeight: 700, color: "#111827" }}>{def.name}</p>
+                <p style={{ fontSize: 12, fontWeight: 700, color: "var(--text-1)" }}>{def.name}</p>
                 <p style={{ fontSize: 10, color: "#6b7280", marginTop: 1 }}>
                     {def.types.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(" · ")}
                 </p>
@@ -491,7 +491,7 @@ const TemplateCard = ({ def, isSelected, onSelect, onPreview }) => (
                 onClick={e => { e.stopPropagation(); onPreview(def); }}
                 title="Preview email"
                 style={{
-                    background: "#ede9fe", color: "#5b21b6",
+                    background: "rgba(124,58,237,.18)", color: "#a78bfa",
                     border: "none", borderRadius: 6,
                     padding: "4px 8px", fontSize: 10, fontWeight: 700,
                     cursor: "pointer", display: "flex", alignItems: "center", gap: 4,
@@ -610,12 +610,12 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
 
     const inputStyle = {
         width: "100%", padding: "9px 12px",
-        border: "1px solid #d1d5db", borderRadius: 10,
-        fontSize: 14, color: "#111827", background: "#fff", outline: "none",
+        border: "1px solid var(--border)", borderRadius: 10,
+        fontSize: 14, color: "var(--text-1)", background: "var(--surface)", outline: "none",
         fontFamily: "inherit",
     };
 
-    const labelStyle = { display: "block", fontSize: 13, fontWeight: 700, color: "#111827", marginBottom: 6 };
+    const labelStyle = { display: "block", fontSize: 13, fontWeight: 700, color: "var(--text-1)", marginBottom: 6 };
 
     // Determine which template to show in preview panel
     const activePreview = previewTemplate || selectedTemplate;
@@ -638,7 +638,7 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
                 }`}
             </style>
             <div style={{
-                background: "#fff", borderRadius: 18, border: "1px solid #e5e7eb",
+                background: "var(--surface)", borderRadius: 18, border: "1px solid var(--border)",
                 width: "100%", maxWidth: showPreview ? 880 : 520,
                 maxHeight: "93vh", overflowY: "auto",
                 display: "flex", flexDirection: showPreview ? "row" : "column",
@@ -652,10 +652,10 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
 
                     {/* Header */}
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
-                        <h2 style={{ fontSize: 18, fontWeight: 800, color: "#111827" }}>
+                        <h2 style={{ fontSize: 18, fontWeight: 800, color: "var(--text-1)" }}>
                             {editData ? "✏️ Edit Celebration" : "🎉 Create Celebration"}
                         </h2>
-                        <button onClick={onClose} style={{ width: 32, height: 32, borderRadius: 10, border: "1px solid #e5e7eb", background: "#f9fafb", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#374151" }}>
+                        <button onClick={onClose} style={{ width: 32, height: 32, borderRadius: 10, border: "1px solid var(--border)", background: "var(--surface-2)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-2)" }}>
                             <FaTimes />
                         </button>
                     </div>
@@ -679,9 +679,9 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
                                     onClick={() => set("eventType", type)}
                                     style={{
                                         flex: 1, padding: "8px 0", borderRadius: 10, cursor: "pointer",
-                                        border: form.eventType === type ? "2px solid #5b4cf5" : "1px solid #e5e7eb",
-                                        background: form.eventType === type ? "#ede9fe" : "#f9fafb",
-                                        color: form.eventType === type ? "#5b21b6" : "#374151",
+                                        border: form.eventType === type ? "2px solid #5b4cf5" : "1px solid var(--border)",
+                                        background: form.eventType === type ? "rgba(124,58,237,.18)" : "var(--surface-2)",
+                                        color: form.eventType === type ? "#a78bfa" : "var(--text-2)",
                                         fontWeight: form.eventType === type ? 700 : 500,
                                         fontSize: 13, transition: "all 0.15s",
                                     }}
@@ -703,7 +703,7 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
                             <label style={{ ...labelStyle, marginBottom: 0 }}>Email Template Style</label>
                             {selectedTemplate && (
-                                <span style={{ fontSize: 11, color: "#5b21b6", fontWeight: 700, background: "#ede9fe", padding: "2px 8px", borderRadius: 20 }}>
+                                <span style={{ fontSize: 11, color: "#a78bfa", fontWeight: 700, background: "rgba(124,58,237,.18)", padding: "2px 8px", borderRadius: 20 }}>
                                     ✓ {selectedTemplate.name}
                                 </span>
                             )}
@@ -810,9 +810,9 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
                         <p style={{ fontSize: 12, color: "#6b7280", marginBottom: 8 }}>
                             Select who should receive this celebration email.
                         </p>
-                        <div style={{ border: "1px solid #d1d5db", borderRadius: 10, padding: "8px 12px", maxHeight: 160, overflowY: "auto" }}>
+                        <div style={{ border: "1px solid var(--border)", borderRadius: 10, padding: "8px 12px", maxHeight: 160, overflowY: "auto" }}>
                             {users.map(u => (
-                                <label key={u._id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 0", fontSize: 14, color: "#111827", cursor: "pointer", borderBottom: "1px solid #f3f4f6" }}>
+                                <label key={u._id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 0", fontSize: 14, color: "var(--text-1)", cursor: "pointer", borderBottom: "1px solid var(--border)" }}>
                                     <input
                                         type="checkbox"
                                         checked={form.recipients.includes(u._id)}
@@ -831,7 +831,7 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
                                     <div style={{ flex: 1 }}>
                                         <span style={{ fontWeight: 600 }}>{u.name}</span>
                                         {u._id === form.employeeId && (
-                                            <span style={{ marginLeft: 6, fontSize: 10, background: "#ede9fe", color: "#5b21b6", padding: "1px 6px", borderRadius: 20, fontWeight: 700 }}>
+                                            <span style={{ marginLeft: 6, fontSize: 10, background: "rgba(124,58,237,.18)", color: "#a78bfa", padding: "1px 6px", borderRadius: 20, fontWeight: 700 }}>
                                                 Employee
                                             </span>
                                         )}
@@ -841,15 +841,15 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
                             ))}
                         </div>
                         {form.recipients.length > 0 && (
-                            <p style={{ fontSize: 11, color: "#5b21b6", marginTop: 6, fontWeight: 600 }}>
+                            <p style={{ fontSize: 11, color: "#a78bfa", marginTop: 6, fontWeight: 600 }}>
                                 ✓ {form.recipients.length} recipient{form.recipients.length > 1 ? "s" : ""} selected
                             </p>
                         )}
                     </div>
 
                     {/* Footer */}
-                    <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", paddingTop: 16, borderTop: "1px solid #f3f4f6" }}>
-                        <button onClick={onClose} style={{ padding: "10px 20px", borderRadius: 10, border: "1px solid #e5e7eb", background: "#f9fafb", color: "#374151", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+                    <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", paddingTop: 16, borderTop: "1px solid var(--border)" }}>
+                        <button onClick={onClose} style={{ padding: "10px 20px", borderRadius: 10, border: "1px solid var(--border)", background: "var(--surface-2)", color: "var(--text-2)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
                             Cancel
                         </button>
                         <button
@@ -882,21 +882,21 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
                 {/* ── RIGHT PANEL — EMAIL PREVIEW ──────────── */}
                 {showPreview && (
                     <div style={{
-                        width: 340, borderLeft: "1px solid #e5e7eb",
+                        width: 340, borderLeft: "1px solid var(--border)",
                         display: "flex", flexDirection: "column", flexShrink: 0,
-                        background: "#fafafa",
+                        background: "var(--surface-2)",
                         borderRadius: "0 18px 18px 0",
                         overflow: "hidden",
                     }}>
                         {/* Preview header */}
-                        <div style={{ padding: "14px 16px", borderBottom: "1px solid #e5e7eb", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#fff" }}>
+                        <div style={{ padding: "14px 16px", borderBottom: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface)" }}>
                             <div>
-                                <p style={{ fontSize: 13, fontWeight: 700, color: "#111827" }}>📧 Email Preview</p>
+                                <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text-1)" }}>📧 Email Preview</p>
                                 <p style={{ fontSize: 11, color: "#6b7280", marginTop: 1 }}>{activePreview?.name || "Select a template"}</p>
                             </div>
                             <button
                                 onClick={() => setShowPreview(false)}
-                                style={{ width: 28, height: 28, borderRadius: 8, border: "1px solid #e5e7eb", background: "#f9fafb", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#374151", fontSize: 11 }}
+                                style={{ width: 28, height: 28, borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface-2)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-2)", fontSize: 11 }}
                             >
                                 <FaTimes />
                             </button>
@@ -925,7 +925,7 @@ const CelebrationModal = ({ isOpen, onClose, onSave, editData, users, templates,
 
                         {/* Use this template button */}
                         {activePreview && activePreview.id !== selectedTemplate?.id && (
-                            <div style={{ padding: "12px 16px", borderTop: "1px solid #e5e7eb", background: "#fff" }}>
+                            <div style={{ padding: "12px 16px", borderTop: "1px solid var(--border)", background: "var(--surface)" }}>
                                 <button
                                     onClick={() => { handleSelectTemplate(activePreview); }}
                                     style={{
@@ -958,8 +958,8 @@ const StatCard = ({ label, value, icon, bg, color }) => (
             {icon}
         </div>
         <div>
-            <p style={{ fontSize: 24, fontWeight: 800, color: "#111827" }}>{value}</p>
-            <p style={{ fontSize: 12, color: "#374151", marginTop: 2 }}>{label}</p>
+            <p style={{ fontSize: 24, fontWeight: 800, color: "var(--text-1)" }}>{value}</p>
+            <p style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>{label}</p>
         </div>
     </div>
 );
@@ -1098,8 +1098,8 @@ const Celebrations = () => {
                 {/* Header */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
                     <div>
-                        <h1 style={{ fontSize: "1.65rem", fontWeight: 700, letterSpacing: "-.5px", color: "#111827" }}>Upcoming Events </h1>
-                        <p style={{ color: "#374151", fontSize: 14, marginTop: 4 }}>Manage birthdays, work anniversaries, and automated celebration emails.</p>
+                        <h1 style={{ fontSize: "1.65rem", fontWeight: 700, letterSpacing: "-.5px", color: "var(--text-1)" }}>Upcoming Events </h1>
+                        <p style={{ color: "var(--text-2)", fontSize: 14, marginTop: 4 }}>Manage birthdays, work anniversaries, and automated celebration emails.</p>
                     </div>
                     <button className="create-btn-main" onClick={openCreate} style={{ background: "#5b4cf5", color: "#fff", border: "none", padding: "12px 20px", borderRadius: 12, fontWeight: 700, fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, transition: "background .2s" }}>
                         <FaPlus /> Create Celebration
@@ -1108,23 +1108,23 @@ const Celebrations = () => {
 
                 {/* Stats */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 14, marginBottom: 24 }}>
-                    <StatCard label="Upcoming (30 days)" value={upcomingEvents.length} icon={<FaBirthdayCake />} bg="#ede9fe" color="#5b21b6" />
-                    <StatCard label="Scheduled Emails" value={scheduledCelebrations.length} icon={<FaEnvelope />} bg="#dbeafe" color="#1d4ed8" />
-                    <StatCard label="Today's Celebrations" value={todayCount} icon={<FaBirthdayCake />} bg="#d1fae5" color="#065f46" />
-                    <StatCard label="Pending to Send" value={pendingCount} icon={<FaCalendarAlt />} bg="#fef3c7" color="#92400e" />
+                    <StatCard label="Upcoming (30 days)" value={upcomingEvents.length} icon={<FaBirthdayCake />} bg="rgba(124,58,237,.18)" color="#a78bfa" />
+                    <StatCard label="Scheduled Emails" value={scheduledCelebrations.length} icon={<FaEnvelope />} bg="rgba(59,130,246,.18)" color="#1d4ed8" />
+                    <StatCard label="Today's Celebrations" value={todayCount} icon={<FaBirthdayCake />} bg="rgba(34,197,94,.18)" color="#4ade80" />
+                    <StatCard label="Pending to Send" value={pendingCount} icon={<FaCalendarAlt />} bg="rgba(245,158,11,.18)" color="#92400e" />
                 </div>
 
                 {/* Main grid */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 18 }}>
 
                     {/* Upcoming Events */}
-                    <div style={{ background: "#fff", borderRadius: 18, border: "1px solid #e5e7eb", padding: 20 }}>
+                    <div style={{ background: "var(--surface)", borderRadius: 18, border: "1px solid var(--border)", padding: 20 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
                             <div>
-                                <p style={{ fontWeight: 800, fontSize: 15, color: "#111827" }}>Upcoming Events</p>
-                                <p style={{ fontSize: 12, color: "#374151", marginTop: 2 }}>Next 30 days — birthdays &amp; anniversaries</p>
+                                <p style={{ fontWeight: 800, fontSize: 15, color: "var(--text-1)" }}>Upcoming Events</p>
+                                <p style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>Next 30 days — birthdays &amp; anniversaries</p>
                             </div>
-                            <div style={{ width: 36, height: 36, borderRadius: 10, background: "#ede9fe", display: "flex", alignItems: "center", justifyContent: "center", color: "#5b21b6", fontSize: 16 }}>
+                            <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(124,58,237,.18)", display: "flex", alignItems: "center", justifyContent: "center", color: "#a78bfa", fontSize: 16 }}>
                                 <FaBirthdayCake />
                             </div>
                         </div>
@@ -1142,13 +1142,13 @@ const Celebrations = () => {
                     </div>
 
                     {/* Scheduled Emails */}
-                    <div style={{ background: "#fff", borderRadius: 18, border: "1px solid #e5e7eb", padding: 20 }}>
+                    <div style={{ background: "var(--surface)", borderRadius: 18, border: "1px solid var(--border)", padding: 20 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
                             <div>
-                                <p style={{ fontWeight: 800, fontSize: 15, color: "#111827" }}>Scheduled Emails</p>
-                                <p style={{ fontSize: 12, color: "#374151", marginTop: 2 }}>All scheduled celebrations</p>
+                                <p style={{ fontWeight: 800, fontSize: 15, color: "var(--text-1)" }}>Scheduled Emails</p>
+                                <p style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>All scheduled celebrations</p>
                             </div>
-                            <div style={{ width: 36, height: 36, borderRadius: 10, background: "#dbeafe", display: "flex", alignItems: "center", justifyContent: "center", color: "#1d4ed8", fontSize: 16 }}>
+                            <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(59,130,246,.18)", display: "flex", alignItems: "center", justifyContent: "center", color: "#1d4ed8", fontSize: 16 }}>
                                 <FaEnvelope />
                             </div>
                         </div>
@@ -1182,11 +1182,11 @@ const Celebrations = () => {
             {/* Delete confirm */}
             {deleteConfirm && (
                 <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 20 }}>
-                    <div style={{ background: "#fff", borderRadius: 18, border: "1px solid #e5e7eb", padding: 28, maxWidth: 380, width: "100%" }}>
-                        <h3 style={{ fontSize: 17, fontWeight: 800, color: "#111827", marginBottom: 10 }}>Delete Celebration?</h3>
-                        <p style={{ fontSize: 14, color: "#374151", marginBottom: 24 }}>This action cannot be undone. The scheduled email will be cancelled.</p>
+                    <div style={{ background: "var(--surface)", borderRadius: 18, border: "1px solid var(--border)", padding: 28, maxWidth: 380, width: "100%" }}>
+                        <h3 style={{ fontSize: 17, fontWeight: 800, color: "var(--text-1)", marginBottom: 10 }}>Delete Celebration?</h3>
+                        <p style={{ fontSize: 14, color: "var(--text-2)", marginBottom: 24 }}>This action cannot be undone. The scheduled email will be cancelled.</p>
                         <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
-                            <button onClick={() => setDeleteConfirm(null)} style={{ padding: "10px 18px", borderRadius: 10, border: "1px solid #e5e7eb", background: "#f9fafb", color: "#374151", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>Cancel</button>
+                            <button onClick={() => setDeleteConfirm(null)} style={{ padding: "10px 18px", borderRadius: 10, border: "1px solid var(--border)", background: "var(--surface-2)", color: "var(--text-2)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>Cancel</button>
                             <button onClick={() => handleDelete(deleteConfirm)} style={{ padding: "10px 18px", borderRadius: 10, border: "none", background: "#dc2626", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>Delete</button>
                         </div>
                     </div>

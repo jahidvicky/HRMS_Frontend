@@ -11,10 +11,10 @@ const initials = (name) => name?.split(" ").map(n => n[0]).join("").toUpperCase(
 
 const STATUS_COLORS = {
     present: { bg: "#dcfce7", color: "#15803d" },
-    "half-day": { bg: "#fef3c7", color: "#92400e" },
-    absent: { bg: "#fee2e2", color: "#991b1b" },
+    "half-day": { bg: "rgba(245,158,11,.18)", color: "#92400e" },
+    absent: { bg: "rgba(239,68,68,.15)", color: "#991b1b" },
     leave: { bg: "#f3e8ff", color: "#6b21a8" },
-    "short-leave": { bg: "#dbeafe", color: "#1d4ed8" },
+    "short-leave": { bg: "rgba(59,130,246,.18)", color: "#1d4ed8" },
     "missing_punch_out": { bg: "#ffedd5", color: "#9a3412" },
 };
 
@@ -96,7 +96,7 @@ const EmployeeHistory = () => {
                     <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                         <span style={{
                             padding: "4px 10px", borderRadius: 20, fontSize: ".72rem", fontWeight: 700,
-                            background: user.status === "active" ? "#dcfce7" : user.status === "terminated" ? "#fee2e2" : "#fef3c7",
+                            background: user.status === "active" ? "#dcfce7" : user.status === "terminated" ? "rgba(239,68,68,.15)" : "rgba(245,158,11,.18)",
                             color: user.status === "active" ? "#15803d" : user.status === "terminated" ? "#991b1b" : "#92400e",
                             textTransform: "capitalize"
                         }}>
@@ -108,7 +108,7 @@ const EmployeeHistory = () => {
                             </span>
                         )}
                         {user.deletedAt && (
-                            <span style={{ padding: "4px 10px", borderRadius: 20, fontSize: ".72rem", fontWeight: 600, background: "#fee2e2", color: "#991b1b" }}>
+                            <span style={{ padding: "4px 10px", borderRadius: 20, fontSize: ".72rem", fontWeight: 600, background: "rgba(239,68,68,.15)", color: "#991b1b" }}>
                                 Removed: {fmtDate(user.deletedAt)}
                             </span>
                         )}
@@ -229,7 +229,7 @@ const EmployeeHistory = () => {
                                             <td>
                                                 <span style={{
                                                     padding: "2px 8px", borderRadius: 4, fontSize: ".72rem", fontWeight: 700,
-                                                    background: l.status === "approved" ? "#dcfce7" : l.status === "rejected" ? "#fee2e2" : "#fef3c7",
+                                                    background: l.status === "approved" ? "#dcfce7" : l.status === "rejected" ? "rgba(239,68,68,.15)" : "rgba(245,158,11,.18)",
                                                     color: l.status === "approved" ? "#15803d" : l.status === "rejected" ? "#991b1b" : "#92400e",
                                                     textTransform: "capitalize"
                                                 }}>

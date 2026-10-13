@@ -596,6 +596,7 @@ const roleChip = (role) => {
         hr: { cls: "chip-purple", label: "HR", icon: "heart-handshake" },
         manager: { cls: "chip-amber", label: "Managers", icon: "briefcase" },
         tl: { cls: "chip-gray", label: "Team Leads", icon: "award" },
+        superadmin: { cls: "chip-red", label: "Super Admins", icon: "shield" },
     };
     const { cls, label, icon } = map[role] || map.all;
     return (
@@ -603,6 +604,27 @@ const roleChip = (role) => {
             <TI name={icon} size={11} />{label}
         </span>
     );
+};
+
+// Handles new announcements (targetRoles array), specific-user-only ones, and old ones (targetRole string)
+const roleChips = (a) => {
+    const roles = a?.targetRoles?.length ? a.targetRoles : [];
+
+    if (!roles.length && a?.targetUsers?.length) {
+        return (
+            <span className="an-chip chip-gray">
+                <TI name="users" size={11} />Selected people
+            </span>
+        );
+    }
+
+    const list = roles.length
+        ? (roles.includes("all") ? ["all"] : roles)
+        : [a?.targetRole || "all"];
+
+    return list.map((r) => (
+        <span key={r} style={{ display: "contents" }}>{roleChip(r)}</span>
+    ));
 };
 
 const isExpiringSoon = (expiresAt) => {
@@ -660,7 +682,7 @@ const AnnouncementModal = ({ announcement, onClose, onRead }) => {
                 )}
 
                 <div className="an-modal-meta">
-                    {roleChip(announcement.targetRole)}
+                    {roleChips(announcement)}
                     <span className="an-chip chip-gray">
                         <TI name="user" size={11} />
                         {announcement.createdBy?.name || "—"}
@@ -932,7 +954,7 @@ const Announcements = () => {
 
                                     <div className="an-card-footer">
                                         <div className="an-card-meta">
-                                            {roleChip(a?.targetRole)}
+                                            {roleChips(a)}
                                             <span className="an-chip chip-gray">
                                                 <TI name="user" size={11} />
                                                 {a?.createdBy?.name || "—"}

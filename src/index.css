@@ -765,7 +765,7 @@ body {
 .cal-day.late {
     background: var(--danger-bg);
     color: var(--danger);
-    border-color: #fecaca;
+    border-color: rgba(239,68,68,.5);
 }
 
 .cal-day.half-day {

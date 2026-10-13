@@ -305,7 +305,7 @@ const ASSET_META = {
 
 const COND = {
     Good: { bg: "var(--success-bg)", color: "#166534", dot: "#16a34a" },
-    New: { bg: "#D1FAE5", color: "#065f46", dot: "#059669" },
+    New: { bg: "rgba(34,197,94,.18)", color: "#4ade80", dot: "#059669" },
     Damaged: { bg: "var(--warn-bg)", color: "#92400e", dot: "#d97706" },
     Replaced: { bg: "var(--brand-light)", color: "#1e40af", dot: "#2563eb" },
     Retired: { bg: "var(--danger-bg)", color: "#9f1239", dot: "#e11d48" },
@@ -905,7 +905,7 @@ export default function MyAssets() {
     const stats = [
         {
             num: assets.length, label: "Total Assets",
-            bg: "#E1F5EE", border: "#6EE7B7", color: "#065f46", numColor: "#064e3b",
+            bg: "rgba(29,158,117,.16)", border: "#6EE7B7", color: "#4ade80", numColor: "#064e3b",
             Icon: Icons.Layers,
         },
         {

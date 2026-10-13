@@ -1,9 +1,9 @@
 import { BASE_URL } from "../../services/api";
 
 const conditionMeta = {
-    Good: { bg: "#EAF3DE", color: "#3B6D11" },
-    Damaged: { bg: "#FAECE7", color: "#993C1D" },
-    Replaced: { bg: "#FAEEDA", color: "#854F0B" },
+    Good: { bg: "rgba(34,197,94,.16)", color: "#3B6D11" },
+    Damaged: { bg: "rgba(239,68,68,.14)", color: "#993C1D" },
+    Replaced: { bg: "rgba(245,158,11,.16)", color: "#854F0B" },
     Retired: { bg: "#F1EFE8", color: "#5F5E5A" },
 };
 
@@ -77,7 +77,7 @@ export const HistoryTimeline = ({ items = [], showChangedBy = true }) => (
 
 export const AssetCard = ({ asset, onHistory, onCondChange, onPhotoUpload }) => (
     <div style={{
-        background: "#fff",
+        background: "var(--surface)",
         border: "1px solid #eee",
         borderRadius: 12,
         overflow: "hidden",
@@ -102,7 +102,7 @@ export const AssetCard = ({ asset, onHistory, onCondChange, onPhotoUpload }) => 
                 position: "absolute", top: 8, left: 8,
                 fontSize: 10, fontWeight: 500,
                 padding: "2px 8px", borderRadius: 20,
-                background: "#fff", border: "1px solid #eee", color: "#666",
+                background: "var(--surface)", border: "1px solid #eee", color: "#666",
             }}>
                 {asset.assetType}
             </span>
@@ -228,7 +228,7 @@ export const Modal = ({ onClose, children }) => (
         <div
             onClick={(e) => e.stopPropagation()}
             style={{
-                background: "#fff",
+                background: "var(--surface)",
                 borderRadius: 12,
                 width: "100%",
                 maxWidth: 480,
@@ -262,7 +262,7 @@ export const inputStyle = {
     borderRadius: 8,
     fontSize: 14,
     outline: "none",
-    background: "#fafafa",
+    background: "var(--surface-2)",
     boxSizing: "border-box",
 };
 

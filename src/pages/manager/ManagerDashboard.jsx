@@ -533,11 +533,11 @@ const ManagerDashboard = () => {
                 .accent-blue::before   { background: #2563EB; }
                 .accent-indigo::before { background: #4F46E5; }
 
-                .accent-purple .stat-icon-wrap { background: #EDE9FE; color: #7C3AED; }
+                .accent-purple .stat-icon-wrap { background: rgba(124,58,237,.18); color: #7C3AED; }
                 .accent-green  .stat-icon-wrap { background: #DCFCE7; color: #16A34A; }
-                .accent-amber  .stat-icon-wrap { background: #FEF3C7; color: #D97706; }
-                .accent-red    .stat-icon-wrap { background: #FEE2E2; color: #DC2626; }
-                .accent-blue   .stat-icon-wrap { background: #DBEAFE; color: #2563EB; }
+                .accent-amber  .stat-icon-wrap { background: rgba(245,158,11,.18); color: #D97706; }
+                .accent-red    .stat-icon-wrap { background: rgba(239,68,68,.15); color: #DC2626; }
+                .accent-blue   .stat-icon-wrap { background: rgba(59,130,246,.18); color: #2563EB; }
                 .accent-indigo .stat-icon-wrap { background: #E0E7FF; color: #4F46E5; }
 
                 .stat-card-inner { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -717,8 +717,8 @@ const ManagerDashboard = () => {
                     transition: transform 0.2s ease;
                 }
                 .list-row:hover .avatar { transform: scale(1.08); }
-                .av-purple { background: #EDE9FE; color: #6D28D9; }
-                .av-blue   { background: #DBEAFE; color: #1D4ED8; }
+                .av-purple { background: rgba(124,58,237,.18); color: #6D28D9; }
+                .av-blue   { background: rgba(59,130,246,.18); color: #1D4ED8; }
                 .av-green  { background: #DCFCE7; color: #15803D; }
 
                 /* Attendance dot */
@@ -750,11 +750,11 @@ const ManagerDashboard = () => {
                     height: 5px;
                     border-radius: 50%;
                 }
-                .badge-warn    { background: #FEF3C7; color: #92400E; }
+                .badge-warn    { background: rgba(245,158,11,.18); color: #92400E; }
                 .badge-warn .badge-dot { background: #D97706; }
                 .badge-success { background: #DCFCE7; color: #166534; }
                 .badge-success .badge-dot { background: #16A34A; }
-                .badge-danger  { background: #FEE2E2; color: #991B1B; }
+                .badge-danger  { background: rgba(239,68,68,.15); color: #991B1B; }
                 .badge-danger .badge-dot { background: #DC2626; }
                 .badge-brand   { background: #E0E7FF; color: #3730A3; }
                 .badge-brand .badge-dot { background: #4F46E5; }
@@ -777,7 +777,7 @@ const ManagerDashboard = () => {
                 }
                 .act-approve { background: #DCFCE7; color: #166534; }
                 .act-approve:hover { background: #16A34A; color: #fff; transform: scale(1.12); }
-                .act-reject  { background: #FEE2E2; color: #991B1B; }
+                .act-reject  { background: rgba(239,68,68,.15); color: #991B1B; }
                 .act-reject:hover  { background: #DC2626; color: #fff; transform: scale(1.12); }
 
                 /* ── Empty state ── */

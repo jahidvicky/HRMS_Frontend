@@ -292,7 +292,7 @@ const TLDashboard = () => {
                                 </p>
                             </div>
                             <div className="tl-timeline-item">
-                                <div className="tl-timeline-circle" style={{ "--timeline-bg": "var(--warn-bg, #FEF3C7)", color: "#D97706" }}>
+                                <div className="tl-timeline-circle" style={{ "--timeline-bg": "var(--warn-bg, rgba(245,158,11,.18))", color: "#D97706" }}>
                                     <FaClock />
                                 </div>
                                 <h6 className="tl-timeline-label">Shift Ends</h6>
@@ -303,7 +303,7 @@ const TLDashboard = () => {
                                 </p>
                             </div>
                             <div className="tl-timeline-item">
-                                <div className="tl-timeline-circle" style={{ "--timeline-bg": "var(--danger-bg, #FEE2E2)", color: "#DC2626" }}>
+                                <div className="tl-timeline-circle" style={{ "--timeline-bg": "var(--danger-bg, rgba(239,68,68,.15))", color: "#DC2626" }}>
                                     <FaDoorOpen />
                                 </div>
                                 <h6 className="tl-timeline-label">Punch Out</h6>

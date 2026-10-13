@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const styles = `
-  .ann-card {
-    background: #fff;
-    border: 1.5px solid #e8eaf2;
+    .ann-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
     border-radius: 18px;
     padding: 20px 22px;
     transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
@@ -33,9 +33,9 @@ const styles = `
   .ann-card.is-read { opacity: 0.68; }
   .ann-card.is-read:hover { opacity: 0.9; }
 
-  .ann-card.important {
-    border-color: #fed7aa;
-    background: #fffbf5;
+   .ann-card.important {
+    border-color: rgba(249,115,22,.4);
+    background: rgba(249,115,22,.08);
   }
   .ann-card.important::before {
     background: linear-gradient(180deg, #f97316, #f59e0b);
@@ -57,8 +57,8 @@ const styles = `
   .ann-card-title {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
-    font-size: 1rem;
-    color: #1e1e2e;
+        font-size: 1rem;
+    color: var(--text-1);
     letter-spacing: -0.02em;
     margin: 0;
     line-height: 1.3;
@@ -77,12 +77,12 @@ const styles = `
     border: 1.5px solid;
     white-space: nowrap;
   }
-  .ann-badge.unread   { color: #7c3aed; border-color: #c4b5fd; background: #f5f3ff; }
-  .ann-badge.important { color: #c2410c; border-color: #fed7aa; background: #fff7ed; }
-  .ann-badge.pinned   { color: #0369a1; border-color: #bae6fd; background: #f0f9ff; }
+  .ann-badge.unread   { color: #a78bfa; border-color: rgba(167,139,250,.5); background: rgba(124,58,237,.15); }
+  .ann-badge.important { color: #fb923c; border-color: rgba(249,115,22,.5); background: rgba(249,115,22,.15); }
+  .ann-badge.pinned   { color: #38bdf8; border-color: rgba(14,165,233,.5); background: rgba(14,165,233,.15); }
 
   .ann-card-body {
-    color: #323538;
+    color: var(--text-1);
     font-size: 0.88rem;
     line-height: 1.65;
     margin: 0 0 16px;
@@ -113,35 +113,35 @@ const styles = `
   }
 
   .ann-btn-read {
-    color: #7c3aed;
-    border-color: #c4b5fd;
-    background: #f5f3ff;
+    color: #a78bfa;
+    border-color: rgba(167,139,250,.5);
+    background: rgba(124,58,237,.15);
   }
   .ann-btn-read:hover {
-    background: #ede9fe;
+    background: rgba(124,58,237,.25);
     border-color: #a78bfa;
     transform: translateY(-1px);
   }
 
   .ann-btn-analytics {
-    color: #0369a1;
-    border-color: #9ecbe4;
-    background: #f0f9ff;
+    color: #38bdf8;
+    border-color: rgba(14,165,233,.5);
+    background: rgba(14,165,233,.15);
   }
   .ann-btn-analytics:hover {
-    background: #e0f2fe;
-    border-color: #7dd3fc;
+    background: rgba(14,165,233,.25);
+    border-color: #38bdf8;
     transform: translateY(-1px);
   }
 
   .ann-btn-delete {
-    color: #dc2626;
-    border-color: #fecaca;
-    background: #fff5f5;
+    color: #f87171;
+    border-color: rgba(239,68,68,.5);
+    background: rgba(239,68,68,.12);
     margin-left: auto;
   }
   .ann-btn-delete:hover {
-    background: #fee2e2;
+    background: rgba(239,68,68,.22);
     border-color: #f87171;
     transform: translateY(-1px);
   }
@@ -157,9 +157,9 @@ const styles = `
   }
 
   .ann-confirm-yes {
-    background: #fee2e2;
-    border: 1.5px solid #fca5a5;
-    color: #dc2626;
+    background: rgba(239,68,68,.15);
+    border: 1.5px solid rgba(239,68,68,.5);
+    color: #f87171;
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 0.8rem;
@@ -171,9 +171,9 @@ const styles = `
   .ann-confirm-yes:hover { background: #fecaca; }
 
   .ann-confirm-no {
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
-    color: #64748b;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
+    color: var(--text-2);
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 0.8rem;
@@ -189,7 +189,20 @@ const styles = `
   }
 `;
 
-const AnnouncementCard = ({ a, onRead, onDelete, onAnalytics }) => {
+const ROLE_LABEL = {
+  all: "Everyone", employee: "Employees", hr: "HR",
+  manager: "Managers", tl: "Team Leads", superadmin: "Super Admins",
+};
+
+const audienceText = (a) => {
+  const roles = a?.targetRoles?.length ? a.targetRoles : [];
+  if (!roles.length && a?.targetUsers?.length) return `${a.targetUsers.length} selected people`;
+  const list = roles.length ? (roles.includes("all") ? ["all"] : roles) : [a?.targetRole || "all"];
+  const text = list.map((r) => ROLE_LABEL[r] || r).join(", ");
+  return roles.length && a?.targetUsers?.length ? `${text} + ${a.targetUsers.length} people` : text;
+};
+
+const AnnouncementCard = ({ a, isHR, onRead, onDelete, onAnalytics, onEdit }) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [removing, setRemoving] = useState(false);
 
@@ -212,12 +225,27 @@ const AnnouncementCard = ({ a, onRead, onDelete, onAnalytics }) => {
         </div>
 
         <p className="ann-card-body">{a.body}</p>
+        <p style={{ fontSize: "0.74rem", color: "var(--text-2)", fontWeight: 700, margin: "-8px 0 14px" }}>
+          🎯 {audienceText(a)}
+        </p>
 
         <div className="ann-card-actions">
 
           <button className="ann-action-btn ann-btn-analytics" onClick={() => onAnalytics(a._id)}>
             📊 Analytics
           </button>
+
+          {isHR && onEdit && (
+            <button
+              className="ann-action-btn ann-btn-read"
+              onClick={() => {
+                onEdit(a);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              ✏️ Edit
+            </button>
+          )}
 
           {!confirmDelete ? (
             <button className="ann-action-btn ann-btn-delete" onClick={() => setConfirmDelete(true)}>

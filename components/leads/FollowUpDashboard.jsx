@@ -47,7 +47,7 @@ const TagBadge = ({ tag }) => {
         hot: { bg: '#fef2f2', color: '#b91c1c', label: '🔥 Hot' },
         warm: { bg: '#fffbeb', color: '#b45309', label: '🌤 Warm' },
         cold: { bg: '#eff6ff', color: '#1d4ed8', label: '❄️ Cold' },
-        unscored: { bg: '#f8fafc', color: '#64748b', label: '— —' },
+        unscored: { bg: 'var(--surface-2)', color: '#64748b', label: '— —' },
     }[tag || 'unscored']
     return (
         <span style={{ padding: '2px 8px', borderRadius: 20, background: cfg.bg, color: cfg.color, fontSize: 10, fontWeight: 700 }}>

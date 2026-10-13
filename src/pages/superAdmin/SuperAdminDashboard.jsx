@@ -209,7 +209,7 @@ const SuperAdminDashboard = () => {
                     API.get("/reports/hr-dashboard"),
                     API.get("/leave/all?status=pending&limit=5"),
                     API.get(`/attendance/hr-overview?month=${new Date().getMonth() + 1}&year=${new Date().getFullYear()}&limit=10`),
-                    API.get("/users"),
+                    API.get("/users?status=active"),
                     API.get("/payroll/stats"),
                     API.get("/tasks/stats"),
                     API.get("/tickets?limit=5"),
@@ -311,32 +311,43 @@ const SuperAdminDashboard = () => {
         hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
 
     // hr-dashboard returns payrollTotal, payrollCount, payrollSummary directly on stats
-    const payrollPaidAmount =
-        payrollStats?.paidAmount
-        ?? payrollStats?.totalPaid
-        ?? payrollStats?.totalNet
-        ?? stats?.payrollSummary?.netTotal
-        ?? stats?.payrollTotal        // ← from hr-dashboard
-        ?? null;
-    const payrollPaidCount =
-        payrollStats?.paid
-        ?? payrollStats?.paidCount
-        ?? stats?.payrollCount        // ← from hr-dashboard
-        ?? null;
-    const payrollTotal =
-        payrollStats?.total
-        ?? stats?.payrollCount        // ← from hr-dashboard
-        ?? null;
+    // const payrollPaidAmount =
+    //     payrollStats?.paidAmount
+    //     ?? payrollStats?.totalPaid
+    //     ?? payrollStats?.totalNet
+    //     ?? stats?.payrollSummary?.netTotal
+    //     ?? stats?.payrollTotal        // ← from hr-dashboard
+    //     ?? null;
+    // const payrollPaidCount =
+    //     payrollStats?.paid
+    //     ?? payrollStats?.paidCount
+    //     ?? stats?.payrollCount        // ← from hr-dashboard
+    //     ?? null;
+    // const payrollTotal =
+    //     payrollStats?.total
+    //     ?? stats?.payrollCount        // ← from hr-dashboard
+    //     ?? null;
+    // const payrollPct =
+    //     payrollPaidCount != null && payrollTotal && payrollTotal > 0
+    //         ? Math.round((payrollPaidCount / payrollTotal) * 100)
+    //         : 0;
+    // const payrollDisplay =
+    //     payrollPaidAmount != null && payrollPaidAmount > 0
+    //         ? `₹${(payrollPaidAmount / 1000).toFixed(0)}k`
+    //         : payrollPaidCount != null
+    //             ? `${payrollPaidCount} payrolls`
+    //             : "0 payrolls";
+
+
+
+    // All numbers come from /payroll/stats so the card never contradicts itself
+    const payrollPaidAmount = payrollStats?.paidAmount ?? 0;
+    const payrollPaidCount = payrollStats?.paid ?? 0;
+    const payrollDraftCount = payrollStats?.draft ?? 0;
+    const payrollTotal = payrollStats?.total ?? 0;
     const payrollPct =
-        payrollPaidCount != null && payrollTotal && payrollTotal > 0
-            ? Math.round((payrollPaidCount / payrollTotal) * 100)
-            : 0;
-    const payrollDisplay =
-        payrollPaidAmount != null && payrollPaidAmount > 0
-            ? `₹${(payrollPaidAmount / 1000).toFixed(0)}k`
-            : payrollPaidCount != null
-                ? `${payrollPaidCount} payrolls`
-                : "0 payrolls";
+        payrollTotal > 0 ? Math.round((payrollPaidCount / payrollTotal) * 100) : 0;
+    const payrollDisplay = `₹${payrollPaidAmount.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`;
 
     const statCards = [
         {
@@ -389,10 +400,10 @@ const SuperAdminDashboard = () => {
             icon: FaTicketAlt,
         },
         {
-            title: "Payroll (Month)",
+            title: "Payroll Paid (All Time)",
             value: loading ? "—" : payrollDisplay,
             accent: "blue",
-            sub: `${stats?.payrollCount ?? payrollPaidCount ?? 0} generated · ₹${((stats?.payrollTotal ?? 0) / 1000).toFixed(0)}k total`,
+            sub: `${payrollPaidCount} paid · ${payrollDraftCount} draft · ${payrollTotal} total`,
             icon: FaMoneyBillWave,
             payrollPct: loading ? 0 : payrollPct,
         },
@@ -533,11 +544,11 @@ const SuperAdminDashboard = () => {
                 .accent-blue::before   { background: #2563EB; }
                 .accent-indigo::before { background: #4F46E5; }
 
-                .accent-purple .stat-icon-wrap { background: #EDE9FE; color: #7C3AED; }
+                .accent-purple .stat-icon-wrap { background: rgba(124,58,237,.18); color: #7C3AED; }
                 .accent-green  .stat-icon-wrap { background: #DCFCE7; color: #16A34A; }
-                .accent-amber  .stat-icon-wrap { background: #FEF3C7; color: #D97706; }
-                .accent-red    .stat-icon-wrap { background: #FEE2E2; color: #DC2626; }
-                .accent-blue   .stat-icon-wrap { background: #DBEAFE; color: #2563EB; }
+                .accent-amber  .stat-icon-wrap { background: rgba(245,158,11,.18); color: #D97706; }
+                .accent-red    .stat-icon-wrap { background: rgba(239,68,68,.15); color: #DC2626; }
+                .accent-blue   .stat-icon-wrap { background: rgba(59,130,246,.18); color: #2563EB; }
                 .accent-indigo .stat-icon-wrap { background: #E0E7FF; color: #4F46E5; }
 
                 .stat-card-inner { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -717,8 +728,8 @@ const SuperAdminDashboard = () => {
                     transition: transform 0.2s ease;
                 }
                 .list-row:hover .avatar { transform: scale(1.08); }
-                .av-purple { background: #EDE9FE; color: #6D28D9; }
-                .av-blue   { background: #DBEAFE; color: #1D4ED8; }
+                .av-purple { background: rgba(124,58,237,.18); color: #6D28D9; }
+                .av-blue   { background: rgba(59,130,246,.18); color: #1D4ED8; }
                 .av-green  { background: #DCFCE7; color: #15803D; }
 
                 /* Attendance dot */
@@ -750,11 +761,11 @@ const SuperAdminDashboard = () => {
                     height: 5px;
                     border-radius: 50%;
                 }
-                .badge-warn    { background: #FEF3C7; color: #92400E; }
+                .badge-warn    { background: rgba(245,158,11,.18); color: #92400E; }
                 .badge-warn .badge-dot { background: #D97706; }
                 .badge-success { background: #DCFCE7; color: #166534; }
                 .badge-success .badge-dot { background: #16A34A; }
-                .badge-danger  { background: #FEE2E2; color: #991B1B; }
+                .badge-danger  { background: rgba(239,68,68,.15); color: #991B1B; }
                 .badge-danger .badge-dot { background: #DC2626; }
                 .badge-brand   { background: #E0E7FF; color: #3730A3; }
                 .badge-brand .badge-dot { background: #4F46E5; }
@@ -777,7 +788,7 @@ const SuperAdminDashboard = () => {
                 }
                 .act-approve { background: #DCFCE7; color: #166534; }
                 .act-approve:hover { background: #16A34A; color: #fff; transform: scale(1.12); }
-                .act-reject  { background: #FEE2E2; color: #991B1B; }
+                .act-reject  { background: rgba(239,68,68,.15); color: #991B1B; }
                 .act-reject:hover  { background: #DC2626; color: #fff; transform: scale(1.12); }
 
                 /* ── Empty state ── */

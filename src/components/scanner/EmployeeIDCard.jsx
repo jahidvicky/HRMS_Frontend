@@ -145,12 +145,12 @@ function CardFront({ user, logoImg }) {
                     flexShrink: 0,
                 }}>
                     {avatarSrc
-                        ? <img 
-                            src={avatarSrc} 
-                            alt={user?.name} 
+                        ? <img
+                            src={avatarSrc}
+                            alt={user?.name}
                             onError={() => setAvatarSrc(null)}
-                            style={{ width: "100%", height: "30vh", objectFit: "cover", objectPosition: "bottom" }} 
-                          />
+                            style={{ width: "100%", height: "30vh", objectFit: "cover", objectPosition: "bottom" }}
+                        />
                         : (
                             <div style={{
                                 width: "100%", height: "100%",
@@ -435,10 +435,10 @@ export default function EmployeeIDCard({ user, logoImg }) {
         <div style={{ fontFamily: ff }}>
             {/* Header */}
             <div style={{ marginBottom: 20 }}>
-                <p style={{ fontFamily: ff, fontWeight: 800, fontSize: 16, color: "#111827", margin: "0 0 4px" }}>
+                <p style={{ fontFamily: ff, fontWeight: 800, fontSize: 16, color: "var(--text-1)", margin: "0 0 4px" }}>
                     Employee ID Card
                 </p>
-                <p style={{ fontFamily: ff, fontSize: 13, color: "#374151", margin: 0 }}>
+                <p style={{ fontFamily: ff, fontSize: 13, color: "var(--text-2)", margin: 0 }}>
                     Your official company ID — front &amp; back. Print or save for access.
                 </p>
             </div>

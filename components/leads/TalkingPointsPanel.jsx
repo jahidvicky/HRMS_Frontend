@@ -8,7 +8,7 @@ const C = {
     amber: '#d97706', amberLight: '#fffbeb', amberBorder: '#fcd34d',
     blue: '#2563eb', blueLight: '#eff6ff', blueBorder: '#93c5fd',
     purple: '#7c3aed', purpleLight: '#f5f3ff',
-    slate100: '#f1f5f9', slate200: '#e2e8f0',
+    slate100: '#f1f5f9', slate200: 'var(--border)',
     slate400: '#94a3b8', slate500: '#64748b', slate600: '#475569',
     slate800: '#1e293b', slate900: '#0f172a',
     white: '#ffffff',

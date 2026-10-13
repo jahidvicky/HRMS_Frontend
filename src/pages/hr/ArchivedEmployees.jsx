@@ -94,7 +94,7 @@ const ArchivedEmployees = () => {
                                             </div>
                                         </td>
                                         <td style={{ padding: "12px 16px", color: "var(--text-1)" }}>
-                                            <span style={{ background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: 4, fontSize: ".72rem", fontWeight: 700 }}>
+                                            <span style={{ background: "rgba(245,158,11,.18)", color: "#92400e", padding: "2px 8px", borderRadius: 4, fontSize: ".72rem", fontWeight: 700 }}>
                                                 {emp.department || "—"}
                                             </span>
                                         </td>

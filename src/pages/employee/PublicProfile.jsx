@@ -27,11 +27,11 @@ const COMPANY = {
 
 /* ── Role themes ── */
 const ROLE_THEME = {
-    hr: { label: "Human Resources", grad: "linear-gradient(135deg,#1d4ed8,#3b82f6)", light: "#dbeafe", dark: "#1e3a8a", primary: "#1d4ed8" },
-    manager: { label: "Manager", grad: "linear-gradient(135deg,#059669,#10b981)", light: "#d1fae5", dark: "#065f46", primary: "#059669" },
-    tl: { label: "Team Lead", grad: "linear-gradient(135deg,#d97706,#f59e0b)", light: "#fef3c7", dark: "#92400e", primary: "#d97706" },
-    employee: { label: "Employee", grad: "linear-gradient(135deg,#6d28d9,#8b5cf6)", light: "#ede9fe", dark: "#4c1d95", primary: "#6d28d9" },
-    superadmin: { label: "Super Admin", grad: "linear-gradient(135deg,#dc2626,#ef4444)", light: "#fee2e2", dark: "#7f1d1d", primary: "#dc2626" },
+    hr: { label: "Human Resources", grad: "linear-gradient(135deg,#1d4ed8,#3b82f6)", light: "rgba(59,130,246,.18)", dark: "#1e3a8a", primary: "#1d4ed8" },
+    manager: { label: "Manager", grad: "linear-gradient(135deg,#059669,#10b981)", light: "rgba(34,197,94,.18)", dark: "#4ade80", primary: "#059669" },
+    tl: { label: "Team Lead", grad: "linear-gradient(135deg,#d97706,#f59e0b)", light: "rgba(245,158,11,.18)", dark: "#92400e", primary: "#d97706" },
+    employee: { label: "Employee", grad: "linear-gradient(135deg,#6d28d9,#8b5cf6)", light: "rgba(124,58,237,.18)", dark: "#4c1d95", primary: "#6d28d9" },
+    superadmin: { label: "Super Admin", grad: "linear-gradient(135deg,#dc2626,#ef4444)", light: "rgba(239,68,68,.15)", dark: "#7f1d1d", primary: "#dc2626" },
 };
 const getTheme = (role) => ROLE_THEME[role?.toLowerCase()] ?? ROLE_THEME.employee;
 
@@ -81,7 +81,7 @@ function ErrorScreen({ message }) {
             `}</style>
             <div style={{
                 textAlign: "center", maxWidth: 340,
-                background: "#fff", borderRadius: 20, padding: "40px 32px",
+                background: "var(--surface)", borderRadius: 20, padding: "40px 32px",
                 boxShadow: "0 8px 32px rgba(0,0,0,.1)",
                 animation: "fadeUp .3s ease",
             }}>
@@ -114,7 +114,7 @@ function InfoRow({ icon, label, value }) {
         <div style={{
             display: "flex", alignItems: "center", gap: 12,
             padding: "10px 14px", borderRadius: 10,
-            background: "#f8fafc", border: "1px solid #e2e8f0",
+            background: "var(--surface-2)", border: "1px solid var(--border)",
         }}>
             <span style={{
                 fontSize: 18,
@@ -206,7 +206,7 @@ export default function PublicProfile() {
 
                 {/* ── Main card ── */}
                 <div style={{
-                    background: "#fff", borderRadius: 24,
+                    background: "var(--surface)", borderRadius: 24,
                     boxShadow: "0 12px 40px rgba(0,0,0,.13)",
                     overflow: "hidden",
                     animation: "scaleIn .35s ease",
@@ -238,12 +238,12 @@ export default function PublicProfile() {
                                 display: "flex", alignItems: "center", justifyContent: "center",
                             }}>
                                 {avatarSrc
-                                    ? <img 
-                                        src={avatarSrc} 
-                                        alt={emp.name} 
+                                    ? <img
+                                        src={avatarSrc}
+                                        alt={emp.name}
                                         onError={() => setAvatarSrc(null)}
-                                        style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-                                      />
+                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                    />
                                     : <span style={{ fontSize: 28, fontWeight: 800, color: "#fff" }}>{initials}</span>}
                             </div>
 

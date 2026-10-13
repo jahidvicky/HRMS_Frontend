@@ -40,20 +40,20 @@ const STATUS_COLORS = {
     present: { solid: "#22C55E", bg: "#DCFCE7", border: "#86EFAC", text: "#14532D" },
     late: { solid: "#22C55E", bg: "#DCFCE7", border: "#86EFAC", text: "#14532D" }, // late is treated as full day
     halfday: { solid: "#F97316", bg: "#FFEDD5", border: "#FDBA74", text: "#7C2D12" }, // Orange
-    absent: { solid: "#EF4444", bg: "#FEE2E2", border: "#FCA5A5", text: "#7F1D1D" }, // Red
+    absent: { solid: "#EF4444", bg: "rgba(239,68,68,.15)", border: "#FCA5A5", text: "#7F1D1D" }, // Red
     holiday: { solid: "#EAB308", bg: "#FEF9C3", border: "#FDE047", text: "#713F12" }, // Yellow
-    weekend: { solid: "#9CA3AF", bg: "#F3F4F6", border: "#D1D5DB", text: "#374151" }, // Gray
+    weekend: { solid: "#9CA3AF", bg: "var(--border)", border: "var(--border)", text: "var(--text-2)" }, // Gray
     leave: { solid: "#A855F7", bg: "#F3E8FF", border: "#D8B4FE", text: "#581C87" }, // Purple
-    today: { solid: "#3B82F6", bg: "#DBEAFE", border: "#3B82F6", text: "#1E3A8A" } // Blue Border
+    today: { solid: "#3B82F6", bg: "rgba(59,130,246,.18)", border: "#3B82F6", text: "#1E3A8A" } // Blue Border
 };
 
 const STATUS_CONFIG = {
     punched_in: { label: "Punched In", bg: "var(--brand-light)", color: "var(--brand-dark)", dot: "var(--brand)" },
     punched_out: { label: "Punched Out", bg: "var(--success-bg)", color: "var(--success)", dot: "#962205" },
-    absent: { label: "Absent", bg: "#DBEAFE", color: "#1E3A8A", dot: "#3B82F6" },
+    absent: { label: "Absent", bg: "rgba(59,130,246,.18)", color: "#1E3A8A", dot: "#3B82F6" },
     on_leave: { label: "On Leave", bg: "#F3E8FF", color: "#6B21A8", dot: "#7C3AED" },
     holiday: { label: "Holiday", bg: "var(--brand-light)", color: "var(--brand-dark)", dot: "var(--brand)" },
-    weekend: { label: "Weekend", bg: "#F3F4F6", color: "#374151", dot: "#9CA3AF" },
+    weekend: { label: "Weekend", bg: "var(--border)", color: "var(--text-2)", dot: "#9CA3AF" },
     not_started: { label: "Office Closed", bg: "var(--surface-2)", color: "var(--text-3)", dot: "var(--text-3)" },
     missed_punchout: { label: "Missed Punch Out", bg: "var(--warn-bg)", color: "var(--warn)", dot: "#F97316" },
 };
@@ -339,6 +339,13 @@ const HRAttendanceOverview = () => {
         return [...set].sort();
     }, [data]);
 
+    const years = useMemo(() => {
+        const currentYear = new Date().getFullYear();
+        const start = Math.min(currentYear - 5, viewYear - 1);
+        const end = Math.max(currentYear + 10, viewYear + 1);
+        return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    }, [viewYear]);
+
     const handleOvCardClick = (status) => {
         setTab("daywise");
         setSelectedDate(now.toISOString().split("T")[0]);
@@ -469,7 +476,7 @@ const HRAttendanceOverview = () => {
                 .btn-export { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; font-size: .75rem; font-weight: 700; cursor: pointer; transition: all .15s; border: 1.5px solid transparent; font-family: inherit; }
                 .btn-excel { background: #DCFCE7; color: #166534; border-color: #BBF7D0; }
                 .btn-excel:hover { background: #BBF7D0; }
-                .btn-pdf { background: #FEE2E2; color: #991B1B; border-color: #FECACA; }
+                .btn-pdf { background: rgba(239,68,68,.15); color: #991B1B; border-color: rgba(239,68,68,.5); }
                 .btn-pdf:hover { background: #FECACA; }
                 .pagination { display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--border); }
                 .pagination-btn { padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: .75rem; font-weight: 600; color: var(--text-1); }
@@ -549,10 +556,7 @@ const HRAttendanceOverview = () => {
                                 setViewYear(Number(e.target.value))
                             }
                         >
-                            {Array.from(
-                                { length: 6 },
-                                (_, i) => now.getFullYear() - 3 + i
-                            ).map((y) => (
+                            {years.map((y) => (
                                 <option key={y} value={y}>
                                     {y}
                                 </option>
@@ -1157,9 +1161,9 @@ const HRAttendanceOverview = () => {
                                                     </td>
                                                     <td><span className="dept-tag">{emp.department || "—"}</span></td>
                                                     <td><span style={{ fontWeight: 700, color: "#15803D", fontSize: ".85rem" }}>{(s.presentDays || 0) + (s.lateDays || 0)}</span></td>
-                                                    <td>{(s.halfDays || 0) > 0 ? <span style={{ background: "#FEF3C7", color: "#92400E", padding: "2px 8px", borderRadius: 4, fontWeight: 700, fontSize: ".75rem" }}>{s.halfDays}</span> : <span style={{ color: "var(--text-2)", fontWeight: 500 }}>0</span>}</td>
+                                                    <td>{(s.halfDays || 0) > 0 ? <span style={{ background: "rgba(245,158,11,.18)", color: "#92400E", padding: "2px 8px", borderRadius: 4, fontWeight: 700, fontSize: ".75rem" }}>{s.halfDays}</span> : <span style={{ color: "var(--text-2)", fontWeight: 500 }}>0</span>}</td>
                                                     <td>{(s.leaveDays || 0) > 0 ? <span style={{ background: "#F3E8FF", color: "#6B21A8", padding: "2px 8px", borderRadius: 4, fontWeight: 700, fontSize: ".75rem" }}>{s.leaveDays}</span> : <span style={{ color: "var(--text-2)", fontWeight: 500 }}>0</span>}</td>
-                                                    <td>{(s.absentDays || 0) > 0 ? <span style={{ background: "#FEE2E2", color: "#991B1B", padding: "2px 8px", borderRadius: 4, fontWeight: 700, fontSize: ".75rem" }}>{s.absentDays}</span> : <span style={{ color: "var(--text-2)", fontWeight: 500 }}>0</span>}</td>
+                                                    <td>{(s.absentDays || 0) > 0 ? <span style={{ background: "rgba(239,68,68,.15)", color: "#991B1B", padding: "2px 8px", borderRadius: 4, fontWeight: 700, fontSize: ".75rem" }}>{s.absentDays}</span> : <span style={{ color: "var(--text-2)", fontWeight: 500 }}>0</span>}</td>
                                                     <td style={{ fontFamily: "DM Mono,monospace", fontSize: ".77rem", fontWeight: 600, color: "var(--text-1)" }}>{fmtHours(s.avgDailyHours)}</td>
                                                     <td style={{ fontFamily: "DM Mono,monospace", fontSize: ".77rem", fontWeight: 600, color: "var(--text-2)" }}>{s.expectedShiftHours}h</td>
                                                     <td>
@@ -1243,7 +1247,7 @@ const HRAttendanceOverview = () => {
                                                     <td style={{ fontSize: ".8rem", color: "var(--text-1)", fontWeight: 500 }}>{fmtDate(leave.fromDate)}</td>
                                                     <td style={{ fontSize: ".8rem", color: "var(--text-1)", fontWeight: 500 }}>{fmtDate(leave.toDate)}</td>
                                                     <td><span style={{ fontWeight: 800, color: "#4F46E5", fontSize: ".85rem" }}>{days}</span><span style={{ fontSize: ".72rem", color: "var(--text-2)", marginLeft: 3, fontWeight: 500 }}>day{days !== 1 ? "s" : ""}</span></td>
-                                                    <td><span style={{ background: "#D1FAE5", color: "#065F46", padding: "3px 9px", borderRadius: 5, fontWeight: 700, fontSize: ".72rem" }}>Approved</span></td>
+                                                    <td><span style={{ background: "rgba(34,197,94,.18)", color: "#4ade80", padding: "3px 9px", borderRadius: 5, fontWeight: 700, fontSize: ".72rem" }}>Approved</span></td>
                                                 </tr>
                                             );
                                         })}

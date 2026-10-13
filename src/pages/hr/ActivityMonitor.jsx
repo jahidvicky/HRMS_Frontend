@@ -179,10 +179,10 @@ const APP_ICONS = {
     ),
     "default-neutral": (
         <svg viewBox="0 0 24 24" style={{ width: 20, height: 20 }}>
-            <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="#374151" strokeWidth="1.8" fill="none" />
-            <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="#374151" strokeWidth="1.8" fill="none" />
-            <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="#374151" strokeWidth="1.8" fill="none" />
-            <rect x="13" y="13" width="8" height="8" rx="1.5" stroke="#374151" strokeWidth="1.8" fill="none" />
+            <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="var(--text-2)" strokeWidth="1.8" fill="none" />
+            <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="var(--text-2)" strokeWidth="1.8" fill="none" />
+            <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="var(--text-2)" strokeWidth="1.8" fill="none" />
+            <rect x="13" y="13" width="8" height="8" rx="1.5" stroke="var(--text-2)" strokeWidth="1.8" fill="none" />
         </svg>
     ),
 };
@@ -197,10 +197,10 @@ const getAppIcon = (appName, category, isBrowser) => {
 };
 
 const catConfig = (cat, isBrowser) => {
-    if (isBrowser) return { bg: "#DBEAFE", border: "#93C5FD", text: "#1E3A8A", label: "browser", dot: "#1D4ED8" };
-    if (cat === "productive") return { bg: "#DCFCE7", border: "#86EFAC", text: "#14532D", label: "productive", dot: "#16A34A" };
-    if (cat === "unproductive") return { bg: "#FFE4E6", border: "#FCA5A5", text: "#7F1D1D", label: "unproductive", dot: "#DC2626" };
-    return { bg: "#F3F4F6", border: "#9CA3AF", text: "#111827", label: "neutral", dot: "#4B5563" };
+    if (isBrowser) return { bg: "rgba(59,130,246,.16)", border: "rgba(59,130,246,.5)", text: "#60a5fa", label: "browser", dot: "#3b82f6" };
+    if (cat === "productive") return { bg: "rgba(34,197,94,.16)", border: "rgba(34,197,94,.5)", text: "#4ade80", label: "productive", dot: "#16a34a" };
+    if (cat === "unproductive") return { bg: "rgba(239,68,68,.16)", border: "rgba(239,68,68,.5)", text: "#f87171", label: "unproductive", dot: "#dc2626" };
+    return { bg: "rgba(148,163,184,.16)", border: "rgba(148,163,184,.5)", text: "var(--text-1)", label: "neutral", dot: "#94a3b8" };
 };
 
 const barColor = (cat, isBrowser) => {
@@ -236,8 +236,6 @@ const css = `
 
 .am-wrap {
   --bg: var(--surface-2);
-  --surface: var(--surface);
-  --border: var(--border);
   --text: var(--text-1);
   --muted: var(--text-2);
   --faint: var(--text-2);
@@ -543,13 +541,13 @@ const css = `
 
 .am-time-start .am-time-label { color: #047857; }
 .am-time-end   .am-time-label { color: #B91C1C; }
-.am-time-start .am-time-value { color: #065F46; }
+.am-time-start .am-time-value { color: #4ade80; }
 .am-time-end   .am-time-value { color: #991B1B; }
 .am-time-value { font-size: 11.5px; font-family: 'JetBrains Mono', monospace; font-weight: 600; }
 
 .am-incognito {
   font-size: 10px;
-  background: #FEF3C7;
+  background: rgba(245,158,11,.18);
   color: #78350F;
   padding: 2px 7px;
   border-radius: 4px;
@@ -1008,10 +1006,10 @@ export default function ActivityMonitor() {
     const score = totalSec > 0 ? Math.round((prodSec / totalSec) * 100) : 0;
 
     const metrics = [
-        { label: "Total tracked", value: fmtDur(totalSec), accent: "#4F46E5", color: "#0A0C10" },
-        { label: "Productive", value: fmtDur(prodSec), accent: "#16A34A", color: "#14532D" },
-        { label: "Unproductive", value: fmtDur(unpSec), accent: "#DC2626", color: "#7F1D1D" },
-        { label: "Score", value: `${score}%`, accent: score >= 60 ? "#16A34A" : score >= 30 ? "#D97706" : "#DC2626", color: "#0A0C10" },
+        { label: "Total tracked", value: fmtDur(totalSec), accent: "#4F46E5", color: "var(--text-1)" },
+        { label: "Productive", value: fmtDur(prodSec), accent: "#16A34A", color: "#4ade80" },
+        { label: "Unproductive", value: fmtDur(unpSec), accent: "#DC2626", color: "#f87171" },
+        { label: "Score", value: `${score}%`, accent: score >= 60 ? "#16A34A" : score >= 30 ? "#D97706" : "#DC2626", color: "var(--text-1)" },
     ];
 
     return (
@@ -1269,7 +1267,6 @@ export default function ActivityMonitor() {
                                     : `Captured at ${new Date(captureModal.completedAt).toLocaleTimeString()}`
                                 }
                             </div>
-                      // NEW
                             <div style={{ marginBottom: 20 }}>
                                 <div className="am-modal-img-box">
                                     <div className="am-modal-img-label">🖥️ Screenshot</div>

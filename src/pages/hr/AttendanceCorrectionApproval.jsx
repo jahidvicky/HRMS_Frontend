@@ -121,7 +121,7 @@ const AttendanceCorrectionApproval = () => {
                 }
                 .time-row { display: flex; gap: .35rem; align-items: center; }
                 .time-label { color: var(--text-3); min-width: 70px; }
-                .time-chip { font-family: monospace; background: #f3f4f6; padding: 1px 6px; border-radius: 4px; color: var(--text-1); }
+                .time-chip { font-family: monospace; background: var(--surface-3); padding: 1px 6px; border-radius: 4px; color: var(--text-1); }
                 .modal-row { display: flex; flex-direction: column; gap: .6rem; }
             `}</style>
 

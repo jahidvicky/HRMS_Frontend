@@ -13,7 +13,7 @@ const MONTHS = ["January", "February", "March", "April", "May", "June",
 const STATUS_CONFIG = {
     punched_in: { label: "Punched In", bg: "var(--brand-light)", color: "#1E3A8A", border: "#60A5FA", dot: "#2563EB" },
     punched_out: { label: "Punched Out", bg: "var(--success-bg)", color: "var(--success)", border: "var(--success-border)", dot: "#059669" },
-    absent: { label: "Absent", bg: "#DBEAFE", color: "#1E3A8A", border: "#93C5FD", dot: "#3B82F6" },
+    absent: { label: "Absent", bg: "rgba(59,130,246,.18)", color: "#1E3A8A", border: "#93C5FD", dot: "#3B82F6" },
     on_leave: { label: "On Leave", bg: "var(--surface-3)", color: "#6B21A8", border: "#D8B4FE", dot: "#7C3AED" },
     holiday: { label: "Holiday", bg: "var(--brand-light)", color: "#1E3A8A", border: "#60A5FA", dot: "#2563EB" },
     weekend: { label: "Weekend", bg: "var(--surface-2)", color: "var(--text-3)", border: "var(--border)", dot: "#CBD5E1" },
@@ -151,8 +151,8 @@ const TeamAttendance = () => {
 
     const todayList = (data?.todaySummary || []).filter(e => {
         const matchSearch = e.name?.toLowerCase().includes(search.toLowerCase()) ||
-                            e.employeeId?.toLowerCase().includes(search.toLowerCase());
-        
+            e.employeeId?.toLowerCase().includes(search.toLowerCase());
+
         let matchStatus = true;
         if (statusFilter !== "all") {
             if (statusFilter === "present") {
@@ -170,10 +170,10 @@ const TeamAttendance = () => {
     );
 
     // Today counts from TL's team
-    const presentToday = (data?.todaySummary || []).filter(e => 
+    const presentToday = (data?.todaySummary || []).filter(e =>
         ["present", "punched_in", "punched_out", "late", "half_day", "missed_punchout"].includes(e.attendanceStatus)
     ).length;
-    
+
     const halfDayToday = (data?.todaySummary || []).filter(e => e.attendanceStatus === "half_day").length;
     const lateToday = (data?.todaySummary || []).filter(e => e.attendanceStatus === "late").length;
     const punchedOut = (data?.todaySummary || []).filter(e => e.punchOut).length;
@@ -246,11 +246,11 @@ const TeamAttendance = () => {
                 {/* Stats */}
                 <div className="ta-stats">
                     <StatCard label="Team Size" value={data?.teamMembers?.length ?? "—"} color="#6366F1" sub="Total members" />
-                    <StatCard 
-                        label="Present Today" 
-                        value={loading ? "—" : presentToday} 
-                        color="#22C55E" 
-                        sub={loading ? "" : `${halfDayToday} half · ${lateToday} late`} 
+                    <StatCard
+                        label="Present Today"
+                        value={loading ? "—" : presentToday}
+                        color="#22C55E"
+                        sub={loading ? "" : `${halfDayToday} half · ${lateToday} late`}
                     />
                     <StatCard label="Punched Out" value={loading ? "—" : punchedOut} color="#3B82F6" sub="Completed today" />
                     <StatCard label="Absent" value={loading ? "—" : absent} color="#3B82F6" sub="After shift start" />
@@ -280,18 +280,18 @@ const TeamAttendance = () => {
                     />
 
                     {tab === "day_wise" && (
-                        <input 
-                            type="date" 
-                            value={selectedDate} 
-                            onChange={e => setSelectedDate(e.target.value)} 
-                            style={{ padding: "8px 14px", borderRadius: 9, border: "1.5px solid var(--border)", background: "var(--surface)", color: "var(--text-1)", outline: "none", fontFamily: "inherit" }} 
+                        <input
+                            type="date"
+                            value={selectedDate}
+                            onChange={e => setSelectedDate(e.target.value)}
+                            style={{ padding: "8px 14px", borderRadius: 9, border: "1.5px solid var(--border)", background: "var(--surface)", color: "var(--text-1)", outline: "none", fontFamily: "inherit" }}
                         />
                     )}
 
                     {(tab === "today" || tab === "day_wise") && (
-                        <select 
-                            value={statusFilter} 
-                            onChange={e => setStatusFilter(e.target.value)} 
+                        <select
+                            value={statusFilter}
+                            onChange={e => setStatusFilter(e.target.value)}
                             style={{ padding: "8px 14px", borderRadius: 9, border: "1.5px solid var(--border)", background: "var(--surface)", color: "var(--text-1)", outline: "none", fontFamily: "inherit", cursor: "pointer" }}
                         >
                             <option value="all">All Status</option>

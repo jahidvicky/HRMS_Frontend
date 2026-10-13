@@ -786,7 +786,7 @@ const Leave = () => {
                                             {" — "}
                                             {new Date(l.toDate).toLocaleDateString()}
                                             <span style={{
-                                                background: "var(--surface-2, #f3f4f6)",
+                                                background: "var(--surface-2, var(--border))",
                                                 borderRadius: "20px",
                                                 padding: "1px 7px",
                                                 fontWeight: 600,

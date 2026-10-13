@@ -185,10 +185,10 @@ const Navbar = ({ onSidebarOpen, collapsed, onToggleCollapse }) => {
         .join("")
         .toUpperCase()
         .slice(0, 2) || "U";
-const roleBase = pathname.split("/")[1]?.split("-")[0] || "employee";
-const profilePath = roleBase === "superadmin" || roleBase === "manager"
-    ? `/${roleBase}/profile`
-    : `/${roleBase}/profile`;
+    const roleBase = pathname.split("/")[1]?.split("-")[0] || "employee";
+    const profilePath = roleBase === "superadmin" || roleBase === "manager"
+        ? `/${roleBase}/profile`
+        : `/${roleBase}/profile`;
 
     return (
         <>
@@ -332,7 +332,7 @@ const profilePath = roleBase === "superadmin" || roleBase === "manager"
                     <Link to={profilePath} className="profile_name">
                         <div className="user-chip">
                             <div className="user-avatar">{initials}</div>
-                            <span className="user-chip-name">{user?.name}</span>
+                            <span className="user-chip-name">{(user?.name).toUpperCase()}</span>
                         </div>
                     </Link>
                 </div>

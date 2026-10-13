@@ -56,7 +56,7 @@ const StatusBadge = ({ status, isPreview }) => {
     if (isPreview) {
         return (
             <span style={{
-                background: "#dbeafe", color: "#1e40af", border: "1.5px solid #93c5fd",
+                background: "rgba(59,130,246,.18)", color: "#1e40af", border: "1.5px solid #93c5fd",
                 padding: "5px 12px", borderRadius: "20px", fontSize: ".78rem", fontWeight: 700,
                 display: "inline-flex", alignItems: "center", gap: 6,
             }}>
@@ -365,10 +365,10 @@ const EmployeePickerModal = ({ isOpen, onClose, employees, loading, onSelect }) 
                                             textTransform: "uppercase",
                                             background:
                                                 emp.role === "hr"
-                                                    ? "#fef3c7"
+                                                    ? "rgba(245,158,11,.18)"
                                                     : emp.role === "tl"
-                                                        ? "#dbeafe"
-                                                        : "#f3f4f6",
+                                                        ? "rgba(59,130,246,.18)"
+                                                        : "var(--border)",
                                             color:
                                                 emp.role === "hr"
                                                     ? "#92400e"
@@ -940,7 +940,7 @@ const PayrollMgmt = () => {
                             </span>
                             Payroll Management
                         </h1>
-                        <p style={{ fontSize: ".88rem", color: "#374151", margin: ".35rem 0 0 53px", fontWeight: 500 }}>
+                        <p style={{ fontSize: ".88rem", color: "var(--text-2)", margin: ".35rem 0 0 53px", fontWeight: 500 }}>
                             Generate payslips, mark salaries as paid, and download records
                         </p>
                     </div>
@@ -960,7 +960,7 @@ const PayrollMgmt = () => {
                 <div ref={genPanelRef} className="pr-panel">
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: ".75rem", marginBottom: "1rem" }}>
                         <p className="pr-panel-title" style={{ margin: 0 }}>
-                            <span style={{ background: "#dbeafe", color: "#1d4ed8", width: 28, height: 28, borderRadius: 7, display: "grid", placeItems: "center" }}>
+                            <span style={{ background: "rgba(59,130,246,.18)", color: "#1d4ed8", width: 28, height: 28, borderRadius: 7, display: "grid", placeItems: "center" }}>
                                 <FiSettings size={15} />
                             </span>
                             Generate Payroll
@@ -977,7 +977,7 @@ const PayrollMgmt = () => {
                     <div style={{ display: "flex", gap: ".85rem", flexWrap: "wrap", alignItems: "flex-end" }}>
                         <div>
                             <label className="pr-label">
-                                <FiCalendar size={12} color="#374151" />
+                                <FiCalendar size={12} color="var(--text-2)" />
                                 Month
                             </label>
                             <AnimSelect value={genMonth} onChange={e => setGenMonth(+e.target.value)} minWidth={155}>
@@ -986,7 +986,7 @@ const PayrollMgmt = () => {
                         </div>
                         <div>
                             <label className="pr-label">
-                                <FiCalendar size={12} color="#374151" />
+                                <FiCalendar size={12} color="var(--text-2)" />
                                 Year
                             </label>
                             <AnimSelect value={genYear} onChange={e => setGenYear(+e.target.value)} minWidth={105}>
@@ -1049,7 +1049,7 @@ const PayrollMgmt = () => {
                     <div className="pr-filter-row" style={{ marginBottom: "1.2rem" }}>
                         <div>
                             <label className="pr-label">
-                                <FiCalendar size={12} color="#374151" />
+                                <FiCalendar size={12} color="var(--text-2)" />
                                 Month
                             </label>
                             <AnimSelect value={filterMonth} onChange={e => setFilterMonth(+e.target.value)} minWidth={145}>
@@ -1058,7 +1058,7 @@ const PayrollMgmt = () => {
                         </div>
                         <div>
                             <label className="pr-label">
-                                <FiCalendar size={12} color="#374151" />
+                                <FiCalendar size={12} color="var(--text-2)" />
                                 Year
                             </label>
                             <AnimSelect value={filterYear} onChange={e => setFilterYear(+e.target.value)} minWidth={105}>
@@ -1067,7 +1067,7 @@ const PayrollMgmt = () => {
                         </div>
                         <div>
                             <label className="pr-label">
-                                <FiFilter size={12} color="#374151" />
+                                <FiFilter size={12} color="var(--text-2)" />
                                 Status
                             </label>
                             <AnimSelect value={filterStatus} onChange={e => setFilterStatus(e.target.value)} minWidth={115}>
@@ -1108,7 +1108,7 @@ const PayrollMgmt = () => {
                         }}>
                             <div style={{
                                 width: 68, height: 68, borderRadius: "50%",
-                                background: "#f3f4f6", display: "grid",
+                                background: "var(--border)", display: "grid",
                                 placeItems: "center", margin: "0 auto .85rem",
                             }}>
                                 <FiAlertCircle size={30} color="#6b7280" />
@@ -1185,7 +1185,7 @@ const PayrollMgmt = () => {
                                                 </td>
                                                 <td>
                                                     <div className="period-cell">
-                                                        <FiCalendar size={13} color="#374151" />
+                                                        <FiCalendar size={13} color="var(--text-2)" />
                                                         {MONTHS[(p.month || 1) - 1]} {p.year}
                                                     </div>
                                                 </td>
@@ -1195,7 +1195,7 @@ const PayrollMgmt = () => {
                                                             <FiCheck size={10} />{p.presentDays ?? 0}P
                                                         </span>
                                                         {p.absentDays > 0 && (
-                                                            <span className="att-dot" style={{ background: "#fee2e2", color: "#991b1b", borderColor: "#fca5a5" }} title="Missed working days">
+                                                            <span className="att-dot" style={{ background: "rgba(239,68,68,.15)", color: "#991b1b", borderColor: "#fca5a5" }} title="Missed working days">
                                                                 <FiX size={10} />{p.absentDays}A
                                                             </span>
                                                         )}
@@ -1205,19 +1205,19 @@ const PayrollMgmt = () => {
                                                             </span>
                                                         )}
                                                         {p.paidLeave > 0 && (
-                                                            <span className="att-dot" style={{ background: "#dbeafe", color: "#1d4ed8", borderColor: "#93c5fd" }}>
+                                                            <span className="att-dot" style={{ background: "rgba(59,130,246,.18)", color: "#1d4ed8", borderColor: "#93c5fd" }}>
                                                                 {p.paidLeave}PL
                                                             </span>
                                                         )}
                                                         {p.remainingWorkingDays > 0 && (
-                                                            <span className="att-dot" style={{ background: "#f3f4f6", color: "#4b5563", borderColor: "#d1d5db" }} title="Upcoming working days in the month">
+                                                            <span className="att-dot" style={{ background: "var(--border)", color: "#4b5563", borderColor: "var(--border)" }} title="Upcoming working days in the month">
                                                                 <FiClock size={10} />{p.remainingWorkingDays} Pend
                                                             </span>
                                                         )}
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span style={{ fontWeight: 600, color: "#111827" }}>
+                                                    <span style={{ fontWeight: 600, color: "var(--text-1)" }}>
                                                         ₹{(p.monthlySalary || 0).toLocaleString("en-IN")}
                                                     </span>
                                                 </td>

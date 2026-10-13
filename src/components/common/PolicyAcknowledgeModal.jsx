@@ -44,7 +44,7 @@ const PolicyAcknowledgeModal = ({ policy, onClose, onSuccess }) => {
             display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999, padding: 16,
         }}>
             <div style={{
-                background: "#fff", borderRadius: 14, width: "100%", maxWidth: 640,
+                background: "var(--surface)", borderRadius: 14, width: "100%", maxWidth: 640,
                 maxHeight: "85vh", display: "flex", flexDirection: "column",
                 boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
             }}>
@@ -108,7 +108,7 @@ const PolicyAcknowledgeModal = ({ policy, onClose, onSuccess }) => {
                             onClick={onClose}
                             style={{
                                 padding: "10px 20px", borderRadius: 8, border: "1px solid #ddd",
-                                background: "#fff", cursor: "pointer", fontWeight: 500, fontSize: "0.875rem",
+                                background: "var(--surface)", cursor: "pointer", fontWeight: 500, fontSize: "0.875rem",
                             }}
                         >
                             Close

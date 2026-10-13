@@ -16,9 +16,9 @@ import {
 
 const C = {
     indigo: '#4f46e5', indigoDark: '#3730a3', indigoLight: 'var(--brand-light)', indigoBorder: 'var(--border)',
-    red: '#ef4444', redDark: '#b91c1c', redLight: 'var(--danger-bg)', redBorder: 'var(--border)',
-    emerald: '#059669', emeraldDark: '#047857', emeraldLight: 'var(--success-bg)', emeraldBorder: 'var(--border)',
-    blue: '#2563eb', blueLight: 'var(--brand-light)', blueBorder: 'var(--border)',
+    red: '#ef4444', redDark: '#ef4444', redLight: 'rgba(239,68,68,.14)', redBorder: 'rgba(239,68,68,.45)',
+    emerald: '#059669', emeraldDark: '#059669', emeraldLight: 'rgba(16,185,129,.14)', emeraldBorder: 'rgba(16,185,129,.45)',
+    blue: '#3b82f6', blueLight: 'rgba(59,130,246,.14)', blueBorder: 'rgba(59,130,246,.45)',
     amber: '#d97706', amberLight: 'var(--warn-bg)',
     ink50: 'var(--surface-3)', ink100: 'var(--border)', ink200: 'var(--border)',
     ink400: 'var(--text-3)', ink500: 'var(--text-2)', ink600: 'var(--text-2)',
@@ -93,9 +93,9 @@ const SkeletonRow = () => (
 
 const GenuinenessBadge = ({ label, score }) => {
     const cfg = {
-        genuine: { bg: '#dcfce7', color: '#15803d', border: '#86efac', icon: '✅' },
-        unverified: { bg: '#fefce8', color: '#a16207', border: '#fde047', icon: '⚠️' },
-        suspicious: { bg: '#fee2e2', color: '#b91c1c', border: '#fca5a5', icon: '🚫' },
+        genuine: { bg: 'rgba(34,197,94,.16)', color: '#4ade80', border: 'rgba(34,197,94,.45)', icon: '✅' },
+        unverified: { bg: 'rgba(234,179,8,.16)', color: '#facc15', border: 'rgba(234,179,8,.45)', icon: '⚠️' },
+        suspicious: { bg: 'rgba(239,68,68,.16)', color: '#f87171', border: 'rgba(239,68,68,.45)', icon: '🚫' },
     }
     const s = cfg[label] || cfg.unverified
     return (
@@ -417,7 +417,10 @@ const LeadDetailModal = ({ open, lead, onClose, onEmailDraft, onProposal, onLead
                 {lead.linkedin && (
                     <div style={{ padding: '0 22px 14px' }}>
                         <a href={lead.linkedin} target="_blank" rel="noopener noreferrer"
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 8, background: '#eff6ff', color: '#1d4ed8', fontSize: 12, fontWeight: 700, textDecoration: 'none', border: '1px solid #bfdbfe' }}>
+                            style={{
+                                display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 8,
+                                background: 'rgba(59,130,246,.14)', color: '#60a5fa', fontSize: 12, fontWeight: 700, textDecoration: 'none', border: '1px solid rgba(59,130,246,.45)'
+                            }}>
                             View LinkedIn ↗
                         </a>
                     </div>
@@ -673,9 +676,9 @@ const SalesIntelligence = () => {
                             <span style={{ fontSize: 10, fontWeight: 700, color: C.ink400, textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: 2 }}>Score:</span>
                             {[
                                 { value: '', label: 'All', color: C.ink400, bg: C.ink50 },
-                                { value: 'hot', label: '🔥 Hot', color: '#b91c1c', bg: '#fef2f2' },
-                                { value: 'warm', label: '🌤 Warm', color: '#b45309', bg: '#fffbeb' },
-                                { value: 'cold', label: '❄️ Cold', color: '#1d4ed8', bg: '#eff6ff' },
+                                { value: 'hot', label: '🔥 Hot', color: '#ef4444', bg: 'rgba(239,68,68,.14)' },
+                                { value: 'warm', label: '🌤 Warm', color: '#f59e0b', bg: 'rgba(245,158,11,.14)' },
+                                { value: 'cold', label: '❄️ Cold', color: '#3b82f6', bg: 'rgba(59,130,246,.14)' },
                                 { value: 'unscored', label: '— Unscored', color: C.ink500, bg: C.ink50 },
                             ].map(pill => (
                                 <button key={pill.value} onClick={() => setFilterTag(pill.value)}
@@ -781,7 +784,7 @@ const SalesIntelligence = () => {
                                                     onClick={() => setDetailLead(lead)}
                                                     style={{
                                                         borderBottom: `1px solid ${C.ink50}`,
-                                                        background: isNew ? '#f0fdf4' : C.white,
+                                                        background: isNew ? 'rgba(34,197,94,.10)' : C.white,
                                                         borderLeft: isNew ? '3px solid #22c55e' : '3px solid transparent',
                                                     }}
                                                 >
@@ -799,9 +802,9 @@ const SalesIntelligence = () => {
                                                                     {isNew && (
                                                                         <span style={{
                                                                             padding: '2px 6px', borderRadius: 20,
-                                                                            background: '#dcfce7', color: '#15803d',
+                                                                            background: 'rgba(34,197,94,.18)', color: '#4ade80',
                                                                             fontSize: 9, fontWeight: 800,
-                                                                            border: '1px solid #86efac',
+                                                                            border: '1px solid rgba(34,197,94,.45)',
                                                                             animation: 'pulse 1.5s ease infinite',
                                                                             whiteSpace: 'nowrap',
                                                                         }}>NEW</span>
@@ -842,7 +845,10 @@ const SalesIntelligence = () => {
                                                     <td style={{ padding: '13px 18px', whiteSpace: 'nowrap' }}>
                                                         {lead.createdAt ? (
                                                             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
-                                                                <span style={{ fontSize: 12, fontWeight: 700, color: isNew ? '#15803d' : C.ink700 }}>
+                                                                <span style={{
+                                                                    fontSize: 12, fontWeight: 700,
+                                                                    color: isNew ? '#4ade80' : C.ink700
+                                                                }}>
                                                                     {new Date(lead.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
                                                                 </span>
                                                                 <span style={{ fontSize: 10, color: isNew ? '#16a34a' : C.ink400, fontWeight: 600 }}>

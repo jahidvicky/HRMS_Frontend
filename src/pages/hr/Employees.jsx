@@ -455,7 +455,7 @@ const FormFields = ({ form, onChange }) => {
                         )}
                     </select>
                 </div>
-                
+
                 <div className="form-group" style={{ margin: 0 }}>
                     <label className="form-label" style={{ color: "var(--text-1)", fontWeight: 600 }}>Department</label>
                     {["manager", "superadmin"].includes(form.role?.toLowerCase?.()) ? (
@@ -495,7 +495,7 @@ const FormFields = ({ form, onChange }) => {
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: ".75rem" }} className="resp-grid-2">
-                
+
                 {!["manager", "superadmin"].includes(form.role?.toLowerCase?.()) && (
                     <div className="form-group" style={{ margin: 0 }}>
                         <label className="form-label" style={{ color: "var(--text-1)", fontWeight: 600 }}>Designation</label>
@@ -1439,7 +1439,7 @@ const SalaryStructureTab = ({ employeeId }) => {
                     Monthly CTC: ₹{monthlySalary.toLocaleString("en-IN")}
                     <span style={{ fontSize: ".72rem", color: "#3b82f6", marginLeft: ".5rem", fontWeight: 500 }}>(Edit in Basic Info tab)</span>
                 </div>
-                <div style={{ fontSize: ".75rem", background: "#dbeafe", padding: "2px 8px", borderRadius: "4px" }}>
+                <div style={{ fontSize: ".75rem", background: "rgba(59,130,246,.18)", padding: "2px 8px", borderRadius: "4px" }}>
                     FY {payrollSettings?.financialYear || "2025-26"}
                 </div>
             </div>
@@ -1508,7 +1508,7 @@ const SalaryStructureTab = ({ employeeId }) => {
                 ))}
 
                 {/* Special Allowance */}
-                <div style={{ display: "flex", alignItems: "center", gap: ".75rem", padding: ".65rem .85rem", borderRadius: "8px", marginBottom: ".4rem", background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: ".75rem", padding: ".65rem .85rem", borderRadius: "8px", marginBottom: ".4rem", background: "var(--surface-2)", border: "1px solid var(--border)" }}>
                     <div style={{ width: 15, height: 15, background: "#64748b", borderRadius: "2px" }} />
                     <span style={{ flex: 1, fontSize: ".82rem", fontWeight: 600, color: "#64748b" }}>Special Allowance (Auto Calculated)</span>
                     <span style={{ fontSize: ".82rem", fontWeight: 700, minWidth: 72, textAlign: "right", color: "#64748b" }}>
@@ -1582,7 +1582,7 @@ const SalaryStructureTab = ({ employeeId }) => {
                 <p style={{ fontWeight: 700, fontSize: ".8rem", color: "var(--text-2)", marginBottom: ".5rem", textTransform: "uppercase", letterSpacing: ".4px" }}>
                     Employer Contributions (Display Only)
                 </p>
-                <div style={{ display: "flex", justifyContent: "space-between", padding: ".65rem .85rem", background: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0", fontSize: ".82rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", padding: ".65rem .85rem", background: "var(--surface-2)", borderRadius: "8px", border: "1px solid var(--border)", fontSize: ".82rem" }}>
                     <span style={{ fontWeight: 600 }}>Gratuity (4.81% of Basic)</span>
                     <span style={{ fontWeight: 700 }}>₹{gratuityAmt.toLocaleString("en-IN")}</span>
                 </div>
@@ -1857,6 +1857,7 @@ const Employees = () => {
     const [assignLoading, setAssignLoading] = useState(false);
     const [tlEmployees, setTlEmployees] = useState([]);       // employees already under selected TL
     const [tlEmployeesLoading, setTlEmployeesLoading] = useState(false);
+    const [assignableEmployees, setAssignableEmployees] = useState([]); // active employees (from backend)
 
 
     const { user } = useContext(AuthContext);
@@ -1937,14 +1938,23 @@ const Employees = () => {
         );
     };
 
+    const fetchAssignableEmployees = async () => {
+        try {
+            const res = await API.get("/users?status=active&role=employee");
+            setAssignableEmployees(res.data.users || []);
+        } catch (err) {
+            console.error("Failed to fetch assignable employees:", err);
+            setAssignableEmployees([]);
+        }
+    };
+
     const openAssignModal = async () => {
-        await fetchTLs();
+        await Promise.all([fetchTLs(), fetchAssignableEmployees()]);
         setSelectedTL("");
         setSelectedEmployeeIds([]);
         setTlEmployees([]);
         setAssignModal(true);
     };
-
     const fetchTLEmployees = async (tlId) => {
         if (!tlId) { setTlEmployees([]); return; }
         setTlEmployeesLoading(true);
@@ -1972,6 +1982,7 @@ const Employees = () => {
             });
             // Refresh TL's employee list and full list
             await fetchTLEmployees(selectedTL);
+            await fetchAssignableEmployees();
             await fetchEmployees();
         } catch (err) {
             Swal.fire({
@@ -1985,13 +1996,18 @@ const Employees = () => {
 
     const tlTeamMembers = employees;
 
+    // Backend already returns only active employees; just hide those already under this TL
+    const availableToAssign = assignableEmployees.filter(
+        e => !tlEmployees.some(te => te._id === e._id)
+    );
+
     const filtered = employees.filter(e =>
         e.name?.toLowerCase().includes(search.toLowerCase()) ||
         e.email?.toLowerCase().includes(search.toLowerCase()) ||
         e.employeeId?.toLowerCase().includes(search.toLowerCase())
     );
 
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -2465,6 +2481,40 @@ const Employees = () => {
             <style>{`
                 * { box-sizing: border-box; }
 
+                /* ── Theme tokens (light) ── */
+                :root {
+                    --emp-ok-bg: #f0fdf4;      --emp-ok-border: #bbf7d0;
+                    --emp-ok-text: #052e16;    --emp-ok-text-2: #166534;
+                    --emp-info-bg: #eff6ff;    --emp-info-border: #bfdbfe;   --emp-info-text: #1e40af;
+                    --emp-sky-bg: #f0f9ff;     --emp-sky-border: #bae6fd;    --emp-sky-text: #0c4a6e;
+                    --emp-bad-bg: #fff5f5;     --emp-bad-text: #450a0a;      --emp-bad-strong: #991b1b;
+                    --emp-warn-text: #451a03;
+                    --emp-neutral-bg: var(--surface-2);
+                    --emp-purple-bg: #f5f0ff;  --emp-purple-text: #6d28d9;
+                }
+                /* ── Theme tokens (dark) – adjust selector to match your toggle ── */
+                [data-theme="dark"], .dark, .dark-mode, body.dark, html.dark {
+                    --emp-ok-bg: rgba(34,197,94,.14);     --emp-ok-border: rgba(34,197,94,.35);
+                    --emp-ok-text: #86efac;               --emp-ok-text-2: #4ade80;
+                    --emp-info-bg: rgba(59,130,246,.15);  --emp-info-border: rgba(59,130,246,.35);  --emp-info-text: #93c5fd;
+                    --emp-sky-bg: rgba(14,165,233,.14);   --emp-sky-border: rgba(14,165,233,.35);   --emp-sky-text: #7dd3fc;
+                    --emp-bad-bg: rgba(239,68,68,.14);    --emp-bad-text: #fca5a5;                  --emp-bad-strong: #fca5a5;
+                    --emp-warn-text: #fcd34d;
+                    --emp-neutral-bg: rgba(148,163,184,.12);
+                    --emp-purple-bg: rgba(139,92,246,.18); --emp-purple-text: #c4b5fd;
+                }
+
+                /* Plain selects / number inputs inside modals (no .input class) */
+                              .enhanced-modal select,
+                .enhanced-modal input[type="number"] {
+                    background-color: var(--surface);
+                    color: var(--text-1);
+                }
+                .enhanced-modal select option {
+                    background: var(--surface);
+                    color: var(--text-1);
+                }
+
                 .emp-root { font-family: 'Inter', -apple-system, sans-serif; }
 
                 /* ── MODAL BACKDROP FIX ── */
@@ -2578,21 +2628,21 @@ const Employees = () => {
                 }
                 .salary-item-label { font-size: .72rem; color: var(--text-1); margin-bottom: .25rem; font-weight: 600; }
                 .salary-item-value { font-size: 1.1rem; font-weight: 800; color: var(--text-1); }
-                .salary-total {
-                    background: linear-gradient(135deg, var(--success-bg), #bbf7d0);
-                    border: 2px solid #86efac;
+                               .salary-total {
+                    background: var(--emp-ok-bg);
+                    border: 2px solid var(--emp-ok-border);
                     padding: 1.25rem; border-radius: 12px;
                     text-align: center; margin-top: 1rem;
                 }
-                .salary-total-label { font-size: .8rem; color: #052e16; margin-bottom: .5rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
-                .salary-total-value { font-size: 2rem; font-weight: 800; color: #052e16; line-height: 1; }
+                .salary-total-label { font-size: .8rem; color: var(--emp-ok-text); margin-bottom: .5rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+                .salary-total-value { font-size: 2rem; font-weight: 800; color: var(--emp-ok-text); line-height: 1; }
 
                 /* ── Empty State ── */
                 .empty-state { text-align: center; padding: 3rem 1rem; }
                 .empty-state-icon {
                     width: 64px; height: 64px; margin: 0 auto 1rem;
                     background: var(--surface-2); border-radius: 50%;
-                    display: flex; align-items: center; justify-content: center; color: #334155;
+                                      display: flex; align-items: center; justify-content: center; color: var(--text-2);
                 }
 
                 /* ── Quick Actions ── */
@@ -2740,25 +2790,25 @@ const Employees = () => {
                             label: isTL ? "Team Members" : "Total Employees",
                             value: isTL ? tlTeamMembers.length : employees.length,
                             icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>,
-                            accent: "#2563eb", bg: "#eff6ff", border: "#bfdbfe",
+                            accent: "#3b82f6", bg: "rgba(59,130,246,.12)", border: "rgba(59,130,246,.35)",
                         },
                         {
                             label: "Active",
                             value: (isTL ? tlTeamMembers : employees).filter(e => e.status === "active").length,
                             icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>,
-                            accent: "#16a34a", bg: "#f0fdf4", border: "#bbf7d0",
+                            accent: "#22c55e", bg: "rgba(34,197,94,.12)", border: "rgba(34,197,94,.35)",
                         },
                         {
                             label: "Inactive",
                             value: (isTL ? tlTeamMembers : employees).filter(e => e.status === "inactive").length,
                             icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="10" /><line x1="10" y1="15" x2="10" y2="9" /><line x1="14" y1="15" x2="14" y2="9" /></svg>,
-                            accent: "#d97706", bg: "var(--warn-bg)", border: "#fde68a",
+                            accent: "#f59e0b", bg: "rgba(245,158,11,.12)", border: "rgba(245,158,11,.35)",
                         },
                         {
                             label: "Terminated",
                             value: (isTL ? tlTeamMembers : employees).filter(e => e.status === "terminated").length,
                             icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="10" /><line x1="15" y1="9" x2="9" y2="15" /><line x1="9" y1="9" x2="15" y2="15" /></svg>,
-                            accent: "#dc2626", bg: "var(--danger-bg)", border: "#fecdd3",
+                            accent: "#ef4444", bg: "rgba(239,68,68,.12)", border: "rgba(239,68,68,.35)",
                         },
                     ].map(stat => (
                         <div key={stat.label} style={{
@@ -2955,7 +3005,7 @@ const Employees = () => {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="emp-col-hide" style={{ fontSize: ".8rem", color: "#302e2e", fontWeight: 600 }}>
+                                            <td className="emp-col-hide" style={{ fontSize: ".8rem", color: "var(--text-2)", fontWeight: 600 }}>
                                                 {e.employeeId || "—"}
                                             </td>
                                             <td className="emp-col-hide" style={{ color: "var(--text-1)", fontWeight: 500 }}>{e.email}</td>
@@ -3232,7 +3282,7 @@ const Employees = () => {
                                                         display: "flex", alignItems: "center", gap: "6px",
                                                         padding: "7px 11px", borderRadius: "8px",
                                                         background: editEmp.status === "active" ? "var(--warn-bg)" : "#f0fdf4",
-                                                        color: editEmp.status === "active" ? "#92400e" : "#065f46",
+                                                        color: editEmp.status === "active" ? "#92400e" : "#4ade80",
                                                         border: `1px solid ${editEmp.status === "active" ? "#fde68a" : "#bbf7d0"}`,
                                                         fontWeight: 600, fontSize: ".78rem", cursor: "pointer", transition: "all .15s",
                                                     }}
@@ -3430,7 +3480,7 @@ const Employees = () => {
                                                     <div key={emp._id} style={{
                                                         display: "flex", alignItems: "center", gap: ".6rem",
                                                         padding: ".45rem .7rem", borderRadius: "6px",
-                                                        background: "#f0fdf4", border: "1px solid #bbf7d0",
+                                                        background: "rgba(34,197,94,.12)", border: "1px solid rgba(34,197,94,.35)",
                                                     }}>
                                                         <div style={{
                                                             width: 28, height: 28, borderRadius: "50%",
@@ -3485,16 +3535,14 @@ const Employees = () => {
                                             border: "1px solid var(--surface-3)", borderRadius: "8px",
                                             padding: ".5rem", display: "flex", flexDirection: "column", gap: ".35rem"
                                         }}>
-                                            {/* Only show employees NOT already assigned to this TL */}
-                                            {employees
-                                                .filter(e => e.role === "employee")
-                                                .filter(e => !tlEmployees.some(te => te._id === e._id))
+                                            {/* Active employees only (filtered by backend), not already under this TL */}
+                                            {availableToAssign
                                                 .map(emp => (
                                                     <label key={emp._id} style={{
                                                         display: "flex", alignItems: "center", gap: ".65rem",
                                                         padding: ".5rem .65rem", borderRadius: "6px", cursor: "pointer",
-                                                        background: selectedEmployeeIds.includes(emp._id) ? "#eff6ff" : "transparent",
-                                                        border: `1px solid ${selectedEmployeeIds.includes(emp._id) ? "#bfdbfe" : "transparent"}`,
+                                                        background: selectedEmployeeIds.includes(emp._id) ? "rgba(59,130,246,.15)" : "transparent",
+                                                        border: `1px solid ${selectedEmployeeIds.includes(emp._id) ? "rgba(59,130,246,.4)" : "transparent"}`,
                                                         transition: "all .1s ease",
                                                     }}>
                                                         <input
@@ -3519,8 +3567,8 @@ const Employees = () => {
                                                         </div>
                                                         {emp.reportingTo && (
                                                             <span style={{
-                                                                fontSize: ".68rem", background: "var(--warn-bg)",
-                                                                color: "#451a03", padding: "2px 6px",
+                                                                fontSize: ".68rem", background: "rgba(245,158,11,.15)",
+                                                                color: "#d97706", padding: "2px 6px",
                                                                 borderRadius: "4px", flexShrink: 0, fontWeight: 700
                                                             }}>
                                                                 Assigned to other TL
@@ -3528,9 +3576,9 @@ const Employees = () => {
                                                         )}
                                                     </label>
                                                 ))}
-                                            {employees.filter(e => e.role === "employee").filter(e => !tlEmployees.some(te => te._id === e._id)).length === 0 && (
+                                            {availableToAssign.length === 0 && (
                                                 <p style={{ textAlign: "center", color: "var(--text-1)", fontSize: ".82rem", padding: "1rem", fontWeight: 500 }}>
-                                                    All employees are already assigned to this TL
+                                                    No active employees available to assign
                                                 </p>
                                             )}
                                         </div>
@@ -3539,10 +3587,7 @@ const Employees = () => {
                                                 className="btn btn-ghost btn-sm"
                                                 style={{ color: "var(--text-1)", fontWeight: 600 }}
                                                 onClick={() => setSelectedEmployeeIds(
-                                                    employees
-                                                        .filter(e => e.role === "employee")
-                                                        .filter(e => !tlEmployees.some(te => te._id === e._id))
-                                                        .map(e => e._id)
+                                                    availableToAssign.map(e => e._id)
                                                 )}
                                             >
                                                 Select All

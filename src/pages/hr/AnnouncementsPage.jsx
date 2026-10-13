@@ -214,7 +214,7 @@ const AnnouncementsPage = () => {
     const fetchUnreadCount = useCallback(async () => {
         try {
             const res = await API.get("/announcements/unread-count");
-            setUnreadCount(res.data.count ?? 0);
+            setUnreadCount(res.data.unreadCount ?? res.data.count ?? 0);
         } catch { /* silent */ }
     }, []);
 

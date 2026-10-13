@@ -86,7 +86,7 @@ const css = `
 .hr-stat.amber::before  { background: linear-gradient(90deg,#FCD34D,#F59E0B); }
 .hr-stat.green::before  { background: linear-gradient(90deg,#4ADE80,#22C55E); }
 .hr-stat.red::before    { background: linear-gradient(90deg,#F87171,#EF4444); }
-.hr-stat.gray::before   { background: linear-gradient(90deg,#D1D5DB,#9CA3AF); }
+.hr-stat.gray::before   { background: linear-gradient(90deg,var(--border),#9CA3AF); }
 .hr-stat.purple::before { background: linear-gradient(90deg,#A78BFA,#7C3AED); }
 
 .hr-stat-label {
@@ -680,7 +680,7 @@ const categoryChip = (c) => {
     return <span className={`hr-chip ${cls}`}>{label}</span>;
 };
 
-const iconBg = { it: "#EFF6FF", hr: "#EEF2FF", admin: "#F3F4F6", payroll: "#F0FDF4", attendance: "#FFFBEB", other: "#F3F4F6" };
+const iconBg = { it: "#EFF6FF", hr: "rgba(99,102,241,.15)", admin: "var(--border)", payroll: "#F0FDF4", attendance: "#FFFBEB", other: "var(--border)" };
 const iconColor = { it: "#3B82F6", hr: "#6366F1", admin: "#6B7280", payroll: "#22C55E", attendance: "#F59E0B", other: "#9CA3AF" };
 
 /* ─── HR Thread Modal ────────────────────────────────────────────────────── */
@@ -850,7 +850,7 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
                 </div>
 
                 {/* Description */}
-                <div style={{ fontSize: ".72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".7px", color: "#374151", marginBottom: 8 }}>
+                <div style={{ fontSize: ".72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".7px", color: "var(--text-2)", marginBottom: 8 }}>
                     Description
                 </div>
                 <div className="hr-desc-block">{ticket.description}</div>
@@ -859,7 +859,7 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
                 {/* Attachments */}
                 {ticket.attachments?.length > 0 && (
                     <>
-                        <div style={{ fontSize: ".72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".7px", color: "#374151", marginBottom: 8 }}>
+                        <div style={{ fontSize: ".72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".7px", color: "var(--text-2)", marginBottom: 8 }}>
                             Attachments ({ticket.attachments.length})
                         </div>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
@@ -872,7 +872,7 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
                                     style={{
                                         display: "block", width: 80, height: 80,
                                         borderRadius: 8, overflow: "hidden",
-                                        border: "1px solid #E8EBF0", flexShrink: 0,
+                                        border: "1px solid var(--border)", flexShrink: 0,
                                         transition: "transform .15s",
                                     }}
                                     onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.04)"}
@@ -895,7 +895,7 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
                     <div className="hr-controls-row">
                         {/* Status */}
                         <div className="hr-ctrl-group">
-                            <div className="hr-ctrl-label" style={{ color: "#374151" }}>Status</div>
+                            <div className="hr-ctrl-label" style={{ color: "var(--text-2)" }}>Status</div>
                             <select
                                 className="hr-ctrl-select"
                                 value={newStatus}
@@ -910,7 +910,7 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
 
                         {/* Assignee */}
                         <div className="hr-ctrl-group">
-                            <div className="hr-ctrl-label" style={{ color: "#374151" }}>Assign To</div>
+                            <div className="hr-ctrl-label" style={{ color: "var(--text-2)" }}>Assign To</div>
                             <select
                                 className="hr-ctrl-select"
                                 value={newAssignee}
@@ -961,7 +961,7 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
                 )}
 
                 {/* Conversation */}
-                <div style={{ fontSize: ".72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".7px", color: "#374151", marginBottom: 10 }}>
+                <div style={{ fontSize: ".72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".7px", color: "var(--text-2)", marginBottom: 10 }}>
                     Conversation ({ticket.replies?.length || 0})
                 </div>
 
@@ -979,10 +979,10 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
                                     {initials(name)}
                                 </div>
                                 <div className="hr-bubble-content">
-                                    <div className="hr-bubble-name" style={{ color: "#374151", fontWeight: 600 }}>
+                                    <div className="hr-bubble-name" style={{ color: "var(--text-2)", fontWeight: 600 }}>
                                         {name}
                                         {isStaff && (
-                                            <span style={{ marginLeft: 5, background: "#EEF2FF", color: "#4338CA", padding: "1px 5px", borderRadius: 4, fontSize: ".65rem", fontWeight: 700 }}>
+                                            <span style={{ marginLeft: 5, background: "rgba(99,102,241,.15)", color: "#4338CA", padding: "1px 5px", borderRadius: 4, fontSize: ".65rem", fontWeight: 700 }}>
                                                 Staff
                                             </span>
                                         )}
@@ -999,10 +999,10 @@ const HRThreadModal = ({ ticket: initialTicket, onClose, onUpdate, onDelete, hrS
                 {/* Reply input */}
                 {isClosed ? (
                     <div style={{
-                        textAlign: "center", padding: "14px", background: "#F3F4F6",
+                        textAlign: "center", padding: "14px", background: "var(--border)",
                         borderRadius: 10, color: "#4B5563", fontSize: ".82rem", fontWeight: 600,
                         display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                        borderTop: "1px solid #E5E7EB", paddingTop: 16, marginTop: 4,
+                        borderTop: "1px solid var(--border)", paddingTop: 16, marginTop: 4,
                     }}>
                         <Icon d={icons.lock} size={14} color="#4B5563" /> This ticket is closed
                     </div>
@@ -1253,7 +1253,7 @@ const HRHelpdesk = () => {
                                 <div className="hr-empty-icon">
                                     <Icon d={icons.inbox} size={24} color="#9CA3AF" />
                                 </div>
-                                <p style={{ fontWeight: 600, color: "#374151", marginBottom: 6 }}>No tickets found</p>
+                                <p style={{ fontWeight: 600, color: "var(--text-2)", marginBottom: 6 }}>No tickets found</p>
                                 <p style={{ fontSize: ".82rem" }}>
                                     {search || statusFilter !== "all" || categoryFilter !== "all" || priorityFilter !== "all"
                                         ? "Try adjusting your filters"
@@ -1271,7 +1271,7 @@ const HRHelpdesk = () => {
                                 {/* Icon */}
                                 <div
                                     className="hr-ticket-icon"
-                                    style={{ background: iconBg[ticket.category] || "#F3F4F6" }}
+                                    style={{ background: iconBg[ticket.category] || "var(--border)" }}
                                 >
                                     <Icon
                                         d={icons.ticket}

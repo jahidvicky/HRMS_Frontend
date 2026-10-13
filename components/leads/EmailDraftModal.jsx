@@ -6,7 +6,7 @@ const C = {
     emerald: '#047857', emeraldLight: '#ecfdf5', emeraldBorder: '#6ee7b7',
     red: '#dc2626', redLight: '#fef2f2', redBorder: '#fca5a5',
     amber: '#d97706', amberLight: '#fffbeb', amberBorder: '#fcd34d',
-    slate100: '#f1f5f9', slate200: '#e2e8f0', slate300: '#cbd5e1',
+    slate100: '#f1f5f9', slate200: 'var(--border)', slate300: '#cbd5e1',
     slate400: '#94a3b8', slate500: '#64748b', slate600: '#475569',
     slate700: '#334155', slate800: '#1e293b', slate900: '#0f172a',
     white: '#ffffff',

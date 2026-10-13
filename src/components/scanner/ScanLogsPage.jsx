@@ -22,18 +22,18 @@ const T = {
 };
 
 const ROLE_THEME = {
-    hr: { bg: "#dbeafe", fg: "#1e3a8a", dot: "#1d4ed8" },
-    manager: { bg: "#d1fae5", fg: "#065f46", dot: "#059669" },
-    tl: { bg: "#fef3c7", fg: "#92400e", dot: "#d97706" },
-    employee: { bg: "#ede9fe", fg: "#4c1d95", dot: "#6d28d9" },
-    superadmin: { bg: "#fee2e2", fg: "#7f1d1d", dot: "#dc2626" },
+    hr: { bg: "rgba(59,130,246,.18)", fg: "#1e3a8a", dot: "#1d4ed8" },
+    manager: { bg: "rgba(34,197,94,.18)", fg: "#4ade80", dot: "#059669" },
+    tl: { bg: "rgba(245,158,11,.18)", fg: "#92400e", dot: "#d97706" },
+    employee: { bg: "rgba(124,58,237,.18)", fg: "#4c1d95", dot: "#6d28d9" },
+    superadmin: { bg: "rgba(239,68,68,.15)", fg: "#7f1d1d", dot: "#dc2626" },
 };
 const getRoleTheme = (role) => ROLE_THEME[role?.toLowerCase()] ?? ROLE_THEME.employee;
 
 const DEVICE_COLORS = {
-    mobile: { bg: "#ede9fe", fg: "#4c1d95" },
-    desktop: { bg: "#dbeafe", fg: "#1e3a8a" },
-    tablet: { bg: "#d1fae5", fg: "#065f46" },
+    mobile: { bg: "rgba(124,58,237,.18)", fg: "#4c1d95" },
+    desktop: { bg: "rgba(59,130,246,.18)", fg: "#1e3a8a" },
+    tablet: { bg: "rgba(34,197,94,.18)", fg: "#4ade80" },
 };
 const getDeviceColor = (type) => DEVICE_COLORS[type?.toLowerCase()] ?? { bg: "#f1f5f9", fg: "#475569" };
 

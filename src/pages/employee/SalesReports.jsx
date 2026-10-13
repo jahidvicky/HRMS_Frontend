@@ -118,7 +118,7 @@ const inputStyle = (err = false, focused = false) => ({
     boxSizing: 'border-box',
     fontFamily: 'inherit',
     transition: 'border-color 0.2s, box-shadow 0.2s',
-    boxShadow: focused ? `0 0 0 3px ${err ? '#fee2e2' : C.indigoLight}` : 'none',
+    boxShadow: focused ? `0 0 0 3px ${err ? 'rgba(239,68,68,.15)' : C.indigoLight}` : 'none',
 })
 
 const labelStyle = {
@@ -404,7 +404,7 @@ const ReportModal = ({ open, onClose, onSave, editData, saving, currentUserName 
                                         borderRadius: 8,
                                         border: `1.5px solid ${errors.country ? C.red : state.isFocused ? C.indigo : C.ink200}`,
                                         boxShadow: state.isFocused
-                                            ? `0 0 0 3px ${errors.country ? '#fee2e2' : C.indigoLight}`
+                                            ? `0 0 0 3px ${errors.country ? 'rgba(239,68,68,.15)' : C.indigoLight}`
                                             : 'none',
                                         fontSize: 13,
                                         minHeight: 38,

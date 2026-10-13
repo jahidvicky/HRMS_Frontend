@@ -150,7 +150,7 @@ const EmployeeLeaves = () => {
                     cursor: pointer;
                     transition: border-color .15s, background .15s;
                 }
-                .hlb-emp-row:hover  { border-color: #818cf8; background: #fafafa; }
+                .hlb-emp-row:hover  { border-color: #818cf8; background: var(--surface-2); }
                 .hlb-emp-row.active { border-color: #4f46e5; background: #eef2ff; }
                 .hlb-avatar {
                     width: 38px; height: 38px; border-radius: 50%;
@@ -191,7 +191,7 @@ const EmployeeLeaves = () => {
                     opacity: .8;
                 }
                 .hlb-input-wrap {
-                    background: #f8fafc;
+                    background: var(--surface-2);
                     border: 1px solid var(--border);
                     border-radius: var(--radius-md);
                     padding: 1rem;
@@ -312,7 +312,7 @@ const EmployeeLeaves = () => {
                                                         {
                                                             label: `Total (${new Date().toLocaleString("en-IN", { month: "short" })})`,
                                                             val: total,
-                                                            bg: "#eef2ff", color: "#4f46e5", border: "#c7d2fe"
+                                                            bg: "rgba(99,102,241,.15)", color: "#4f46e5", border: "#c7d2fe"
                                                         },
                                                         { label: "Used", val: used, bg: "#fef2f2", color: "#dc2626", border: "#fecaca" },
                                                         { label: "Remaining", val: remaining, bg: "#f0fdf4", color: "#16a34a", border: "#bbf7d0" },
@@ -355,7 +355,7 @@ const EmployeeLeaves = () => {
 
                             {/* Employee header */}
                             <div style={{
-                                background: "#f8fafc", border: "1px solid var(--border)",
+                                background: "var(--surface-2)", border: "1px solid var(--border)",
                                 borderRadius: "var(--radius-md)", padding: ".85rem 1rem",
                                 display: "flex", alignItems: "center", gap: ".75rem",
                             }}>
@@ -376,7 +376,7 @@ const EmployeeLeaves = () => {
                                 return (
                                     <div className="hlb-stat-row">
                                         {[
-                                            { label: "Total Allocated", val: total, bg: "#eef2ff", color: "#4f46e5", border: "#c7d2fe" },
+                                            { label: "Total Allocated", val: total, bg: "rgba(99,102,241,.15)", color: "#4f46e5", border: "#c7d2fe" },
                                             { label: "Used", val: used, bg: "#fef2f2", color: "#dc2626", border: "#fecaca" },
                                             { label: "Remaining", val: remaining, bg: "#f0fdf4", color: "#16a34a", border: "#bbf7d0" },
                                         ].map(s => (
@@ -393,7 +393,7 @@ const EmployeeLeaves = () => {
                             {/* Per-type inputs */}
                             <p className="fw-600" style={{
                                 fontSize: ".78rem", textTransform: "uppercase",
-                                letterSpacing: ".5px", color: "#374151"
+                                letterSpacing: ".5px", color: "var(--text-2)"
                             }}>
                                 Update Leave Allocation
                             </p>
@@ -451,7 +451,7 @@ const EmployeeLeaves = () => {
                                                 }))}
                                                 style={{
                                                     flex: 1, padding: "8px 12px", borderRadius: 8,
-                                                    border: `1.5px solid ${border}`, background: "#fff",
+                                                    border: `1.5px solid ${border}`, background: "var(--surface)",
                                                     fontSize: "1rem", fontWeight: 700, color,
                                                     outline: "none", boxSizing: "border-box",
                                                 }}

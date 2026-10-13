@@ -16,18 +16,18 @@ const T = {
     errorLight: "#fef2f2",
     warn: "#d97706",
     warnLight: "#fffbeb",
-    text: "#111827",
+    text: "var(--text-1)",
     muted: "#6b7280",
     ff: "'DM Sans', 'Plus Jakarta Sans', sans-serif",
 };
 
 /* ── role colour map ── */
 const ROLE_CFG = {
-    hr: { clr: "#1d4ed8", light: "#dbeafe", dark: "#1e3a8a", grad: "linear-gradient(135deg,#1d4ed8,#3b82f6)", label: "HR" },
-    manager: { clr: "#059669", light: "#d1fae5", dark: "#065f46", grad: "linear-gradient(135deg,#059669,#34d399)", label: "Manager" },
-    tl: { clr: "#d97706", light: "#fef3c7", dark: "#92400e", grad: "linear-gradient(135deg,#d97706,#fbbf24)", label: "Team Lead" },
-    employee: { clr: "#6d28d9", light: "#ede9fe", dark: "#4c1d95", grad: "linear-gradient(135deg,#6d28d9,#a78bfa)", label: "Employee" },
-    superadmin: { clr: "#dc2626", light: "#fee2e2", dark: "#7f1d1d", grad: "linear-gradient(135deg,#dc2626,#f87171)", label: "Super Admin" },
+    hr: { clr: "#1d4ed8", light: "rgba(59,130,246,.18)", dark: "#1e3a8a", grad: "linear-gradient(135deg,#1d4ed8,#3b82f6)", label: "HR" },
+    manager: { clr: "#059669", light: "rgba(34,197,94,.18)", dark: "#4ade80", grad: "linear-gradient(135deg,#059669,#34d399)", label: "Manager" },
+    tl: { clr: "#d97706", light: "rgba(245,158,11,.18)", dark: "#92400e", grad: "linear-gradient(135deg,#d97706,#fbbf24)", label: "Team Lead" },
+    employee: { clr: "#6d28d9", light: "rgba(124,58,237,.18)", dark: "#4c1d95", grad: "linear-gradient(135deg,#6d28d9,#a78bfa)", label: "Employee" },
+    superadmin: { clr: "#dc2626", light: "rgba(239,68,68,.15)", dark: "#7f1d1d", grad: "linear-gradient(135deg,#dc2626,#f87171)", label: "Super Admin" },
 };
 
 const getRoleCfg = (role) => ROLE_CFG[role?.toLowerCase()] ?? ROLE_CFG.employee;
@@ -174,7 +174,7 @@ function LiveScanner({ onDetected, onClose }) {
             background: on ? "#22c55e" : "#ef4444",
             animation: on ? "pulse 1.4s infinite" : "none",
         }),
-        statusText: { color: "#d1d5db", fontSize: 12, fontWeight: 500 },
+        statusText: { color: "var(--border)", fontSize: 12, fontWeight: 500 },
         lastCode: {
             background: "rgba(108,99,255,.18)", border: "1px solid rgba(108,99,255,.4)",
             borderRadius: 8, padding: "6px 12px",
@@ -482,7 +482,7 @@ function EmployeeDetailCard({ emp, govId, bank, onClose }) {
                         borderRadius: 12, padding: "14px 16px",
                     }}>
                         <div style={{
-                            background: "#fff", padding: 8, borderRadius: 10,
+                            background: "var(--surface)", padding: 8, borderRadius: 10,
                             border: `2px solid ${rc.clr}22`,
                             boxShadow: "0 2px 8px rgba(0,0,0,.08)", flexShrink: 0,
                         }}>
@@ -660,7 +660,7 @@ export default function EmployeeScanner({ onFound, onEdit }) {
         successBox: {
             marginTop: 12, padding: "10px 14px", borderRadius: 10,
             background: T.successLight, border: `1px solid #6ee7b7`,
-            color: "#065f46", fontSize: 13, fontWeight: 600,
+            color: "#4ade80", fontSize: 13, fontWeight: 600,
             display: "flex", alignItems: "center", gap: 8, cursor: "pointer",
         },
     };
